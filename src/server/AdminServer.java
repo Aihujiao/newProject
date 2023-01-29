@@ -23,10 +23,9 @@ public class AdminServer extends HttpServlet {
         String op = request.getParameter("op");
         System.out.println("此时op要操作的方法是" + op);
         if(op.equals("adminLogin")){
-            System.out.println("执行到这里");
             this.doLoginAdmin(request, response);
-        }else{
-
+        }if(op.equals("adminUpdate")){
+            this.doUpdateAdmin(request, response);
         }
     }
 
@@ -34,16 +33,13 @@ public class AdminServer extends HttpServlet {
         String AdminNickName = request.getParameter("adminNickName");
         String AdminPassword = request.getParameter("adminPassword");
         System.out.println("管理员昵称是"+AdminNickName+"管理员密码是"+AdminPassword);
-        System.out.println("执行到这里-37");
         Admin admin = new Admin(0,AdminNickName,AdminPassword,null,0,0);
-        System.out.println("执行到这里-39");
         //  通过工厂实例化接口
         //  通过方法创建AdminCtrl实例
         System.out.println(admin.getAdminNickName());
         AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
         //  将前端获取的管理员对象值传入数据库检索
         //  无法执行
-        System.out.println("执行到这里-45");
         admin = AdminCtrl.loginAdmin(admin);
 
         String path = request.getContextPath()+"/admin/info.jsp";
@@ -54,5 +50,23 @@ public class AdminServer extends HttpServlet {
         }
 
         response.sendRedirect(path);
+    }
+
+    private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response){
+        int adminId = Integer.parseInt(request.getParameter("adminId"));
+        String newNickName = request.getParameter("newNickName");
+        String newPassword = request.getParameter("newPassword");
+        String newProfile = request.getParameter("newProfile");
+        int newDepartmentId = Integer.parseInt(request.getParameter("newDepartmentId"));
+        int adminStation = Integer.parseInt(request.getParameter("adminStation"));
+
+        Admin admin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,adminStation);
+
+        AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
+        AdminCtrl.updateAdmin(admin);
+
+        request.getSession().setAttribute("admin",admin);
+
+
     }
 }
