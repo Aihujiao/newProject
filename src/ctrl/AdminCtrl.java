@@ -30,7 +30,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStation = rs.getInt("adminStation");
-                admin = new Admin(adminId, adminPassword, adminNickName, adminProfile, adminDepartmentId, adminStation);
+                admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStation);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -66,7 +66,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
         int adminStation = admin.getAdminStation();
         int adminId = admin.getAdminId();
 
-        String sql ="update admins set adminNickName = ?,adminPassword = ?,adminProfile = ?,adminDepartment = ?,adminStation = ? where adminId = ?";
+        String sql ="update admins set adminNickName = ?,adminPassword = ?,adminProfile = ?,adminDepartmentId = ?,adminStation = ? where adminId = ?";
         Object objects[] = {adminNickName,adminPassword,adminProfile,adminDepartment,adminStation,adminId};
 
         boolean updated = executeDBUpdate(sql,objects);

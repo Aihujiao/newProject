@@ -53,6 +53,7 @@ public class AdminServer extends HttpServlet {
     }
 
     private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response){
+        Admin newAdmin = null;
         int adminId = Integer.parseInt(request.getParameter("adminId"));
         String newNickName = request.getParameter("newNickName");
         String newPassword = request.getParameter("newPassword");
@@ -60,13 +61,24 @@ public class AdminServer extends HttpServlet {
         int newDepartmentId = Integer.parseInt(request.getParameter("newDepartmentId"));
         int adminStation = Integer.parseInt(request.getParameter("adminStation"));
 
-        Admin admin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,adminStation);
+        newAdmin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,adminStation);
 
         AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
-        AdminCtrl.updateAdmin(admin);
-
-        request.getSession().setAttribute("admin",admin);
+        AdminCtrl.updateAdmin(newAdmin);
 
 
+
+        String path = request.getContextPath()+"/admin/info.jsp?msg=succeed";
+        if(newAdmin != null){
+            request.getSession().setAttribute("admin",newAdmin);
+        }else{
+            path = request.getContextPath() + "/admin/info.jsp?msg=err";
+        }
+
+        try {
+            response.sendRedirect(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
