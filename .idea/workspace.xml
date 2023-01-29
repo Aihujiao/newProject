@@ -9,16 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="20230129-newProject">
-      <change afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/factory/AdminFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factory/AdminFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AdminServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/AdminLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/admin/info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/info.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/admin/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202301292211" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,6 +192,14 @@
       <updated>1674975450931</updated>
       <workItem from="1674975452276" duration="12486000" />
     </task>
+    <task id="LOCAL-00001" summary="202301292211">
+      <created>1675001480453</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675001480453</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +215,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="202301292211" />
+    <option name="LAST_COMMIT_MESSAGE" value="202301292211" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
