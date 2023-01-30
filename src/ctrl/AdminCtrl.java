@@ -79,7 +79,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
 
     //  删除管理员
     public boolean deleteAdminById(int adminId){
-        String sql = "delete from admins adminId = ?";
+        String sql = "delete from admins where adminId = ?";
         Object objects[] = {adminId};
 
         boolean deleted = executeDBUpdate(sql, objects);
