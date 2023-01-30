@@ -52,7 +52,7 @@ public class AdminServer extends HttpServlet {
         response.sendRedirect(path);
     }
 
-    private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response){
+    private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Admin newAdmin = null;
         int adminId = Integer.parseInt(request.getParameter("adminId"));
         String newNickName = request.getParameter("newNickName");
@@ -75,10 +75,19 @@ public class AdminServer extends HttpServlet {
             path = request.getContextPath() + "/admin/info.jsp?msg=err";
         }
 
-        try {
-            response.sendRedirect(path);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        response.sendRedirect(path);
+    }
+
+    private boolean doRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Admin admin = null;
+
+        //  获取前端信息
+        String AdminNickName = request.getParameter("adminNickName");
+        String AdminPassword = request.getParameter("adminPassword");
+        String AdminProfile = request.getParameter("adminProfile");
+        int AdminDepartmentId = Integer.parseInt(request.getParameter("adminDepartmentId"));
+
+        return false;
     }
 }
