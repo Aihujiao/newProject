@@ -20,11 +20,14 @@
         <button>登录</button>
     </form>
     <c:choose>
-        <c:when test="${msg=succeed}">
+        <c:when test="${param.msg == 'succeed'}">
             <p style="color: red">操作成功</p>
         </c:when>
-        <c:when test="${msg=false}">
+        <c:when test="${param.msg == 'fail'}">
             <p style="color: red">操作失败</p>
+        </c:when>
+        <c:when test="${param.msg == 'nothing'}">
+            <p style="color: red">账号密码错误</p>
         </c:when>
     </c:choose>
 </body>

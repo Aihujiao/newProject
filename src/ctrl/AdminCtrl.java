@@ -32,6 +32,8 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStation = rs.getInt("adminStation");
                 admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStation);
+            }else{
+                return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

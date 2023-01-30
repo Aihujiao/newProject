@@ -3,6 +3,7 @@ package server;
 import ctrl.dao.AdminDao;
 import factory.AdminFactory;
 import model.Admin;
+import model.Department;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +32,7 @@ public class AdminServer extends HttpServlet {
         } else if (op.equals("adminDeleteById")) {
             this.doDeleteAdminById(request, response);
         } else if (op.equals("departmentRegister")) {
-//            this.doRegisterDepartment(request, response);
+            this.doRegisterDepartment(request, response);
         }
     }
 
@@ -52,7 +53,7 @@ public class AdminServer extends HttpServlet {
         if(admin != null){
             request.getSession().setAttribute("admin",admin);
         }else{
-            path = request.getContextPath()+"/admin/login.jsp";
+            path = request.getContextPath()+"/AdminLogin.jsp?msg=nothing";
         }
 
         response.sendRedirect(path);
@@ -115,24 +116,37 @@ public class AdminServer extends HttpServlet {
         Admin admin = (Admin) request.getSession().getAttribute("admin");
 
         int adminId = admin.getAdminId();
-        System.out.println(adminId+"标记");
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
 
-        boolean deleted = adminCtrl.deleteAdminById(adminId);
-
         String path = request.getContextPath()+"/AdminLogin.jsp?msg=succeed";
 
-        if(deleted){
-            if(adminId != 1){
-                response.sendRedirect(path);
-            }
-//            else{
-//              什么都不做
-//            }
+        if(adminId == 1){
+            path = request.getContextPath()+"/AdminLogin.jsp?msg=noway";
         }else{
-            path = request.getContextPath()+"/AdminLogin.jsp?msg=false";
-            response.sendRedirect(path);
+            boolean deleted = adminCtrl.deleteAdminById(adminId);
+            if(!deleted){
+                path = request.getContextPath()+"/AdminLogin.jsp?msg=fail";
+            }
         }
+        response.sendRedirect(path);
+    }
+
+    private void doRegisterDepartment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Department department = null;
+        String departmentName = request.getParameter("departmentName");
+        String departmentIntro = request.getParameter("departmentIntro");
+
+        department = new Department(0,departmentName,departmentIntro);
+
+        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
+        boolean registered = adminCtrl.registDepartment(department);
+        String path = null;
+        if(registered){
+            path = request.getContextPath()+"/admin/info.jsp?msg=succeed";
+        }else{
+            path = request.getContextPath()+"/admin/info.jsp?msg=fail";
+        }
+        response.sendRedirect(path);
     }
 }

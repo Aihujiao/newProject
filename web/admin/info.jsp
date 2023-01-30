@@ -23,25 +23,34 @@
     <p>管理员状态:${sessionScope.admin.adminStation}</p>
     <input type="submit" formaction="<%=request.getContextPath()%>/admin/update.jsp" value="更新个人信息">
 
-    <c:if test="${sessionScope.admin.adminId == 1}">
-        <input type="submit" formaction="<%=request.getContextPath()%>/admin/register.jsp" value="注册管理员">
-        <input type="submit" formaction="<%=request.getContextPath()%>/admin/register.jsp" value="添加部门">
-    </c:if>
-
-    <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">
+    <c:choose>
+        <c:when test="${sessionScope.admin.adminId == 1}">
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/register.jsp" value="注册管理员">
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=admins" value="查询所有管理员"><br><br>
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/departmentRegister.jsp" value="添加部门">
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=departments" value="查询所有部门">
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=employees" value="查询所有员工信息">
+        </c:when>
+        <c:otherwise>
+            <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">
+        </c:otherwise>
+    </c:choose>
 
     <c:choose>
-        <c:when test="${requestScope.msg == 'succeed'}">
+        <c:when test="${param.msg == 'succeed'}">
             <p style="color: red">更新成功</p>
         </c:when>
-        <c:when test="${requestScope.msg == 'err'}">
+        <c:when test="${param.msg == 'err'}">
             <p style="color: red">更新失败</p>
         </c:when>
-        <c:when test="${requestScope.msg == 'registSucceed'}">
+        <c:when test="${param.msg == 'registSucceed'}">
             <p color="red">注册成功</p>
         </c:when>
-        <c:when test="${requestScope.msg == 'registFalse'}">
+        <c:when test="${param.msg == 'registFalse'}">
             <p color="red">注册失败</p>
+        </c:when>
+        <c:when test="${param.msg == 'noway'}">
+            <p color="red">想都别想！超级管理员删不了~</p>
         </c:when>
     </c:choose>
 </form>

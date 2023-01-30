@@ -61,7 +61,7 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
     //  查询所有部门信息
     public List<Department> getAllDepartment(){
         List<Department> list =new ArrayList();
-        Department department = new Department();
+        Department department = null;
         String sql = "select * from departments";
 
         ResultSet rs = executeDBQuery(sql, null);
