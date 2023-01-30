@@ -9,7 +9,7 @@ public interface AdminDao {
     public Admin loginAdmin(Admin admin);
 
     //  超级管理员特殊功能选项
-    public boolean regisAdmin(Admin admin);
+    public boolean registAdmin(Admin admin);
 
     public boolean updateAdmin(Admin admin);
 

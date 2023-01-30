@@ -24,8 +24,10 @@ public class AdminServer extends HttpServlet {
         System.out.println("此时op要操作的方法是" + op);
         if(op.equals("adminLogin")){
             this.doLoginAdmin(request, response);
-        }if(op.equals("adminUpdate")){
+        }else if(op.equals("adminUpdate")){
             this.doUpdateAdmin(request, response);
+        } else if (op.equals("adminRegister")) {
+            this.doRegisterAdmin(request, response);
         }
     }
 
@@ -79,7 +81,7 @@ public class AdminServer extends HttpServlet {
         response.sendRedirect(path);
     }
 
-    private boolean doRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private boolean doRegisterAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Admin admin = null;
 
         //  获取前端信息
@@ -88,6 +90,20 @@ public class AdminServer extends HttpServlet {
         String AdminProfile = request.getParameter("adminProfile");
         int AdminDepartmentId = Integer.parseInt(request.getParameter("adminDepartmentId"));
 
-        return false;
+        admin = new Admin(0,AdminNickName,AdminPassword,AdminProfile,AdminDepartmentId,0);
+
+        AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
+
+        boolean Registed = AdminCtrl.registAdmin(admin);
+
+        String path = request.getContextPath()+"/admin/info.jsp?msg=registSucceed";
+
+        if(!Registed){
+            path = request.getContextPath()+"/admin/info.jsp?msg=registFalse";
+        }
+
+        response.sendRedirect(path);
+
+        return Registed;
     }
 }

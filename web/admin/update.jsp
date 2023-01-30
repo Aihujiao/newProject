@@ -11,6 +11,7 @@
     <title>更新管理员信息</title>
 </head>
 <body>
+<h2>信息更新</h2>
   <form action="/AdminServer" method="post">
     <input type="hidden" name="op" value="adminUpdate">
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>

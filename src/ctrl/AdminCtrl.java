@@ -39,7 +39,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
     }
 
     @Override
-    public boolean regisAdmin(Admin admin) {
+    public boolean registAdmin(Admin admin) {
         //  超級管理員
         //  读取前端登录页面的信息
         String adminNickName = admin.getAdminNickName();
