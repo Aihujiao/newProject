@@ -31,9 +31,10 @@
 </head>
 <body>
     <h2>${title}</h2>
-    <form action="/AdminServer" method="post">
+
     <c:choose>
         <c:when test="${param.type == 'admins'}">
+        <form action="" method="post">
             <input type="hidden" name="op" value="getAllAdmins">
             <table border="1">
                 <thead>
@@ -56,13 +57,14 @@
                         <td>${admin.adminStation}</td>
                         <td>
 <%--                            <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
-                            <input type="button" formaction="<%=request.getContextPath()%>/detail.jsp" value="详情">
-                            <input type="button" formaction="/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
+                            <input type="submit" formaction="/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
+                            <input type="submit" formaction="/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
                         </td>
                     </tr>
                 </tbody>
             </c:forEach>
             </table>
+        </form>
         </c:when>
         <c:when test="${param.type == 'departments'}">
 
@@ -71,6 +73,6 @@
 
         </c:when>
     </c:choose>
-    </form>
+
 </body>
 </html>

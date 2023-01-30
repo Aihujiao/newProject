@@ -89,15 +89,23 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
     }
 
     @Override
-    public boolean getAdminById(int adminId) {
-        boolean got = false;
+    public Admin getAdminById(int adminId) {
+        Admin admin = null;
         String sql = "select * from admins where adminId = ?";
         Object[] objects = {adminId};
 
         ResultSet rs = executeDBQuery(sql, objects);
         try {
             if(rs.next()){
-                got = true;
+                String adminNickName = rs.getString("adminNickName");
+                String adminPassword = rs.getString("adminPassword");
+                String adminProfile = rs.getString("adminProfile");
+                int adminDepartmentId = rs.getInt("adminDepartmentId");
+                int adminStation = rs.getInt("adminStation");
+
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStation);
+            }else{
+                return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -105,7 +113,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
             close(rs);
         }
 
-        return got;
+        return admin;
     }
 
     @Override

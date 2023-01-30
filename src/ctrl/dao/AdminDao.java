@@ -16,7 +16,7 @@ public interface AdminDao {
 
     public boolean deleteAdminById(int adminId);
 
-    public boolean getAdminById(int adminId);
+    public Admin getAdminById(int adminId);
 
     //  超级管理员功能选项
     public List<Admin> getAllAdmins();

@@ -15,12 +15,12 @@
 <body>
 <h2>管理员信息</h2>
 <form action="" method="post">
-    <p>管理员编号:${sessionScope.admin.adminId}</p>
-    <p>管理员昵称:${sessionScope.admin.adminNickName}</p>
-    <p>管理员密码:${sessionScope.admin.adminPassword}</p>
-    <p>管理员头像:${sessionScope.admin.adminProfile}</p>
-    <p>所管部门号:${sessionScope.admin.adminDepartmentId}</p>
-    <p>管理员状态:${sessionScope.admin.adminStation}</p>
+    <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>,请选择一下的功能进行操作</p>
+<%--    <p>管理员昵称:${sessionScope.admin.adminNickName}</p>--%>
+<%--    <p>管理员密码:${sessionScope.admin.adminPassword}</p>--%>
+<%--    <p>管理员头像:${sessionScope.admin.adminProfile}</p>--%>
+<%--    <p>所管部门号:${sessionScope.admin.adminDepartmentId}</p>--%>
+<%--    <p>管理员状态:${sessionScope.admin.adminStation}</p>--%>
     <hr>
     <input type="submit" formaction="<%=request.getContextPath()%>/admin/update.jsp" value="更新个人信息">
 

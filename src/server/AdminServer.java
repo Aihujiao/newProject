@@ -54,7 +54,7 @@ public class AdminServer extends HttpServlet {
         //  无法执行
         admin = adminCtrl.loginAdmin(admin);
 
-        String path = contextPath + "/admin/info.jsp";
+        String path = contextPath + "/admin/operation.jsp";
         if(admin != null){
             request.getSession().setAttribute("admin",admin);
         }else{
@@ -80,11 +80,11 @@ public class AdminServer extends HttpServlet {
 
 
 
-        String path = contextPath+"/admin/info.jsp?msg=succeed";
+        String path = contextPath+"/admin/operation.jsp?msg=succeed";
         if(newAdmin != null){
             request.getSession().setAttribute("admin",newAdmin);
         }else{
-            path = contextPath + "/admin/info.jsp?msg=err";
+            path = contextPath + "/admin/operation.jsp?msg=err";
         }
 
 
@@ -106,10 +106,10 @@ public class AdminServer extends HttpServlet {
 
         boolean Registed = adminCtrl.registAdmin(admin);
 
-        String path = contextPath+"/admin/info.jsp?msg=registSucceed";
+        String path = contextPath+"/admin/operation.jsp?msg=registSucceed";
 
         if(!Registed){
-            path = contextPath+"/admin/info.jsp?msg=registFalse";
+            path = contextPath+"/admin/operation.jsp?msg=registFalse";
         }
 
         response.sendRedirect(path);
@@ -148,9 +148,9 @@ public class AdminServer extends HttpServlet {
         boolean registered = adminCtrl.registDepartment(department);
         String path = null;
         if(registered){
-            path = contextPath+"/admin/info.jsp?msg=succeed";
+            path = contextPath+"/admin/operation.jsp?msg=succeed";
         }else{
-            path = contextPath+"/admin/info.jsp?msg=fail";
+            path = contextPath+"/admin/operation.jsp?msg=fail";
         }
         response.sendRedirect(path);
     }
