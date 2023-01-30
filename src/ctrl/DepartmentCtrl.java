@@ -12,11 +12,10 @@ import java.util.List;
 public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
     //  添加部门
     public boolean registDepartment(Department department){
-        String sql = "insert into departments value (null,?,?,?)";
-        int departmentAdminId = department.getDepartmentAdminId();
+        String sql = "insert into departments value (null,?,?)";
         String departmentName = department.getDepartmentName();
         String departmentIntro = department.getDepartmentIntro();
-        Object objects[] = {departmentAdminId,departmentName,departmentIntro};
+        Object objects[] = {departmentName,departmentIntro};
 
         boolean added = executeDBUpdate(sql, objects);
 
@@ -25,13 +24,12 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
 
     //  修改部门信息
     public boolean updateDepartment(Department department){
-        String sql = "update departments set departmentAdminId = ?,departmentName =?,departmentIntro = ? where departmentId = ?";
+        String sql = "update departments set departmentName =?,departmentIntro = ? where departmentId = ?";
         int departmentId = department.getDepartmentId();
-        int departmentAdminId = department.getDepartmentAdminId();
         String departmentName = department.getDepartmentName();
         String departmentIntro = department.getDepartmentIntro();
 
-        Object objects[] = {departmentAdminId,departmentName,departmentIntro,departmentId};
+        Object objects[] = {departmentName,departmentIntro,departmentId};
         boolean updated = executeDBUpdate(sql, objects);
 
         return updated;
@@ -47,10 +45,9 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
 
         try {
             if (rs.next()){
-                int departmentAdminId = rs.getInt("departmentId");
                 String departmentName = rs.getString("departmentName");
                 String departmentIntro = rs.getString("departmentIntro");
-                department = new Department(departmentId, departmentAdminId, departmentName, departmentIntro);
+                department = new Department(departmentId, departmentName, departmentIntro);
 
                 return department;
             }else{
@@ -72,10 +69,9 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
         try {
             if(rs.next()){
                 int departmentId = rs.getInt("departmentId");
-                int departmentAdminId = rs.getInt("departmentAdminId");
                 String departmentName = rs.getString("departmentName");
                 String departmentIntro = rs.getString("departmentIntro");
-                department = new Department(departmentId,departmentAdminId,departmentName,departmentIntro);
+                department = new Department(departmentId,departmentName,departmentIntro);
                 list.add(department);
             }
         } catch (SQLException e) {

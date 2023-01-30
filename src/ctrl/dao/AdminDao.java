@@ -1,6 +1,7 @@
 package ctrl.dao;
 
 import model.Admin;
+import model.Department;
 import model.Employee;
 
 import java.util.List;
@@ -23,6 +24,10 @@ public interface AdminDao {
     public boolean registEmployeeOnDepartment(Employee employee);
 
     public List<Employee> getEmployeesOnDepartment(int departmentId);
+
+    public boolean registDepartment(Department department);
+
+    public boolean deleteDepartmentById(int departmentId);
 
     public boolean updateEmployee(Employee employee);
 

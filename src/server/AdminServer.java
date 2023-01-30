@@ -28,6 +28,10 @@ public class AdminServer extends HttpServlet {
             this.doUpdateAdmin(request, response);
         } else if (op.equals("adminRegister")) {
             this.doRegisterAdmin(request, response);
+        } else if (op.equals("adminDeleteById")) {
+            this.doDeleteAdminById(request, response);
+        } else if (op.equals("departmentRegister")) {
+//            this.doRegisterDepartment(request, response);
         }
     }
 
@@ -37,12 +41,12 @@ public class AdminServer extends HttpServlet {
         System.out.println("管理员昵称是"+AdminNickName+"管理员密码是"+AdminPassword);
         Admin admin = new Admin(0,AdminNickName,AdminPassword,null,0,0);
         //  通过工厂实例化接口
-        //  通过方法创建AdminCtrl实例
+        //  通过方法创建adminCtrl实例
         System.out.println(admin.getAdminNickName());
-        AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
+        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
         //  将前端获取的管理员对象值传入数据库检索
         //  无法执行
-        admin = AdminCtrl.loginAdmin(admin);
+        admin = adminCtrl.loginAdmin(admin);
 
         String path = request.getContextPath()+"/admin/info.jsp";
         if(admin != null){
@@ -65,8 +69,8 @@ public class AdminServer extends HttpServlet {
 
         newAdmin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,adminStation);
 
-        AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
-        AdminCtrl.updateAdmin(newAdmin);
+        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
+        adminCtrl.updateAdmin(newAdmin);
 
 
 
@@ -81,7 +85,7 @@ public class AdminServer extends HttpServlet {
         response.sendRedirect(path);
     }
 
-    private boolean doRegisterAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void doRegisterAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Admin admin = null;
 
         //  获取前端信息
@@ -92,9 +96,9 @@ public class AdminServer extends HttpServlet {
 
         admin = new Admin(0,AdminNickName,AdminPassword,AdminProfile,AdminDepartmentId,0);
 
-        AdminDao AdminCtrl = AdminFactory.instance().getAdminDao();
+        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
 
-        boolean Registed = AdminCtrl.registAdmin(admin);
+        boolean Registed = adminCtrl.registAdmin(admin);
 
         String path = request.getContextPath()+"/admin/info.jsp?msg=registSucceed";
 
@@ -104,6 +108,31 @@ public class AdminServer extends HttpServlet {
 
         response.sendRedirect(path);
 
-        return Registed;
+    }
+
+    private void doDeleteAdminById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //  获取 session 全局变量
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
+
+        int adminId = admin.getAdminId();
+        System.out.println(adminId+"标记");
+
+        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
+
+        boolean deleted = adminCtrl.deleteAdminById(adminId);
+
+        String path = request.getContextPath()+"/AdminLogin.jsp?msg=succeed";
+
+        if(deleted){
+            if(adminId != 1){
+                response.sendRedirect(path);
+            }
+//            else{
+//              什么都不做
+//            }
+        }else{
+            path = request.getContextPath()+"/AdminLogin.jsp?msg=false";
+            response.sendRedirect(path);
+        }
     }
 }

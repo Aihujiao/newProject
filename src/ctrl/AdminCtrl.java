@@ -3,6 +3,7 @@ package ctrl;
 import ctrl.dao.AdminDao;
 import db.ExecuteDB;
 import model.Admin;
+import model.Department;
 import model.Employee;
 
 import java.sql.ResultSet;
@@ -34,6 +35,8 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(rs);
         }
         return admin;
     }
@@ -96,6 +99,8 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(rs);
         }
 
         return got;
@@ -127,6 +132,8 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(rs);
         }
 
         return list;
@@ -173,8 +180,33 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            close(rs);
         }
+
         return list;
+    }
+
+    @Override
+    public boolean registDepartment(Department department) {
+        String sql = "insert into departments value (null,?,?)";
+        String departmentName = department.getDepartmentName();
+        String departmentIntro = department.getDepartmentIntro();
+        Object[] objects = {departmentName,departmentIntro};
+
+        boolean registered = executeDBUpdate(sql, objects);
+
+        return registered;
+    }
+
+    @Override
+    public boolean deleteDepartmentById(int departmentId) {
+        String sql ="delete from departments where departmentId = ?";
+        Object[] objects ={departmentId};
+
+        boolean deleted = executeDBUpdate(sql, objects);
+
+        return deleted;
     }
 
     //  修改单个本部员工信息
@@ -220,11 +252,12 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
                 Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId, employeePosition, employeeStation);
                 list.add(employee);
             }
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(rs);
         }
+
         return list;
     }
 }
