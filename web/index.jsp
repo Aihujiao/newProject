@@ -12,8 +12,8 @@
   </head>
   <body>
   <form action="/AdminServer">
-    <a href="AdminLogin.jsp">管理员登录</a>
-    <a href="EmployeeLogin.jsp">员工登录</a>
+    <a href="adminLogin.jsp">管理员登录</a>
+    <a href="employeeLogin.jsp">员工登录</a>
     <a href="admin/test.jsp">测试页面入口</a>
   </form>
   </body>

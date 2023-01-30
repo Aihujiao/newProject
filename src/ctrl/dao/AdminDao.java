@@ -19,7 +19,7 @@ public interface AdminDao {
     public boolean getAdminById(int adminId);
 
     //  超级管理员功能选项
-    public List<Admin> getAllAdmin();
+    public List<Admin> getAllAdmins();
 
     public boolean registEmployeeOnDepartment(Employee employee);
 

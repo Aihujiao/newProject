@@ -1,4 +1,5 @@
-<%--
+<%@ page import="model.Admin" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -7,6 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    System.out.println("跳到了获取信息页面");
+%>
 
 <c:choose>
     <c:when test="${param.type == 'admins'}">
@@ -25,6 +30,47 @@
     <title>${title}</title>
 </head>
 <body>
-${title}
+    <h2>${title}</h2>
+    <form action="/AdminServer" method="post">
+    <c:choose>
+        <c:when test="${param.type == 'admins'}">
+            <input type="hidden" name="op" value="getAllAdmins">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>管理员编号</th>
+                        <th>管理员昵称</th>
+                        <th>头像地址</th>
+                        <th>管理部门编号</th>
+                        <th>当前状态</th>
+                        <th>具体操作</th>
+                    </tr>
+                </thead>
+            <c:forEach items="${requestScope.admins}" var="admin">
+                <tbody>
+                    <tr>
+                        <td>${admin.adminId}</td>
+                        <td>${admin.adminNickName}</td>
+                        <td>${admin.adminProfile}</td>
+                        <td>${admin.adminDepartmentId}</td>
+                        <td>${admin.adminStation}</td>
+                        <td>
+<%--                            <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
+                            <input type="button" formaction="<%=request.getContextPath()%>/detail.jsp" value="详情">
+                            <input type="button" formaction="/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
+                        </td>
+                    </tr>
+                </tbody>
+            </c:forEach>
+            </table>
+        </c:when>
+        <c:when test="${param.type == 'departments'}">
+
+        </c:when>
+        <c:when test="${param.type == 'employees'}">
+
+        </c:when>
+    </c:choose>
+    </form>
 </body>
 </html>

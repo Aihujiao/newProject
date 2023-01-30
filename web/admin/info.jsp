@@ -21,15 +21,22 @@
     <p>管理员头像:${sessionScope.admin.adminProfile}</p>
     <p>所管部门号:${sessionScope.admin.adminDepartmentId}</p>
     <p>管理员状态:${sessionScope.admin.adminStation}</p>
+    <hr>
     <input type="submit" formaction="<%=request.getContextPath()%>/admin/update.jsp" value="更新个人信息">
 
     <c:choose>
         <c:when test="${sessionScope.admin.adminId == 1}">
+            <hr>
+            注册功能
+            <hr>
             <input type="submit" formaction="<%=request.getContextPath()%>/admin/register.jsp" value="注册管理员">
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=admins" value="查询所有管理员"><br><br>
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/departmentRegister.jsp" value="添加部门">
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=departments" value="查询所有部门">
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/getInfo.jsp?type=employees" value="查询所有员工信息">
+            <input type="submit" formaction="<%=request.getContextPath()%>/admin/departmentRegister.jsp" value="注册部门">
+            <hr>
+            查询功能
+            <hr>
+            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllAdmins" value="查询管理员">
+            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllDepartments" value="查询部门">
+            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllEmployees" value="查询员工信息">
         </c:when>
         <c:otherwise>
             <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">
@@ -38,10 +45,10 @@
 
     <c:choose>
         <c:when test="${param.msg == 'succeed'}">
-            <p style="color: red">更新成功</p>
+            <p style="color: red">操作成功</p>
         </c:when>
         <c:when test="${param.msg == 'err'}">
-            <p style="color: red">更新失败</p>
+            <p style="color: red">操作失败</p>
         </c:when>
         <c:when test="${param.msg == 'registSucceed'}">
             <p color="red">注册成功</p>

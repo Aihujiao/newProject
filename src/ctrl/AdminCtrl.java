@@ -109,7 +109,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
     }
 
     @Override
-    public List<Admin> getAllAdmin() {
+    public List<Admin> getAllAdmins() {
         //  超级管理员
         List<Admin> list = new ArrayList<>();
         Admin admin = new Admin();
