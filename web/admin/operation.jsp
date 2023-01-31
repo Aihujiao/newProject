@@ -51,13 +51,13 @@
             <p style="color: red">操作失败</p>
         </c:when>
         <c:when test="${param.msg == 'registSucceed'}">
-            <p color="red">注册成功</p>
+            <p style="color: red">注册成功</p>
         </c:when>
         <c:when test="${param.msg == 'registFalse'}">
-            <p color="red">注册失败</p>
+            <p style="color: red">注册失败</p>
         </c:when>
         <c:when test="${param.msg == 'noway'}">
-            <p color="red">想都别想！超级管理员删不了~</p>
+            <p style="color: red">想都别想！超级管理员删不了~</p>
         </c:when>
     </c:choose>
 </form>
