@@ -6,13 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../base.jsp"%>
+
 <html>
 <head>
     <title>添加管理员</title>
 </head>
 <body>
 <h2>管理员注册</h2>
-    <form action="/AdminServer">
+    <form action="<%=projectName%>/AdminServer">
         <input type="hidden" name="op" value="adminRegister">
         <p><input type="text" name="adminNickName" placeholder="请输入要注册的管理员昵称"></p>
         <p><input type="text" name="adminPassword" placeholder="请输入用于登录的密码" value="admin"></p>

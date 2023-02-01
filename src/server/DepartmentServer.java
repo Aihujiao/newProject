@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "departmentServer",value = "/DepartmentServer")
+@WebServlet(value = "/DepartmentServer")
 public class DepartmentServer extends HttpServlet {
-    private static String contextPath = null;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
@@ -22,7 +22,7 @@ public class DepartmentServer extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        contextPath = request.getContextPath();
+
         String op = request.getParameter("op");
         if(op.equals("departmentRegister")){
             this.doRegisterDepartment(request, response);
@@ -46,16 +46,16 @@ public class DepartmentServer extends HttpServlet {
         boolean registered = departmentCtrl.registDepartment(department);
         String path = null;
         if(registered){
-            path = contextPath+"/admin/operation.jsp?msg=succeed";
+            path = "/admin/operation.jsp?msg=succeed";
         }else{
-            path = contextPath+"/admin/operation.jsp?msg=fail";
+            path = "/admin/operation.jsp?msg=fail";
         }
         response.sendRedirect(path);
     }
 
     private void doGetDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-        String path = contextPath+"/getInfo?type=Department&departmentId="+departmentId;
+        String path = "/getInfo?type=Department&departmentId="+departmentId;
 
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
 
@@ -71,12 +71,12 @@ public class DepartmentServer extends HttpServlet {
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
         List<Department> departments = departmentCtrl.getAllDepartment();
 
-        String path = contextPath+"/getInfo.jsp?type=departments";
+        String path = "/getInfo.jsp?type=departments";
 
         int departmentNum = departments.size();
         System.out.println(departmentNum);
         if(departmentNum == 0){
-            path = contextPath+"/getInfo.jsp?type=departments&msg=nothing";
+            path = "/getInfo.jsp?type=departments&msg=nothing";
         }
 
         request.setAttribute("departments",departments);
@@ -91,14 +91,14 @@ public class DepartmentServer extends HttpServlet {
         System.out.println("部门删除方法里获取的"+departmentId);
         DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
 
-        String path = contextPath + "/admin/operation?msg=succeed";
+        String path = "/admin/operation?msg=succeed";
 
         if(departmentId == 1){
-            path = contextPath + "/admin/operation?msg=noway";
+            path = "/admin/operation?msg=noway";
         }else{
             boolean deleted = departmenCtrl.deleteDepartmentById(departmentId);
             if(!deleted){
-                path = contextPath + "/admin/operation?msg=fail";
+                path = "/admin/operation?msg=fail";
             }
         }
 

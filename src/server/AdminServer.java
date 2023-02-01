@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "jspWeb", value = "/AdminServer")
+@WebServlet(value = "/AdminServer")
 //  为什么改了 jspWeb 就无法访问
-
 public class AdminServer extends HttpServlet {
     private static String contextPath = null;
     @Override
@@ -50,8 +49,10 @@ public class AdminServer extends HttpServlet {
         System.out.println(admin.getAdminNickName());
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
         //  将前端获取的管理员对象值传入数据库检索
-        //  无法执行
+
         admin = adminCtrl.loginAdmin(admin);
+
+        System.out.println("测试：管理员的编号是"+admin.getAdminId());
 
         String path = contextPath + "/admin/operation.jsp";
         if(admin != null){
@@ -79,7 +80,7 @@ public class AdminServer extends HttpServlet {
 
 
 
-        String path = contextPath+"/admin/operation.jsp?msg=succeed";
+        String path = contextPath + "/admin/operation.jsp?msg=succeed";
         if(newAdmin != null){
             request.getSession().setAttribute("admin",newAdmin);
         }else{
@@ -105,10 +106,10 @@ public class AdminServer extends HttpServlet {
 
         boolean Registed = adminCtrl.registAdmin(admin);
 
-        String path = contextPath+"/admin/operation.jsp?msg=registSucceed";
+        String path = contextPath + "/admin/operation.jsp?msg=registSucceed";
 
         if(!Registed){
-            path = contextPath+"/admin/operation.jsp?msg=registFalse";
+            path = contextPath + "/admin/operation.jsp?msg=registFalse";
         }
 
         response.sendRedirect(path);
@@ -122,14 +123,14 @@ public class AdminServer extends HttpServlet {
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
 
-        String path = contextPath+"/adminLogin.jsp?msg=succeed";
+        String path = contextPath + "/adminLogin.jsp?msg=succeed";
 
         if(adminId == 1){
-            path = contextPath+"/adminLogin.jsp?msg=noway";
+            path = contextPath + "/adminLogin.jsp?msg=noway";
         }else{
             boolean deleted = adminCtrl.deleteAdminById(adminId);
             if(!deleted){
-                path = contextPath+"/adminLogin.jsp?msg=fail";
+                path = contextPath + "/adminLogin.jsp?msg=fail";
             }
         }
         response.sendRedirect(path);
@@ -141,13 +142,13 @@ public class AdminServer extends HttpServlet {
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
         adminList = adminCtrl.getAllAdmins();
 
-        String path = contextPath+"/getInfo.jsp?type=admins";
+        String path = "/getInfo.jsp?type=admins";
 
         int adminNum = adminList.size();
 
         if(adminNum == 0){
             //  如果查到的管理员数量为0，就执行这内容
-            path = contextPath+"/getInfo.jsp?type=admins&msg=nothing";
+            path = "/getInfo.jsp?type=admins&msg=nothing";
         }
 
         request.setAttribute("admins",adminList);

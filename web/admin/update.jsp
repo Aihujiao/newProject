@@ -6,13 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../base.jsp"%>
+
 <html>
 <head>
     <title>更新管理员信息</title>
 </head>
 <body>
 <h2>信息更新</h2>
-  <form action="/AdminServer" method="post">
+  <form action="<%=projectName%>/AdminServer" method="post">
     <input type="hidden" name="op" value="adminUpdate">
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>
     <p><input type="text" name="newNickName" value="${sessionScope.admin.adminNickName}"></p>

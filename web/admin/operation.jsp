@@ -7,31 +7,32 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../base.jsp"%>
 
 <html>
 <head>
-    <title>管理员信息</title>
+    <title>11111</title>
 </head>
 <body>
 <h2>管理员信息</h2>
 <form action="" method="post">
     <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>,请选择一下的功能进行操作</p>
     <hr>
-    <input type="submit" formaction="<%=request.getContextPath()%>/admin/update.jsp" value="更新个人信息">
+    <input type="submit" formaction="<%=projectName%>/admin/update.jsp" value="更新个人信息">
 
     <c:choose>
         <c:when test="${sessionScope.admin.adminId == 1}">
             <hr>
             注册功能
             <hr>
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/register.jsp" value="注册管理员">
-            <input type="submit" formaction="<%=request.getContextPath()%>/admin/departmentRegister.jsp" value="注册部门">
+            <input type="submit" formaction="<%=projectName%>/admin/register.jsp" value="注册管理员">
+            <input type="submit" formaction="<%=projectName%>/admin/departmentRegister.jsp" value="注册部门">
             <hr>
             查询功能
             <hr>
-            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllAdmins" value="查询管理员">
-            <input type="submit" formaction="<%=request.getContextPath()%>/DepartmentServer?op=getAllDepartments" value="查询部门">
-            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllEmployees" value="查询员工信息">
+            <input type="submit" formaction="<%=projectName%>/AdminServer?op=getAllAdmins" value="查询管理员">
+            <input type="submit" formaction="<%=projectName%>/DepartmentServer?op=getAllDepartments" value="查询部门">
+            <input type="submit" formaction="<%=projectName%>/AdminServer?op=getAllEmployees" value="查询员工信息">
         </c:when>
         <c:otherwise>
             <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">
