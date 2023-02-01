@@ -13,7 +13,7 @@
     <title>员工登录</title>
 </head>
 <body>
-<form action="<%=projectName%>/EmployeeLogin" method="post">
+<form action="<%=contantPath%>/EmployeeLogin" method="post">
     <input type="hidden" name="op" value="employeeLogin">
     <p>员工名：<input type="text" name="employeeName"></p>
     <p>员工密码：<input type="text" name="employeePassword"></p>

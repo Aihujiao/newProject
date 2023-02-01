@@ -11,28 +11,28 @@
 
 <html>
 <head>
-    <title>11111</title>
+    <title>操作功能</title>
 </head>
 <body>
-<h2>管理员信息</h2>
+<h2>管理员功能</h2>
 <form action="" method="post">
     <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>,请选择一下的功能进行操作</p>
     <hr>
-    <input type="submit" formaction="<%=projectName%>/admin/update.jsp" value="更新个人信息">
+    <input type="submit" formaction="<%=contantPath%>/admin/update.jsp" value="更新个人信息">
 
     <c:choose>
         <c:when test="${sessionScope.admin.adminId == 1}">
             <hr>
             注册功能
             <hr>
-            <input type="submit" formaction="<%=projectName%>/admin/register.jsp" value="注册管理员">
-            <input type="submit" formaction="<%=projectName%>/admin/departmentRegister.jsp" value="注册部门">
+            <input type="submit" formaction="<%=contantPath%>/admin/register.jsp" value="注册管理员">
+            <input type="submit" formaction="<%=contantPath%>/admin/departmentRegister.jsp" value="注册部门">
             <hr>
             查询功能
             <hr>
-            <input type="submit" formaction="<%=projectName%>/AdminServer?op=getAllAdmins" value="查询管理员">
-            <input type="submit" formaction="<%=projectName%>/DepartmentServer?op=getAllDepartments" value="查询部门">
-            <input type="submit" formaction="<%=projectName%>/AdminServer?op=getAllEmployees" value="查询员工信息">
+            <input type="submit" formaction="<%=contantPath%>/AdminServer?op=getAllAdmins" value="查询管理员">
+            <input type="submit" formaction="<%=contantPath%>/DepartmentServer?op=getAllDepartments" value="查询部门">
+            <input type="submit" formaction="<%=contantPath%>/AdminServer?op=getAllEmployees" value="查询员工信息">
         </c:when>
         <c:otherwise>
             <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">

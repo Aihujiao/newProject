@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="base.jsp"%>
 
 <%
     System.out.println("跳到了获取信息页面");
@@ -56,8 +57,8 @@
                             <td>${admin.adminStation}</td>
                             <td>
 <%--                            <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
-                                <input type="submit" formaction="/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
-                                <input type="submit" formaction="/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
+                                <input type="submit" formaction="<%=contantPath%>/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
+                                <input type="submit" formaction="<%=contantPath%>/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
                             </td>
                         </tr>
                     </tbody>
@@ -84,8 +85,8 @@
                             <td>${department.departmentIntro}</td>
                             <td>
                                 <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
-                                <input type="submit" formaction="/detail.jsp?type=department&departmentId=${department.departmentId}" value="详情">
-                                <input type="submit" formaction="/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
+                                <input type="submit" formaction="<%=contantPath%>/detail.jsp?type=department&departmentId=${department.departmentId}" value="详情">
+                                <input type="submit" formaction="<%=contantPath%>/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
                             </td>
                         </tr>
                         </tbody>

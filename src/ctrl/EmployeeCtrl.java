@@ -6,10 +6,48 @@ import model.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
+    @Override
+    public Employee loginEmployee(Employee employee) {
+        System.out.println("进入员工登陆页面");
+        String employeeName = employee.getEmployeeName();
+        String employeePassword =employee.getEmployeePassword();
+
+        String sql = "select * from employees where employeeName = ? and employeePassword = ?";
+        Object[] objects = {employeeName,employeePassword};
+
+        ResultSet rs = executeDBQuery(sql, objects);
+
+        try {
+            if(rs.next()){
+                //  数据库数据赋值
+                int employeeId = rs.getInt("employeeId");
+                int employeeGender = rs.getInt("employeeGender");
+                int employeeAge = rs.getInt("employeeAge");
+                String employeeProfile = rs.getString("employeeProfile");
+                int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                String employeePosition = rs.getString("employeePosition");
+                int employeeStation = rs.getInt("employeeStation");
+
+                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+
+                return employee;
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(rs);
+        }
+
+    }
+
     //  为部门添加员工
-    private boolean addEmployee(Employee employee){
+    @Override
+    public boolean registEmployee(Employee employee) {
         String sql = "insert into employees value(null,?,?,?,?,?,?,?,?)";
         String employeeName = employee.getEmployeeName();
         String employeePassword =employee.getEmployeePassword();
@@ -21,13 +59,13 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         int employeeStation = employee.getEmployeeStation();
 
         Object objects[] = {employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation};
-        boolean added = executeDBUpdate(sql, objects);
+        boolean registered = executeDBUpdate(sql, objects);
 
-        return added;
+        return registered;
     }
 
     //  更新员工信息
-    private boolean updateEmployee(Employee employee){
+    public boolean updateEmployee(Employee employee){
         String sql = "update employees set employeeName = ?,employeePassword = ?,employeeGender = ?,employeeAge = ?,employeeProfile = ?,employeeDepartmentId = ?,employeePosition = ?,employeeStation = ? where employeeId = ?";
         String employeeName = employee.getEmployeeName();
         String employeePassword =employee.getEmployeePassword();
@@ -45,8 +83,19 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         return updated;
     }
 
+    @Override
+    public boolean deleteEmployeeById(int employeeId) {
+        String sql = "delete from employees where employeeId = ?";
+        Object[] objects = {employeeId};
+
+        boolean deleted = executeDBUpdate(sql, objects);
+
+        return deleted;
+    }
+
     //  查询某位员工信息
-    private Employee getEmployeeInfor(int employeeId){
+    @Override
+    public Employee getEmployeeById(int employeeId) {
         Employee employee = null;
         String sql = "select * from employees where employeeId = ?";
         Object objects[] = {employeeId};
@@ -65,10 +114,50 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
                 int employeeStation = rs.getInt("employeeStation");
                 employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
             }
+
+            close(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         return employee;
     }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        List<Employee> list =null;
+        Employee employee = null;
+        String sql = "select * from employees";
+
+        ResultSet rs = executeDBQuery(sql, null);
+
+        try {
+            while (rs.next()){
+                int employeeId = rs.getInt("employeeId") ;
+                String employeeName = rs.getString("employeeName");
+                String employeePassword = rs.getString("employeePassword");
+                int employeeGender = rs.getInt("employeeGender");
+                int employeeAge = rs.getInt("employeeAge");
+                String employeeProfile = rs.getString("employeeProfile");
+                int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                String employeePosition = rs.getString("employeePosition");
+                int employeeStation = rs.getInt("employeeStation");
+
+                //  将每一轮的数据插入对应对象
+                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+
+                //  将本轮对象插入到员工结果集
+                list.add(employee);
+            }
+
+            close(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+
 }

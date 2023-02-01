@@ -1,8 +1,6 @@
 package ctrl.dao;
 
 import model.Admin;
-import model.Department;
-import model.Employee;
 
 import java.util.List;
 
@@ -20,17 +18,4 @@ public interface AdminDao {
 
     //  超级管理员功能选项
     public List<Admin> getAllAdmins();
-
-    public boolean registEmployeeOnDepartment(Employee employee);
-
-    public List<Employee> getEmployeesOnDepartment(int departmentId);
-
-    public boolean registDepartment(Department department);
-
-    public boolean deleteDepartmentById(int departmentId);
-
-    public boolean updateEmployee(Employee employee);
-
-    //  超级管理员功能选项
-    public List<Employee> getAllEmployees();
 }

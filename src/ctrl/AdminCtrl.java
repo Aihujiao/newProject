@@ -3,7 +3,6 @@ package ctrl;
 import ctrl.dao.AdminDao;
 import db.ExecuteDB;
 import model.Admin;
-import model.Department;
 import model.Employee;
 
 import java.sql.ResultSet;
@@ -195,47 +194,6 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
         }
 
         return list;
-    }
-
-    @Override
-    public boolean registDepartment(Department department) {
-        String sql = "insert into departments value (null,?,?)";
-        String departmentName = department.getDepartmentName();
-        String departmentIntro = department.getDepartmentIntro();
-        Object[] objects = {departmentName,departmentIntro};
-
-        boolean registered = executeDBUpdate(sql, objects);
-
-        return registered;
-    }
-
-    @Override
-    public boolean deleteDepartmentById(int departmentId) {
-        String sql ="delete from departments where departmentId = ?";
-        Object[] objects ={departmentId};
-
-        boolean deleted = executeDBUpdate(sql, objects);
-
-        return deleted;
-    }
-
-    //  修改单个本部员工信息
-    public boolean updateEmployee(Employee employee){
-        String sql = "update employees set employeeName = ?,employeePassword = ?,employeeGender = ?,employeeAge =?,employeeProfile= ?,employeeDepartmentId = ?,employeePosition = ?,employeeStation = ? where employeeId = ?";
-        String employeeName = employee.getEmployeeName();
-        String employeePassword = employee.getEmployeePassword();
-        int employeeGender = employee.getEmployeeGender();
-        int employeeAge = employee.getEmployeeAge();
-        String employeeProfile = employee.getEmployeeProfile();
-        int employeeDepartmentId = employee.getDepartmentId();
-        String employeePosition = employee.getEmployeePosition();
-        int employeeStation = employee.getEmployeeStation();
-
-        Object objects[] = {employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation};
-
-        boolean updated = executeDBUpdate(sql, objects);
-
-        return updated;
     }
 
     //  修改多个

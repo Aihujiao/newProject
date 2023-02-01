@@ -14,7 +14,7 @@
     <title>管理员登录</title>
 </head>
 <body>
-    <form action="<%=projectName%>/AdminServer" method="post">
+    <form action="<%=contantPath%>/AdminServer" method="post">
         <input type="hidden" name="op" value="adminLogin">
         <p>管理员昵称：<input type="text" name="adminNickName"></p>
         <p>管理员密码：<input type="text" name="adminPassword"></p>

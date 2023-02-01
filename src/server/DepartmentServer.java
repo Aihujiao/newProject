@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(value = "/DepartmentServer")
 public class DepartmentServer extends HttpServlet {
-
+    private static String contantPath = null;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
@@ -22,7 +22,7 @@ public class DepartmentServer extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        contantPath = request.getContextPath();
         String op = request.getParameter("op");
         if(op.equals("departmentRegister")){
             this.doRegisterDepartment(request, response);
@@ -45,17 +45,19 @@ public class DepartmentServer extends HttpServlet {
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
         boolean registered = departmentCtrl.registDepartment(department);
         String path = null;
+
         if(registered){
-            path = "/admin/operation.jsp?msg=succeed";
+            path = contantPath + "/admin/operation.jsp?msg=succeed";
         }else{
-            path = "/admin/operation.jsp?msg=fail";
+            path = contantPath + "/admin/operation.jsp?msg=fail";
         }
         response.sendRedirect(path);
     }
 
     private void doGetDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //  可能错
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-        String path = "/getInfo?type=Department&departmentId="+departmentId;
+        String path = contantPath + "/getInfo?type=Department&departmentId="+departmentId;
 
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
 
@@ -91,14 +93,14 @@ public class DepartmentServer extends HttpServlet {
         System.out.println("部门删除方法里获取的"+departmentId);
         DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
 
-        String path = "/admin/operation?msg=succeed";
+        String path = contantPath + "/admin/operation.jsp?msg=succeed";
 
         if(departmentId == 1){
-            path = "/admin/operation?msg=noway";
+            path = contantPath + "/admin/operation.jsp?msg=noway";
         }else{
             boolean deleted = departmenCtrl.deleteDepartmentById(departmentId);
             if(!deleted){
-                path = "/admin/operation?msg=fail";
+                path = contantPath + "/admin/operation.jsp?msg=fail";
             }
         }
 

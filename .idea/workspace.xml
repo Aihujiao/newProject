@@ -9,16 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302010914">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/lombok-1.18.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/base.jsp" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302011725">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/NewProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/AdminCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/AdminCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/EmployeeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/EmployeeCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/EmployeeDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AdminServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DepartmentServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/EmployeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EmployeeServer.java" afterDir="false" />
@@ -27,8 +24,9 @@
       <change beforePath="$PROJECT_DIR$/web/admin/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/adminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/adminLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/base.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/base.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/employeeLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/employeeLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,12 +86,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/ideaW/myProject/NewProject/web/WEB-INF/lib",
+    "last_opened_file_path": "D:/ideaW/myProject/NewProject/web/WEB-INF/classes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "模块",
+    "project.structure.last.edited": "Facet",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "editor.preferences.completion"
@@ -112,13 +110,14 @@
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\admin" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript 调试.register.jsp">
+    <configuration name="register.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/register.jsp">
+      <method v="2" />
+    </configuration>
     <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080//NewProject" />
       <option name="BROWSER_ID" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
@@ -206,6 +205,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JavaScript 调试.register.jsp" />
+      <item itemvalue="Tomcat 服务器.Tomcat 9.0.70" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript 调试.register.jsp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -224,7 +232,8 @@
       <workItem from="1675147980917" duration="1412000" />
       <workItem from="1675161895488" duration="8616000" />
       <workItem from="1675211310146" duration="2849000" />
-      <workItem from="1675225455469" duration="9273000" />
+      <workItem from="1675225455469" duration="10661000" />
+      <workItem from="1675244978279" duration="7741000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -324,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675214057417</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="202302011725">
+      <created>1675243517345</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1675243517345</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +369,8 @@
     <MESSAGE value="202301302139" />
     <MESSAGE value="202301310901" />
     <MESSAGE value="202302010914" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302010914" />
+    <MESSAGE value="202302011725" />
+    <option name="LAST_COMMIT_MESSAGE" value="202302011725" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

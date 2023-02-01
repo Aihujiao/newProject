@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>管理员注册</h2>
-    <form action="<%=projectName%>/AdminServer">
+    <form action="<%=contantPath%>/AdminServer">
         <input type="hidden" name="op" value="adminRegister">
         <p><input type="text" name="adminNickName" placeholder="请输入要注册的管理员昵称"></p>
         <p><input type="text" name="adminPassword" placeholder="请输入用于登录的密码" value="admin"></p>

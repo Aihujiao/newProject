@@ -154,6 +154,7 @@ public class AdminServer extends HttpServlet {
         request.setAttribute("admins",adminList);
 
         //  带着 request 和 response 参数值进行页面跳转
+        //  response.sendRedirect 需要带项目名，而 request.getRequestDispatcher 则不用
         request.getRequestDispatcher(path).forward(request,response);
     }
 }
