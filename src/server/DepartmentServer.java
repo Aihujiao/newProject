@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "jspWeb",value = "DepartmentServer")
+@WebServlet(name = "departmentServer",value = "/DepartmentServer")
 public class DepartmentServer extends HttpServlet {
     private static String contextPath = null;
     @Override
@@ -27,8 +28,10 @@ public class DepartmentServer extends HttpServlet {
             this.doRegisterDepartment(request, response);
         } else if (op.equals(("getDepartmentById"))) {
             this.doGetDepartmentById(request, response);
-        } else if (op.equals("DeleteDepartmentById")) {
-            
+        } else if (op.equals("getAllDepartments")) {
+            this.doGetAllDepartments(request, response);
+        } else if (op.equals("departmentDeleteById")) {
+            this.doDeleteDepartmentById(request,response);
         }
     }
 
@@ -62,5 +65,44 @@ public class DepartmentServer extends HttpServlet {
             request.setAttribute("department",department);
             request.getRequestDispatcher(path).forward(request,response);
         }
+    }
+
+    private void doGetAllDepartments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+        List<Department> departments = departmentCtrl.getAllDepartment();
+
+        String path = contextPath+"/getInfo.jsp?type=departments";
+
+        int departmentNum = departments.size();
+        System.out.println(departmentNum);
+        if(departmentNum == 0){
+            path = contextPath+"/getInfo.jsp?type=departments&msg=nothing";
+        }
+
+        request.setAttribute("departments",departments);
+        //  不完全跳转，跳转后并不会将URL地址修改
+        request.getRequestDispatcher(path).forward(request,response);
+    }
+
+    private void doDeleteDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int departmentId = Integer.parseInt(request.getParameter("departmentId"));
+
+
+        System.out.println("部门删除方法里获取的"+departmentId);
+        DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+
+        String path = contextPath + "/admin/operation?msg=succeed";
+
+        if(departmentId == 1){
+            path = contextPath + "/admin/operation?msg=noway";
+        }else{
+            boolean deleted = departmenCtrl.deleteDepartmentById(departmentId);
+            if(!deleted){
+                path = contextPath + "/admin/operation?msg=fail";
+            }
+        }
+
+        //  不需要再进行 Attribute 进行servlet传递时，就可以直接使用 sendRedirect 直接跳转页面
+        response.sendRedirect(path);
     }
 }

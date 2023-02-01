@@ -16,11 +16,6 @@
 <h2>管理员信息</h2>
 <form action="" method="post">
     <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>,请选择一下的功能进行操作</p>
-<%--    <p>管理员昵称:${sessionScope.admin.adminNickName}</p>--%>
-<%--    <p>管理员密码:${sessionScope.admin.adminPassword}</p>--%>
-<%--    <p>管理员头像:${sessionScope.admin.adminProfile}</p>--%>
-<%--    <p>所管部门号:${sessionScope.admin.adminDepartmentId}</p>--%>
-<%--    <p>管理员状态:${sessionScope.admin.adminStation}</p>--%>
     <hr>
     <input type="submit" formaction="<%=request.getContextPath()%>/admin/update.jsp" value="更新个人信息">
 
@@ -35,7 +30,7 @@
             查询功能
             <hr>
             <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllAdmins" value="查询管理员">
-            <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllDepartments" value="查询部门">
+            <input type="submit" formaction="<%=request.getContextPath()%>/DepartmentServer?op=getAllDepartments" value="查询部门">
             <input type="submit" formaction="<%=request.getContextPath()%>/AdminServer?op=getAllEmployees" value="查询员工信息">
         </c:when>
         <c:otherwise>
@@ -57,7 +52,7 @@
             <p style="color: red">注册失败</p>
         </c:when>
         <c:when test="${param.msg == 'noway'}">
-            <p style="color: red">想都别想！超级管理员删不了~</p>
+            <p style="color: red">想都别想！无法删除最高级数据！</p>
         </c:when>
     </c:choose>
 </form>

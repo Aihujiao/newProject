@@ -9,10 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202301302139">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/DepartmentServer.java" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202301310901">
+      <change afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/DepartmentCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/DepartmentCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/DepartmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/DepartmentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/factory/AdminFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factory/AdminFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/factory/DepartmentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factory/DepartmentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AdminServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DepartmentServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/departmentRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/departmentRegister.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/getInfo.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
     </list>
@@ -101,6 +108,7 @@
   <component name="RunManager">
     <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/index.jsp" />
+      <option name="BROWSER_ID" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
@@ -202,7 +210,11 @@
       <workItem from="1675038687041" duration="12874000" />
       <workItem from="1675058522319" duration="19272000" />
       <workItem from="1675081624233" duration="9047000" />
-      <workItem from="1675125124926" duration="1744000" />
+      <workItem from="1675125124926" duration="1847000" />
+      <workItem from="1675139653126" duration="3000" />
+      <workItem from="1675147980917" duration="1412000" />
+      <workItem from="1675161895488" duration="8616000" />
+      <workItem from="1675211310146" duration="2730000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -288,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675085953010</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="202301310901">
+      <created>1675126901594</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1675126901594</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +334,8 @@
     <MESSAGE value="202301301600" />
     <MESSAGE value="2023013012000" />
     <MESSAGE value="202301302139" />
-    <option name="LAST_COMMIT_MESSAGE" value="202301302139" />
+    <MESSAGE value="202301310901" />
+    <option name="LAST_COMMIT_MESSAGE" value="202301310901" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

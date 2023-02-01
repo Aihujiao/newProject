@@ -1,7 +1,9 @@
 <%@ page import="model.Admin" %>
 <%@ page import="ctrl.AdminCtrl" %>
 <%@ page import="model.Department" %>
-<%@ page import="ctrl.DepartmentCtrl" %><%--
+<%@ page import="ctrl.DepartmentCtrl" %>
+<%@ page import="ctrl.dao.DepartmentDao" %>
+<%@ page import="factory.DepartmentFactory" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -30,6 +32,7 @@
                 DepartmentCtrl departmentCtrl = new DepartmentCtrl();
                 department = departmentCtrl.getDepartmentById(adminDepartmentId);
 
+                //  可以优化
                 int stationNum = admin.getAdminStation();
                 String station = null;
                 if(stationNum == 0){
@@ -46,6 +49,19 @@
             <p>所管理部门:<%=department.getDepartmentName()%></p>
             <p>当前状态:<%=station%></p>
 
+        </c:when>
+        <c:when test="${param.type== 'department'}">
+            <%
+                int departmentId = Integer.parseInt(request.getParameter("departmentId"));
+                System.out.println(departmentId);
+                Department department = null;
+                DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+                department = departmentCtrl.getDepartmentById(departmentId);
+            %>
+
+            <p>部门编号:<%=department.getDepartmentId()%></p>
+            <p>部门名称:<%=department.getDepartmentName()%></p>
+            <p>部门介绍:<%=department.getDepartmentIntro()%></p>
         </c:when>
     </c:choose>
 </body>

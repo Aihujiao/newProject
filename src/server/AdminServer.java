@@ -3,7 +3,6 @@ package server;
 import ctrl.dao.AdminDao;
 import factory.AdminFactory;
 import model.Admin;
-import model.Department;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "jspWeb", value = "/AdminServer")
+//  为什么改了 jspWeb 就无法访问
+
 public class AdminServer extends HttpServlet {
     private static String contextPath = null;
     @Override
@@ -34,8 +35,6 @@ public class AdminServer extends HttpServlet {
             this.doRegisterAdmin(request, response);
         } else if (op.equals("adminDeleteById")) {
             this.doDeleteAdminById(request, response);
-        } else if (op.equals("departmentRegister")) {
-            this.doRegisterDepartment(request, response);
         } else if (op.equals("getAllAdmins")) {
             this.doGetAllAdmins(request, response);
         }
@@ -118,9 +117,8 @@ public class AdminServer extends HttpServlet {
 
     private void doDeleteAdminById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //  获取 session 全局变量
-        Admin admin = (Admin) request.getSession().getAttribute("admin");
 
-        int adminId = admin.getAdminId();
+        int adminId = Integer.parseInt(request.getParameter("adminId"));
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
 
@@ -137,37 +135,19 @@ public class AdminServer extends HttpServlet {
         response.sendRedirect(path);
     }
 
-    private void doRegisterDepartment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Department department = null;
-        String departmentName = request.getParameter("departmentName");
-        String departmentIntro = request.getParameter("departmentIntro");
-
-        department = new Department(0,departmentName,departmentIntro);
-
-        AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
-        boolean registered = adminCtrl.registDepartment(department);
-        String path = null;
-        if(registered){
-            path = contextPath+"/admin/operation.jsp?msg=succeed";
-        }else{
-            path = contextPath+"/admin/operation.jsp?msg=fail";
-        }
-        response.sendRedirect(path);
-    }
-
     private void doGetAllAdmins(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Admin> adminList = null;
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
         adminList = adminCtrl.getAllAdmins();
 
-        String path = contextPath+"/admin/getInfo.jsp?type=admins";
+        String path = contextPath+"/getInfo.jsp?type=admins";
 
         int adminNum = adminList.size();
 
         if(adminNum == 0){
             //  如果查到的管理员数量为0，就执行这内容
-            path = "/admin/getInfo.jsp?msg=nothing";
+            path = contextPath+"/getInfo.jsp?type=admins&msg=nothing";
         }
 
         request.setAttribute("admins",adminList);

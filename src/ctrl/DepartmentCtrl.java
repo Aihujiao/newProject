@@ -67,7 +67,7 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
         ResultSet rs = executeDBQuery(sql, null);
 
         try {
-            if(rs.next()){
+            while (rs.next()){
                 int departmentId = rs.getInt("departmentId");
                 String departmentName = rs.getString("departmentName");
                 String departmentIntro = rs.getString("departmentIntro");
@@ -83,16 +83,22 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
 
     //  超级管理员
     //  删除部门信息
-    public boolean deleteDepartment(int departmentId){
+    public boolean deleteDepartmentById(int departmentId){
         boolean isEmpty = false;
         boolean deleted =false;
         String sql = "select * from employees where employeeDepartmentId = ?";
-        ResultSet rs = executeDBQuery(sql, null);
+        Object[] objects = {departmentId};
+        ResultSet rs = executeDBQuery(sql, objects);
         try {
-            if (rs.next()){
+            if (!rs.next()){
+                System.out.println("此时部门员工为空");
                 isEmpty = true;
+            }else {
+                //  如果部门里还有员工，则不能执行下方删除部门的*关键代码*
+                return false;
             }
             //  前端做限制，先读取管理员的部门编号，再传值执行该方法
+            //  删除部门的 *关键代码*
             sql = "delete from departments where departmentId = ?";
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -100,7 +106,6 @@ public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
 
         //  如果为空就可以删除该部门
         if(isEmpty){
-            Object objects[] = {departmentId};
             deleted = executeDBUpdate(sql, objects);
         }
         return deleted;

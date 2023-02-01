@@ -19,8 +19,6 @@ public class AdminFactory {
 
     public AdminDao getAdminDao(){
         if(adminDao == null){
-            //  这里可能存在问题
-            System.out.println("执行到了要实例化Dao");
             adminDao = new AdminCtrl();
         }
         return adminDao;

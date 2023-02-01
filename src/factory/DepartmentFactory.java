@@ -9,14 +9,14 @@ public class DepartmentFactory {
 
     public static DepartmentFactory instance(){
         if(departmentFactory == null){
-            DepartmentFactory departmentFactory = new DepartmentFactory();
+            departmentFactory = new DepartmentFactory();
         }
         return  departmentFactory;
     }
 
     public DepartmentDao getDepartmentDaoDao(){
         if(departmentDao == null){
-            DepartmentDao departmentDao = new DepartmentCtrl();
+            departmentDao = new DepartmentCtrl();
         }
         return departmentDao;
     }
