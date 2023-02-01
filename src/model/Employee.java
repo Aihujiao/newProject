@@ -15,7 +15,7 @@ public class Employee {
     private int employeeGender;
     private int employeeAge;
     private String employeeProfile;
-    private int departmentId;
+    private int employeeDepartmentId;
     private String employeePosition;
     private int employeeStation;
 }

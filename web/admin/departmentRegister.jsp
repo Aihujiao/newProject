@@ -7,21 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../base.jsp"%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>部门注册</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--  <h2>部门注册</h2>--%>
-<%--  <form action="<%=contantPath%>/DepartmentServer">--%>
-<%--      <input type="hidden" name="op" value="departmentRegister">--%>
-<%--      <p><input type="text" name="departmentName" placeholder="请输入需要添加的部门名称"></p>--%>
-<%--      <p><input type="text" name="departmentIntro" placeholder="请输入该部门的介绍"></p>--%>
-<%--      <button>注册部门</button>--%>
-<%--  </form>--%>
-<%--</body>--%>
-<%--</html>--%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +15,7 @@
 </head>
 <body>
     <h2>部门注册</h2>
-    <form action="<%=contantPath%>/DepartmentServer">
+    <form action="<%=contextPath%>/DepartmentServer">
         <input type="hidden" name="op" value="departmentRegister">
         <p><input type="text" name="departmentName" placeholder="请输入需要添加的部门名称"></p>
         <p><input type="text" name="departmentIntro" placeholder="请输入该部门的介绍"></p>

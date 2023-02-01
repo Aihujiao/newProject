@@ -54,7 +54,7 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         int employeeGender = employee.getEmployeeGender();
         int employeeAge = employee.getEmployeeAge();
         String employeeProfile = employee.getEmployeeProfile();
-        int employeeDepartmentId = employee.getDepartmentId();
+        int employeeDepartmentId = employee.getEmployeeDepartmentId();
         String employeePosition = employee.getEmployeePosition();
         int employeeStation = employee.getEmployeeStation();
 
@@ -72,7 +72,7 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         int employeeGender = employee.getEmployeeGender();
         int employeeAge = employee.getEmployeeAge();
         String employeeProfile = employee.getEmployeeProfile();
-        int employeeDepartmentId = employee.getDepartmentId();
+        int employeeDepartmentId = employee.getEmployeeDepartmentId();
         String employeePosition = employee.getEmployeePosition();
         int employeeStation = employee.getEmployeeStation();
         int employeeId = employee.getEmployeeId();
@@ -125,7 +125,7 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
 
     @Override
     public List<Employee> getAllEmployees() {
-        List<Employee> list =null;
+        List<Employee> list = null;
         Employee employee = null;
         String sql = "select * from employees";
 

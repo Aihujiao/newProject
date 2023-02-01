@@ -57,8 +57,8 @@
                             <td>${admin.adminStation}</td>
                             <td>
 <%--                            <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
-                                <input type="submit" formaction="<%=contantPath%>/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
-                                <input type="submit" formaction="<%=contantPath%>/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
+                                <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
+                                <input type="submit" formaction="<%=contextPath%>/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
                             </td>
                         </tr>
                     </tbody>
@@ -85,8 +85,8 @@
                             <td>${department.departmentIntro}</td>
                             <td>
                                 <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
-                                <input type="submit" formaction="<%=contantPath%>/detail.jsp?type=department&departmentId=${department.departmentId}" value="详情">
-                                <input type="submit" formaction="<%=contantPath%>/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
+                                <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=department&departmentId=${department.departmentId}" value="详情">
+                                <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
                             </td>
                         </tr>
                         </tbody>

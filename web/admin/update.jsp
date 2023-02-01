@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>信息更新</h2>
-  <form action="<%=contantPath%>/AdminServer" method="post">
+  <form action="<%=contextPath%>/AdminServer" method="post">
     <input type="hidden" name="op" value="adminUpdate">
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>
     <p>昵称：<input type="text" name="newNickName" value="${sessionScope.admin.adminNickName}"></p>

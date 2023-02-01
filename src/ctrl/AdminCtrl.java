@@ -156,7 +156,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
         int employeeGender = employee.getEmployeeGender();
         int employeeAge = employee.getEmployeeAge();
         String employeeProfile = employee.getEmployeeProfile();
-        int employeeDepartmentId = employee.getDepartmentId();
+        int employeeDepartmentId = employee.getEmployeeDepartmentId();
 
         Object objects[] = {employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId};
         boolean added = executeDBUpdate(sql, objects);

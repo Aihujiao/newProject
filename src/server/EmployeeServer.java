@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(value = "/EmployeeServer")
 public class EmployeeServer extends HttpServlet {
@@ -27,6 +28,10 @@ public class EmployeeServer extends HttpServlet {
             this.doLoginEmployee(request,response);
         } else if (op.equals("employeeUpdate")) {
             this.doUpdateEmployee(request,response);
+        } else if (op.equals("getAllEmployees")) {
+            this.doGetAllEmployees(request, response);
+        } else if (op.equals("employeeDeleteById")) {
+            this.doDeleteEmployeeById(request, response);
         }
     }
 
@@ -37,12 +42,14 @@ public class EmployeeServer extends HttpServlet {
         Employee employee = new Employee(0,EmployeeName,EmployeePassword,0,0,null,0,null,0);
 
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        employeeCtrl.loginEmployee(employee);
+        employee = employeeCtrl.loginEmployee(employee);
 
         String path = contextPath + "/employee/operation.jsp";
 
         if(employee == null){
             path = contextPath + "/employee/login.jsp?msg=fail";
+        }else {
+            request.getSession().setAttribute("employee",employee);
         }
 
         response.sendRedirect(path);
@@ -72,6 +79,45 @@ public class EmployeeServer extends HttpServlet {
             path = contextPath + "/employee/operation.jsp?msg=err";
         }
 
+        response.sendRedirect(path);
+    }
+
+    //  管理员操作
+    private void doGetAllEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        //  将员工集合赋值给 employees
+        List<Employee> employees = employeeCtrl.getAllEmployees();
+        //  判断集合中元素个数
+        int employeeNum = employees.size();
+
+        String path = null;
+        if (employeeNum != 0){
+            path = contextPath + "/getInfo?type=employees";
+            request.setAttribute("employees",employees);
+        }else{
+            path = "/getInfo?msg=nothing";
+        }
+
+        //  带参跳转
+        request.getRequestDispatcher(path).forward(request,response);
+    }
+
+    //  员工操作
+    private void doGetSameDepartmentEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    }
+    private void doDeleteEmployeeById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int employeeId = Integer.parseInt(request.getParameter("emplpyeeId"));
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        boolean deleted = employeeCtrl.deleteEmployeeById(employeeId);
+
+        String path = contextPath + "/employee/login.jsp?msg=succeed";
+
+        if(!deleted){
+            path = contextPath + "/employee/login.jsp?msg=fail";
+        }
+
+        //  直接使用URL传参到新页面使页面进行判断
         response.sendRedirect(path);
     }
 }
