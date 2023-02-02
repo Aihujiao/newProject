@@ -9,17 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302012330">
-      <change afterPath="$PROJECT_DIR$/src/ctrl/filter/CodeFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/employee/employeeRegister.jsp" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302021838">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/EmployeeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/EmployeeCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/factory/DepartmentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factory/DepartmentFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DepartmentServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EmployeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EmployeeServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +78,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Facet&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -229,7 +220,9 @@
       <workItem from="1675225455469" duration="10661000" />
       <workItem from="1675244978279" duration="7826000" />
       <workItem from="1675258521704" duration="6749000" />
-      <workItem from="1675317829311" duration="11860000" />
+      <workItem from="1675317829311" duration="12494000" />
+      <workItem from="1675334757669" duration="305000" />
+      <workItem from="1675340413403" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -350,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675265426209</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="202302021838">
+      <created>1675334420622</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675334420622</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +382,8 @@
     <MESSAGE value="202302011725" />
     <MESSAGE value="202302012000" />
     <MESSAGE value="202302012330" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302012330" />
+    <MESSAGE value="202302021838" />
+    <option name="LAST_COMMIT_MESSAGE" value="202302021838" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
