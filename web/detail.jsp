@@ -81,6 +81,7 @@
             <p>员工性别:<%=employee.getEmployeeGender()%></p>
             <p>员工头像:<%=employee.getEmployeeProfile()%></p>
             <p>员工部门:<%=employee.getEmployeeDepartmentId()%></p>
+            <p>员工权限:<%=employee.getEmployeePowerId()%></p>
             <p>员工职位:<%=employee.getEmployeePosition()%></p>
             <p>员工状态:<%=employee.getEmployeeStation()%></p>
         </c:when>

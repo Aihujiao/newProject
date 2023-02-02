@@ -21,6 +21,7 @@
         <p>员工年龄:<input type="text" name="employeeAge" value="${sessionScope.employee.employeeAge}"></p>
         <p>员工头像:<input type="text" name="employeeProfile" value="${sessionScope.employee.employeeProfile}"></p>
         <p>员工部门:<input type="text" name="employeeDepartmentId" value="${sessionScope.employee.employeeDepartmentId}"></p>
+        <p>员工权限:<input type="text" name="employeePowerId" value="${sessionScope.employee.employeePowerId}"></p>
         <p>员工职位:<input type="text" name="employeePosition" value="${sessionScope.employee.employeePosition}"></p>
         <p>员工状态:<input type="text" name="employeeStation" value="${sessionScope.employee.employeeStation}"></p>
         <button>更新信息</button>

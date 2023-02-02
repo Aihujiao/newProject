@@ -106,8 +106,10 @@
                         <th>员工年龄</th>
                         <th>员工头像</th>
                         <th>员工部门</th>
+                        <th>员工权限</th>
                         <th>员工职位</th>
                         <th>员工状态</th>
+                        <th>具体操作</th>
                     </tr>
                     </thead>
                     <c:forEach items="${requestScope.employees}" var="employee">
@@ -120,6 +122,7 @@
                             <td>${employee.employeeAge}</td>
                             <td>${employee.employeeProfile}</td>
                             <td>${employee.employeeDepartmentId}</td>
+                            <td>${employee.employeePowerId}</td>
                             <td>${employee.employeePosition}</td>
                             <td>${employee.employeeStation}</td>
                             <td>

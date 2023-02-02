@@ -181,10 +181,11 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
                 int employeeAge = rs.getInt("employeeAge");
                 String employeeProfile = rs.getString("employeeProfile");
                 int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                int employeePowerId = rs.getInt("employeePowerId");
                 String employeePosition = rs.getString("employeePosition");
                 int employeeStation = rs.getInt("employeeStation");
 
-                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId, employeePosition, employeeStation);
+                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId,employeePowerId, employeePosition, employeeStation);
                 list.add(employee);
             }
         }catch (SQLException e){
@@ -215,9 +216,11 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
                 int employeeAge = rs.getInt("employeeAge");
                 String employeeProfile = rs.getString("employeeProfile");
                 int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                int employeePowerId = rs.getInt("employeePowerId");
                 String employeePosition = rs.getString("employeePosition");
                 int employeeStation = rs.getInt("employeeStation");
-                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId, employeePosition, employeeStation);
+
+                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId,employeePowerId, employeePosition, employeeStation);
                 list.add(employee);
             }
         } catch (SQLException e) {

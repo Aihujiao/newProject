@@ -42,7 +42,7 @@ public class EmployeeServer extends HttpServlet {
         String EmployeeName = request.getParameter("employeeName");
         String EmployeePassword = request.getParameter("employeePassword");
         System.out.println("管理员昵称是"+EmployeeName+"管理员密码是"+EmployeePassword);
-        Employee employee = new Employee(0,EmployeeName,EmployeePassword,0,0,null,0,null,0);
+        Employee employee = new Employee(0,EmployeeName,EmployeePassword,0,0,null,0,0,null,0);
 
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
         employee = employeeCtrl.loginEmployee(employee);
@@ -67,10 +67,11 @@ public class EmployeeServer extends HttpServlet {
         int newAge = Integer.parseInt(request.getParameter("newAge"));
         String newProfile = request.getParameter("newProfile");
         int newEmployeeDepartmentId = Integer.getInteger(request.getParameter("newEmployeeDepartmentId"));
+        int newEmployeePowerId = Integer.parseInt(request.getParameter("newEmployeePowerId"));
         String newEmployeePosition = request.getParameter("newEmployeePosition");
         int newEmployeeStation = Integer.getInteger(request.getParameter("newEmployeeStation"));
 
-        newEmployee = new Employee(employeeId,newName,newPassword,newGender,newAge,newProfile,newEmployeeDepartmentId,newEmployeePosition,newEmployeeStation);
+        newEmployee = new Employee(employeeId,newName,newPassword,newGender,newAge,newProfile,newEmployeeDepartmentId,newEmployeePowerId,newEmployeePosition,newEmployeeStation);
 
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
         employeeCtrl.updateEmployee(newEmployee);
@@ -114,14 +115,17 @@ public class EmployeeServer extends HttpServlet {
 
     }
     private void doDeleteEmployeeById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        int employeeId = Integer.parseInt(request.getParameter("emplpyeeId"));
+
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+
+        System.out.println(employeeId);
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
         boolean deleted = employeeCtrl.deleteEmployeeById(employeeId);
 
-        String path = contextPath + "/employee/login.jsp?msg=succeed";
+        String path = contextPath + "/employee/operation.jsp?msg=succeed";
 
         if(!deleted){
-            path = contextPath + "/employee/login.jsp?msg=fail";
+            path = contextPath + "/employee/operation.jsp?msg=fail";
         }
 
         //  直接使用URL传参到新页面使页面进行判断
@@ -139,10 +143,10 @@ public class EmployeeServer extends HttpServlet {
         String employeePosition = request.getParameter("employeePosition");
         int employeeStation = Integer.parseInt(request.getParameter("employeeStation"));
 
-        employee = new Employee(0,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+        employee = new Employee(0,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,0,employeePosition,employeeStation);
 
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        boolean registered = employeeCtrl.registEmployee(employee);
+        boolean registered = employeeCtrl.registerEmployee(employee);
 
         String path = "/admin/operation.jsp?msg=succeed";
         if (registered){

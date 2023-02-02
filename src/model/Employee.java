@@ -16,6 +16,7 @@ public class Employee {
     private int employeeAge;
     private String employeeProfile;
     private int employeeDepartmentId;
+    private int employeePowerId;
     private String employeePosition;
     private int employeeStation;
 }

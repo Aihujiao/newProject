@@ -29,10 +29,11 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
                 int employeeAge = rs.getInt("employeeAge");
                 String employeeProfile = rs.getString("employeeProfile");
                 int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                int employeePowerId = rs.getInt("employeePowerId");
                 String employeePosition = rs.getString("employeePosition");
                 int employeeStation = rs.getInt("employeeStation");
 
-                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePowerId,employeePosition,employeeStation);
 
                 return employee;
             }else{
@@ -48,7 +49,7 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
 
     //  为部门添加员工
     @Override
-    public boolean registEmployee(Employee employee) {
+    public boolean registerEmployee(Employee employee) {
         String employeeName = employee.getEmployeeName();
         String employeePassword =employee.getEmployeePassword();
         int employeeGender = employee.getEmployeeGender();
@@ -75,11 +76,12 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         int employeeAge = employee.getEmployeeAge();
         String employeeProfile = employee.getEmployeeProfile();
         int employeeDepartmentId = employee.getEmployeeDepartmentId();
+        int employeePowerId = employee.getEmployeePowerId();
         String employeePosition = employee.getEmployeePosition();
         int employeeStation = employee.getEmployeeStation();
         int employeeId = employee.getEmployeeId();
 
-        Object objects[] ={employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation,employeeId};
+        Object objects[] ={employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeePowerId,employeeStation,employeeId};
         boolean updated = executeDBUpdate(sql, objects);
 
         return updated;
@@ -112,9 +114,10 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
                 int employeeAge = rs.getInt("employeeAge");
                 String employeeProfile = rs.getString("employeeProfile");
                 int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                int employeePowerId = rs.getInt("employeePowerId");
                 String employeePosition = rs.getString("employeePosition");
                 int employeeStation = rs.getInt("employeeStation");
-                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePowerId,employeePosition,employeeStation);
             }
 
             close(rs);
@@ -142,11 +145,12 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
                 int employeeAge = rs.getInt("employeeAge");
                 String employeeProfile = rs.getString("employeeProfile");
                 int employeeDepartmentId = rs.getInt("employeeDepartmentId");
+                int employeePowerId = rs.getInt("employeePowerId");
                 String employeePosition = rs.getString("employeePosition");
                 int employeeStation = rs.getInt("employeeStation");
 
                 //  将每一轮的数据插入对应对象
-                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+                employee = new Employee(employeeId,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePowerId,employeePosition,employeeStation);
 
                 //  将本轮对象插入到员工结果集
                 list.add(employee);

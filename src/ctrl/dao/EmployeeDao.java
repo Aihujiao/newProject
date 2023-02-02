@@ -8,7 +8,7 @@ public interface EmployeeDao {
     public Employee loginEmployee(Employee employee);
 
     //  超级管理员特殊功能选项
-    public boolean registEmployee(Employee employee);
+    public boolean registerEmployee(Employee employee);
 
     public boolean updateEmployee(Employee employee);
 

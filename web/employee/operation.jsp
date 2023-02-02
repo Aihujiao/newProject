@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../base.jsp"%>
 <html>
 <head>
@@ -29,5 +30,14 @@
         <hr>
         <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=employeeDeleteById">
     </form>
+
+    <c:choose>
+        <c:when test="${param.msg == 'succeed'}">
+            <p style="color: red">操作成功</p>
+        </c:when>
+        <c:when test="${param.msg == 'err'}">
+            <p style="color: red">操作失败</p>
+        </c:when>
+    </c:choose>
 </body>
 </html>
