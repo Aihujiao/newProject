@@ -95,9 +95,44 @@
             </form>
         </c:when>
         <c:when test="${param.type == 'employees'}">
-
+            <form action="" method="post">
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>员工编号</th>
+                        <th>员工姓名</th>
+                        <th>员工密码</th>
+                        <th>员工性别</th>
+                        <th>员工年龄</th>
+                        <th>员工头像</th>
+                        <th>员工部门</th>
+                        <th>员工职位</th>
+                        <th>员工状态</th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${requestScope.employees}" var="employee">
+                        <tbody>
+                        <tr>
+                            <td>${employee.employeeId}</td>
+                            <td>${employee.employeeName}</td>
+                            <td>${employee.employeePassword}</td>
+                            <td>${employee.employeeGender}</td>
+                            <td>${employee.employeeAge}</td>
+                            <td>${employee.employeeProfile}</td>
+                            <td>${employee.employeeDepartmentId}</td>
+                            <td>${employee.employeePosition}</td>
+                            <td>${employee.employeeStation}</td>
+                            <td>
+                                <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
+                                <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=employee&employeeId=${employee.employeeId}" value="详情">
+                                <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=employeeDeleteById&employeeId=${employee.employeeId}" value="注销">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </c:forEach>
+                </table>
+            </form>
         </c:when>
-
     </c:choose>
 
 </body>

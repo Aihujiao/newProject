@@ -42,7 +42,7 @@ public class DepartmentServer extends HttpServlet {
 
         department = new Department(0,departmentName,departmentIntro);
 
-        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDao();
         boolean registered = departmentCtrl.registDepartment(department);
         String path = null;
 
@@ -59,7 +59,7 @@ public class DepartmentServer extends HttpServlet {
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
         String path = contantPath + "/getInfo?type=Department&departmentId="+departmentId;
 
-        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDao();
 
         Department department = departmentCtrl.getDepartmentById(departmentId);
 
@@ -70,7 +70,7 @@ public class DepartmentServer extends HttpServlet {
     }
 
     private void doGetAllDepartments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDao();
         List<Department> departments = departmentCtrl.getAllDepartment();
 
         String path = "/getInfo.jsp?type=departments";
@@ -91,7 +91,7 @@ public class DepartmentServer extends HttpServlet {
 
 
         System.out.println("部门删除方法里获取的"+departmentId);
-        DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+        DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentDao();
 
         String path = contantPath + "/admin/operation.jsp?msg=succeed";
 

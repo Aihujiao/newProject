@@ -14,7 +14,7 @@ public class DepartmentFactory {
         return  departmentFactory;
     }
 
-    public DepartmentDao getDepartmentDaoDao(){
+    public DepartmentDao getDepartmentDao(){
         if(departmentDao == null){
             departmentDao = new DepartmentCtrl();
         }

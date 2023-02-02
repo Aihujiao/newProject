@@ -6,6 +6,7 @@ import model.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
@@ -48,7 +49,6 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
     //  为部门添加员工
     @Override
     public boolean registEmployee(Employee employee) {
-        String sql = "insert into employees value(null,?,?,?,?,?,?,?,?)";
         String employeeName = employee.getEmployeeName();
         String employeePassword =employee.getEmployeePassword();
         int employeeGender = employee.getEmployeeGender();
@@ -58,7 +58,9 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
         String employeePosition = employee.getEmployeePosition();
         int employeeStation = employee.getEmployeeStation();
 
+        String sql = "insert into employees value(null,?,?,?,?,?,?,?,?)";
         Object objects[] = {employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation};
+
         boolean registered = executeDBUpdate(sql, objects);
 
         return registered;
@@ -125,8 +127,8 @@ public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
 
     @Override
     public List<Employee> getAllEmployees() {
-        List<Employee> list = null;
-        Employee employee = null;
+        List<Employee> list = new ArrayList<>();
+        Employee employee = new Employee();
         String sql = "select * from employees";
 
         ResultSet rs = executeDBQuery(sql, null);

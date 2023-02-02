@@ -3,7 +3,10 @@
 <%@ page import="model.Department" %>
 <%@ page import="ctrl.DepartmentCtrl" %>
 <%@ page import="ctrl.dao.DepartmentDao" %>
-<%@ page import="factory.DepartmentFactory" %><%--
+<%@ page import="factory.DepartmentFactory" %>
+<%@ page import="ctrl.dao.EmployeeDao" %>
+<%@ page import="model.Employee" %>
+<%@ page import="factory.EmployeeFactory" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -55,13 +58,31 @@
                 int departmentId = Integer.parseInt(request.getParameter("departmentId"));
                 System.out.println(departmentId);
                 Department department = null;
-                DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDaoDao();
+                DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDao();
                 department = departmentCtrl.getDepartmentById(departmentId);
             %>
 
             <p>部门编号:<%=department.getDepartmentId()%></p>
             <p>部门名称:<%=department.getDepartmentName()%></p>
             <p>部门介绍:<%=department.getDepartmentIntro()%></p>
+        </c:when>
+        <c:when test="${param.type== 'employee'}">
+            <%
+                int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+                System.out.println(employeeId);
+                Employee employee = null;
+                EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+                employee = employeeCtrl.getEmployeeById(employeeId);
+            %>
+
+            <p>员工编号:<%=employee.getEmployeeId()%></p>
+            <p>员工名称:<%=employee.getEmployeeName()%></p>
+            <p>员工密码:<%=employee.getEmployeePassword()%></p>
+            <p>员工性别:<%=employee.getEmployeeGender()%></p>
+            <p>员工头像:<%=employee.getEmployeeProfile()%></p>
+            <p>员工部门:<%=employee.getEmployeeDepartmentId()%></p>
+            <p>员工职位:<%=employee.getEmployeePosition()%></p>
+            <p>员工状态:<%=employee.getEmployeeStation()%></p>
         </c:when>
     </c:choose>
 </body>

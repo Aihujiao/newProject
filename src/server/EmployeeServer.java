@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(value = "/EmployeeServer")
@@ -32,6 +33,8 @@ public class EmployeeServer extends HttpServlet {
             this.doGetAllEmployees(request, response);
         } else if (op.equals("employeeDeleteById")) {
             this.doDeleteEmployeeById(request, response);
+        } else if (op.equals("employeeRegister")) {
+            this.doRegisterEmployee(request, response);
         }
     }
 
@@ -85,17 +88,21 @@ public class EmployeeServer extends HttpServlet {
     //  管理员操作
     private void doGetAllEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        //  创建数组集合用于存储 员工数据
+        List<Employee> employees = new ArrayList<>();
         //  将员工集合赋值给 employees
-        List<Employee> employees = employeeCtrl.getAllEmployees();
+        employees = employeeCtrl.getAllEmployees();
         //  判断集合中元素个数
         int employeeNum = employees.size();
 
+        System.out.println("所有员工人数为"+employeeNum);
+
         String path = null;
         if (employeeNum != 0){
-            path = contextPath + "/getInfo?type=employees";
+            path = "/getInfo.jsp?type=employees";
             request.setAttribute("employees",employees);
         }else{
-            path = "/getInfo?msg=nothing";
+            path = "/getInfo.jsp?msg=nothing";
         }
 
         //  带参跳转
@@ -119,5 +126,31 @@ public class EmployeeServer extends HttpServlet {
 
         //  直接使用URL传参到新页面使页面进行判断
         response.sendRedirect(path);
+    }
+
+    private void doRegisterEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        Employee employee = new Employee();
+        String employeeName = request.getParameter("employeeName");
+        String employeePassword = request.getParameter("employeePassword");
+        int employeeGender = Integer.parseInt(request.getParameter("employeeGender"));
+        int employeeAge = Integer.parseInt(request.getParameter("employeeAge"));
+        String employeeProfile = request.getParameter("employeeProfile");
+        int employeeDepartmentId =Integer.parseInt(request.getParameter("employeeDepartmentId"));
+        String employeePosition = request.getParameter("employeePosition");
+        int employeeStation = Integer.parseInt(request.getParameter("employeeStation"));
+
+        employee = new Employee(0,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,employeePosition,employeeStation);
+
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        boolean registered = employeeCtrl.registEmployee(employee);
+
+        String path = "/admin/operation.jsp?msg=succeed";
+        if (registered){
+            request.setAttribute("employee",employee);
+        }else {
+            path = "/admin/operation.jsp?msg=fail";
+        }
+
+        request.getRequestDispatcher(path).forward(request,response);
     }
 }

@@ -27,6 +27,7 @@
             <hr>
             <input type="submit" formaction="<%=contextPath%>/admin/register.jsp" value="注册管理员">
             <input type="submit" formaction="<%=contextPath%>/admin/departmentRegister.jsp" value="注册部门">
+            <input type="submit" formaction="<%=contextPath%>/employee/employeeRegister.jsp" value="注册员工">
             <hr>
             查询功能
             <hr>
