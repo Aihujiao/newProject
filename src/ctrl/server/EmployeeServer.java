@@ -1,7 +1,7 @@
-package server;
+package ctrl.server;
 
-import ctrl.dao.EmployeeDao;
-import factory.EmployeeFactory;
+import ctrl.implement.dao.EmployeeDao;
+import ctrl.factory.EmployeeFactory;
 import model.Employee;
 
 import javax.servlet.ServletException;

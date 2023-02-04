@@ -1,7 +1,7 @@
-package ctrl;
+package ctrl.implement;
 
-import ctrl.dao.EmployeeDao;
-import db.ExecuteDB;
+import ctrl.implement.dao.EmployeeDao;
+import ctrl.db.ExecuteDB;
 import model.Employee;
 
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeCtrl extends ExecuteDB implements EmployeeDao {
+public class EmployeeImplement extends ExecuteDB implements EmployeeDao {
     @Override
     public Employee loginEmployee(Employee employee) {
         System.out.println("进入员工登陆页面");

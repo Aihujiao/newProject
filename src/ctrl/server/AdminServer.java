@@ -1,7 +1,7 @@
-package server;
+package ctrl.server;
 
-import ctrl.dao.AdminDao;
-import factory.AdminFactory;
+import ctrl.implement.dao.AdminDao;
+import ctrl.factory.AdminFactory;
 import model.Admin;
 
 import javax.servlet.ServletException;
@@ -49,10 +49,6 @@ public class AdminServer extends HttpServlet {
         System.out.println(admin.getAdminNickName());
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
         //  将前端获取的管理员对象值传入数据库检索
-
-        admin = adminCtrl.loginAdmin(admin);
-
-        System.out.println("测试：管理员的编号是"+admin.getAdminId());
 
         String path = contextPath + "/admin/operation.jsp";
         if(admin != null){
@@ -102,9 +98,19 @@ public class AdminServer extends HttpServlet {
 
         admin = new Admin(0,AdminNickName,AdminPassword,AdminProfile,AdminDepartmentId,0);
 
+
+
         AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
 
-        boolean Registed = adminCtrl.registAdmin(admin);
+        boolean Exist = adminCtrl.hadAdmin(AdminNickName);
+
+        if(Exist){
+            admin = adminCtrl.loginAdmin(admin);
+        }else {
+            return;
+        }
+
+        boolean Registed = adminCtrl.registerAdmin(admin);
 
         String path = contextPath + "/admin/operation.jsp?msg=registSucceed";
 

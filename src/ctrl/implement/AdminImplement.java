@@ -1,7 +1,7 @@
-package ctrl;
+package ctrl.implement;
 
-import ctrl.dao.AdminDao;
-import db.ExecuteDB;
+import ctrl.implement.dao.AdminDao;
+import ctrl.db.ExecuteDB;
 import model.Admin;
 import model.Employee;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminCtrl extends ExecuteDB implements AdminDao {
+public class AdminImplement extends ExecuteDB implements AdminDao {
     //  登录方法
     public Admin loginAdmin(Admin admin){
         //  读取前端登录页面的信息
@@ -43,7 +43,7 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
     }
 
     @Override
-    public boolean registAdmin(Admin admin) {
+    public boolean registerAdmin(Admin admin) {
         //  超級管理員
         //  读取前端登录页面的信息
         String adminNickName = admin.getAdminNickName();
@@ -58,6 +58,66 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
         boolean registed = executeDBUpdate(sql, objects);
 
         return registed;
+    }
+
+    @Override
+    public boolean hadAdmin(String adminNickName) {
+        String sql = "select adminId from admins where adminNickName = ?";
+        Object[] objects = {adminNickName};
+        boolean Exist = false;
+
+        ResultSet rs = executeDBQuery(sql, objects);
+        try {
+            if (rs.next()){
+                Exist = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(rs);
+        }
+        return Exist;
+    }
+
+    @Override
+    public String getAdminDepartmentName(int adminDepartmentId) {
+        String departmentName = null;
+        String sql = "select departmentName from departments where departmentId = ?";
+        Object[] objects = {adminDepartmentId};
+
+        ResultSet rs = executeDBQuery(sql, objects);
+
+        try {
+            if(rs.next()){
+                departmentName = rs.getString("departmentName");
+                System.out.println("得到的部门名称是"+ departmentName);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(rs);
+        }
+
+        return departmentName;
+    }
+
+    @Override
+    public String getAdminStation(int adminStationId) {
+        String adminStation = null;
+        String sql = "select stationName from stations where stationId = ?";
+        Object[] objects = {adminStationId};
+
+        ResultSet rs = executeDBQuery(sql, objects);
+        try {
+            if(rs.next()){
+                //  如果能查到状态信息就将值附到adminStation并最后返回
+                adminStation = rs.getString("stationName");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return adminStation;
     }
 
 
@@ -147,59 +207,6 @@ public class AdminCtrl extends ExecuteDB implements AdminDao {
 
         return list;
     }
-
-    //  添加本部员工
-    public boolean registEmployeeOnDepartment(Employee employee){
-        String sql = "insert into employees value (null,?,?,?,?,?,?,?)";
-        String employeeName = employee.getEmployeeName();
-        String employeePassword = employee.getEmployeePassword();
-        int employeeGender = employee.getEmployeeGender();
-        int employeeAge = employee.getEmployeeAge();
-        String employeeProfile = employee.getEmployeeProfile();
-        int employeeDepartmentId = employee.getEmployeeDepartmentId();
-
-        Object objects[] = {employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId};
-        boolean added = executeDBUpdate(sql, objects);
-
-        return added;
-    }
-
-    //  查询本部门员工
-    public List<Employee> getEmployeesOnDepartment(int departmentId){
-        String sql = "select * from employees where departmentId = ?";
-        Object objects[] = {departmentId};
-        ResultSet rs = executeDBQuery(sql, objects);
-        //  实例化 List 集合 Employee 类的一个对象 list
-        List<Employee> list = new ArrayList<>();
-
-        try{
-            while(rs.next()){
-                int employeeId = rs.getInt("employeeId");
-                String employeeName = rs.getString("employeeName");
-                String employeePassword = rs.getString("employeePassword");
-                int employeeGender = rs.getInt("employeeGender");
-                int employeeAge = rs.getInt("employeeAge");
-                String employeeProfile = rs.getString("employeeProfile");
-                int employeeDepartmentId = rs.getInt("employeeDepartmentId");
-                int employeePowerId = rs.getInt("employeePowerId");
-                String employeePosition = rs.getString("employeePosition");
-                int employeeStation = rs.getInt("employeeStation");
-
-                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId,employeePowerId, employeePosition, employeeStation);
-                list.add(employee);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-        }
-
-        return list;
-    }
-
-    //  修改多个
-    //  超级管理员修改信息功能？？
-
 
     //  查询所有员工信息
     public List<Employee> getAllEmployees(){

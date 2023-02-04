@@ -1,7 +1,7 @@
-package factory;
+package ctrl.factory;
 
-import ctrl.AdminCtrl;
-import ctrl.dao.AdminDao;
+import ctrl.implement.AdminImplement;
+import ctrl.implement.dao.AdminDao;
 
 /**
  *
@@ -19,7 +19,7 @@ public class AdminFactory {
 
     public AdminDao getAdminDao(){
         if(adminDao == null){
-            adminDao = new AdminCtrl();
+            adminDao = new AdminImplement();
         }
         return adminDao;
     }

@@ -15,5 +15,6 @@ public class Admin {
     private String adminProfile;
     private int adminDepartmentId;
     private int adminStation;
-
 }
+
+

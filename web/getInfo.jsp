@@ -1,5 +1,7 @@
 <%@ page import="model.Admin" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="ctrl.implement.dao.AdminDao" %>
+<%@ page import="ctrl.factory.AdminFactory" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -35,6 +37,9 @@
 
     <c:choose>
         <c:when test="${param.type == 'admins'}">
+            <%
+                AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
+            %>
             <form action="" method="post">
                 <table border="1">
                     <thead>
@@ -42,21 +47,27 @@
                             <th>管理员编号</th>
                             <th>管理员昵称</th>
                             <th>头像地址</th>
-                            <th>管理部门编号</th>
+                            <th>部门名称</th>
                             <th>当前状态</th>
                             <th>具体操作</th>
                         </tr>
                     </thead>
                 <c:forEach items="${requestScope.admins}" var="admin">
+                    <%
+                        Admin admin = (Admin)pageContext.findAttribute("admin");
+                        int adminDepartmentId = admin.getAdminDepartmentId();
+                        int adminStation = admin.getAdminStation();
+                        String departmentName = adminCtrl.getAdminDepartmentName(adminDepartmentId);
+                        String stationName = adminCtrl.getAdminStation(adminStation);
+                    %>
                     <tbody>
                         <tr>
                             <td>${admin.adminId}</td>
                             <td>${admin.adminNickName}</td>
                             <td>${admin.adminProfile}</td>
-                            <td>${admin.adminDepartmentId}</td>
-                            <td>${admin.adminStation}</td>
+                            <td><%=departmentName%></td>
+                            <td><%=stationName%></td>
                             <td>
-<%--                            <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">
                                 <input type="submit" formaction="<%=contextPath%>/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
                             </td>

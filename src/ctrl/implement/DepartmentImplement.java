@@ -1,7 +1,7 @@
-package ctrl;
+package ctrl.implement;
 
-import ctrl.dao.DepartmentDao;
-import db.ExecuteDB;
+import ctrl.implement.dao.DepartmentDao;
+import ctrl.db.ExecuteDB;
 import model.Department;
 
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentCtrl extends ExecuteDB implements DepartmentDao {
+public class DepartmentImplement extends ExecuteDB implements DepartmentDao {
     //  添加部门
     public boolean registDepartment(Department department){
         String sql = "insert into departments value (null,?,?)";

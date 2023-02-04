@@ -1,12 +1,14 @@
 <%@ page import="model.Admin" %>
-<%@ page import="ctrl.AdminCtrl" %>
+<%@ page import="ctrl.implement.AdminImplement" %>
 <%@ page import="model.Department" %>
-<%@ page import="ctrl.DepartmentCtrl" %>
-<%@ page import="ctrl.dao.DepartmentDao" %>
-<%@ page import="factory.DepartmentFactory" %>
-<%@ page import="ctrl.dao.EmployeeDao" %>
+<%@ page import="ctrl.implement.DepartmentImplement" %>
+<%@ page import="ctrl.implement.dao.DepartmentDao" %>
+<%@ page import="ctrl.factory.DepartmentFactory" %>
+<%@ page import="ctrl.implement.dao.EmployeeDao" %>
 <%@ page import="model.Employee" %>
-<%@ page import="factory.EmployeeFactory" %><%--
+<%@ page import="ctrl.factory.EmployeeFactory" %>
+<%@ page import="ctrl.implement.AdminImplement" %>
+<%@ page import="ctrl.implement.DepartmentImplement" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -27,13 +29,13 @@
                 System.out.println("能进入admin分支");
                 int adminId = Integer.parseInt(request.getParameter("adminId"));
                 Admin admin = null;
-                AdminCtrl adminCtrl = new AdminCtrl();
-                admin = adminCtrl.getAdminById(adminId);
+                AdminImplement adminImplement = new AdminImplement();
+                admin = adminImplement.getAdminById(adminId);
                 int adminDepartmentId = admin.getAdminDepartmentId();
 
                 Department department = null;
-                DepartmentCtrl departmentCtrl = new DepartmentCtrl();
-                department = departmentCtrl.getDepartmentById(adminDepartmentId);
+                DepartmentImplement departmentImplement = new DepartmentImplement();
+                department = departmentImplement.getDepartmentById(adminDepartmentId);
 
                 //  可以优化
                 int stationNum = admin.getAdminStation();
@@ -58,8 +60,8 @@
                 int departmentId = Integer.parseInt(request.getParameter("departmentId"));
                 System.out.println(departmentId);
                 Department department = null;
-                DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentDao();
-                department = departmentCtrl.getDepartmentById(departmentId);
+                DepartmentDao departmentImplement = DepartmentFactory.instance().getDepartmentDao();
+                department = departmentImplement.getDepartmentById(departmentId);
             %>
 
             <p>部门编号:<%=department.getDepartmentId()%></p>

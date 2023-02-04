@@ -1,7 +1,7 @@
-package server;
+package ctrl.server;
 
-import ctrl.dao.DepartmentDao;
-import factory.DepartmentFactory;
+import ctrl.implement.dao.DepartmentDao;
+import ctrl.factory.DepartmentFactory;
 import model.Department;
 
 import javax.servlet.ServletException;

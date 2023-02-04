@@ -1,4 +1,4 @@
-package ctrl.dao;
+package ctrl.implement.dao;
 
 import model.Admin;
 
@@ -8,7 +8,13 @@ public interface AdminDao {
     public Admin loginAdmin(Admin admin);
 
     //  超级管理员特殊功能选项
-    public boolean registAdmin(Admin admin);
+    public boolean registerAdmin(Admin admin);
+
+    public boolean hadAdmin(String adminNickName);
+
+    public String getAdminDepartmentName(int adminDepartmentId);
+
+    public String getAdminStation(int adminStation);
 
     public boolean updateAdmin(Admin admin);
 
