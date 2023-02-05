@@ -14,7 +14,8 @@ public class Admin {
     private String adminPassword;
     private String adminProfile;
     private int adminDepartmentId;
-    private int adminStation;
+    private int adminStationId;
+    private int adminPowerId;
 }
 
 

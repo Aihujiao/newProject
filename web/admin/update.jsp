@@ -19,7 +19,7 @@
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>
     <p>昵称：<input type="text" name="newNickName" value="${sessionScope.admin.adminNickName}"></p>
     <p>密码：<input type="text" name="newPassword" value="${sessionScope.admin.adminPassword}"></p>
-    <p>个人地址<input type="text" name="newProfile" value="${sessionScope.admin.adminProfile}"></p>
+    <p>个人头像<input type="text" name="newProfile" value="${sessionScope.admin.adminProfile}"></p>
     <p>部门编号:<input type="text" name="newDepartmentId" value="${sessionScope.admin.adminDepartmentId}"></p>
     <p><input type="hidden" name="adminStation" value="${sessionScope.admin.adminStation}"></p>
     <button>更新信息</button>

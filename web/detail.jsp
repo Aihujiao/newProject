@@ -38,7 +38,7 @@
                 department = departmentImplement.getDepartmentById(adminDepartmentId);
 
                 //  可以优化
-                int stationNum = admin.getAdminStation();
+                int stationNum = admin.getAdminStationId();
                 String station = null;
                 if(stationNum == 0){
                     station = "在线";

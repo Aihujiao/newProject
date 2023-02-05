@@ -17,7 +17,7 @@ public class AdminFactory {
         return  adminFactory;
     }
 
-    public AdminDao getAdminDao(){
+    public AdminDao getAdminCtrl(){
         if(adminDao == null){
             adminDao = new AdminImplement();
         }

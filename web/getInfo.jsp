@@ -38,7 +38,7 @@
     <c:choose>
         <c:when test="${param.type == 'admins'}">
             <%
-                AdminDao adminCtrl = AdminFactory.instance().getAdminDao();
+                AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
             %>
             <form action="" method="post">
                 <table border="1">
@@ -56,7 +56,7 @@
                     <%
                         Admin admin = (Admin)pageContext.findAttribute("admin");
                         int adminDepartmentId = admin.getAdminDepartmentId();
-                        int adminStation = admin.getAdminStation();
+                        int adminStation = admin.getAdminStationId();
                         String departmentName = adminCtrl.getAdminDepartmentName(adminDepartmentId);
                         String stationName = adminCtrl.getAdminStation(adminStation);
                     %>
@@ -140,6 +140,36 @@
                                 <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=employee&employeeId=${employee.employeeId}" value="详情">
                                 <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=employeeDeleteById&employeeId=${employee.employeeId}" value="注销">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </c:forEach>
+                </table>
+            </form>
+        </c:when>
+        <c:when test="${param.type == 'powers'}">
+            <form action="" method="post">
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>权限编号</th>
+                        <th>权限名称</th>
+                        <th>权限等级</th>
+                        <th>权限介绍</th>
+                        <th>具体操作</th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${requestScope.powers}" var="power">
+                        <tbody>
+                        <tr>
+                            <td>${power.powerId}</td>
+                            <td>${power.powerName}</td>
+                            <td>${power.powerLevel}</td>
+                            <td>${power.powerIntro}</td>
+                            <td>
+                                    <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
+                                <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=power&powerId=${power.powerId}" value="详情">
+                                <input type="submit" formaction="<%=contextPath%>/PowerServer?op=powerDeleteById&departmentId=${power.powerId}" value="注销">
                             </td>
                         </tr>
                         </tbody>

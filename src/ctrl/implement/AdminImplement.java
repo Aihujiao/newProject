@@ -1,9 +1,9 @@
 package ctrl.implement;
 
-import ctrl.implement.dao.AdminDao;
 import ctrl.db.ExecuteDB;
+import ctrl.implement.dao.AdminDao;
 import model.Admin;
-import model.Employee;
+import model.Power;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,8 +29,9 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
                 int adminId = rs.getInt("adminId");
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
-                int adminStation = rs.getInt("adminStation");
-                admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStation);
+                int adminStationId = rs.getInt("adminStationId");
+                int adminPowerId = rs.getInt("adminPowerId");
+                admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStationId,adminPowerId);
             }else{
                 return null;
             }
@@ -50,14 +51,14 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         String adminPassword = admin.getAdminPassword();
         String adminProfile = admin.getAdminProfile();
         int adminDepartmentId = admin.getAdminDepartmentId();
-        int adminStation = admin.getAdminStation();
+        int adminStation = admin.getAdminStationId();
 
         String sql = "insert into admins value (null,?,?,?,?,?)";
         Object[] objects = {adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStation};
 
-        boolean registed = executeDBUpdate(sql, objects);
+        boolean registered = executeDBUpdate(sql, objects);
 
-        return registed;
+        return registered;
     }
 
     @Override
@@ -103,21 +104,40 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
 
     @Override
     public String getAdminStation(int adminStationId) {
-        String adminStation = null;
+        String adminStationName = null;
         String sql = "select stationName from stations where stationId = ?";
         Object[] objects = {adminStationId};
 
         ResultSet rs = executeDBQuery(sql, objects);
         try {
             if(rs.next()){
-                //  如果能查到状态信息就将值附到adminStation并最后返回
-                adminStation = rs.getString("stationName");
+                //  如果能查到状态信息就将值附到adminStationName并最后返回
+                adminStationName = rs.getString("stationName");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return adminStation;
+        return adminStationName;
+    }
+
+    @Override
+    public String getAdminPower(int adminPowerId) {
+        String adminPowerName = null;
+        String sql = "select powerName from powers where powerId = ?";
+        Object[] objects = {adminPowerId};
+
+        ResultSet rs = executeDBQuery(sql, objects);
+
+        try {
+            if (rs.next()){
+                adminPowerName = rs.getString("powerName");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return adminPowerName;
     }
 
 
@@ -127,7 +147,7 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         String adminPassword = admin.getAdminPassword();
         String adminProfile = admin.getAdminProfile();
         int adminDepartment = admin.getAdminDepartmentId();
-        int adminStation = admin.getAdminStation();
+        int adminStation = admin.getAdminStationId();
         int adminId = admin.getAdminId();
 
         String sql ="update admins set adminNickName = ?,adminPassword = ?,adminProfile = ?,adminDepartmentId = ?,adminStation = ? where adminId = ?";
@@ -154,15 +174,17 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         Object[] objects = {adminId};
 
         ResultSet rs = executeDBQuery(sql, objects);
+
         try {
             if(rs.next()){
                 String adminNickName = rs.getString("adminNickName");
                 String adminPassword = rs.getString("adminPassword");
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
-                int adminStation = rs.getInt("adminStation");
+                int adminStationId = rs.getInt("adminStation");
+                int adminPowerId = rs.getInt("adminPowerId");
 
-                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStation);
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
             }else{
                 return null;
             }
@@ -192,9 +214,10 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
                 String adminPassword = rs.getString("adminPassword");
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
-                int adminStation = rs.getInt("adminStation");
+                int adminStationId = rs.getInt("adminStationId");
+                int adminPowerId = rs.getInt("adminPowerId");
 
-                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStation);
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
 
                 list.add(admin);
             }
@@ -208,32 +231,25 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         return list;
     }
 
-    //  查询所有员工信息
-    public List<Employee> getAllEmployees(){
-        List<Employee> list = new ArrayList<>();
-        String sql = "select * from employees";
+    public List<Power> getAllAdminPowers(){
+        String sql ="select * from powers";
+        List<Power> list = new ArrayList<>();
+        Power power = null;
+        ResultSet rs = executeDBQuery(sql, null);
 
-        ResultSet rs = executeDBQuery(sql,null);
+
         try {
             while(rs.next()){
-                int employeeId = rs.getInt("employeeId");
-                String employeeName = rs.getString("employeeName");
-                String employeePassword = rs.getString("employeePassword");
-                int employeeGender = rs.getInt("employeeGender");
-                int employeeAge = rs.getInt("employeeAge");
-                String employeeProfile = rs.getString("employeeProfile");
-                int employeeDepartmentId = rs.getInt("employeeDepartmentId");
-                int employeePowerId = rs.getInt("employeePowerId");
-                String employeePosition = rs.getString("employeePosition");
-                int employeeStation = rs.getInt("employeeStation");
+                int powerId = rs.getInt("powerId");
+                String powerName =rs.getString("powerName");
+                int powerLevel = rs.getInt("powerLevel");
+                String powerIntro = rs.getString("powerIntro");
 
-                Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeGender, employeeAge, employeeProfile, employeeDepartmentId,employeePowerId, employeePosition, employeeStation);
-                list.add(employee);
+                power = new Power(powerId,powerName,powerLevel,powerIntro);
+                list.add(power);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            close(rs);
         }
 
         return list;
