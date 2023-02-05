@@ -1,7 +1,7 @@
 package ctrl.factory;
 
 import ctrl.implement.EmployeeImplement;
-import ctrl.implement.dao.EmployeeDao;
+import ctrl.dao.EmployeeDao;
 
 public class EmployeeFactory {
     private static EmployeeFactory employeeFactory;
@@ -14,7 +14,7 @@ public class EmployeeFactory {
         return  employeeFactory;
     }
 
-    public EmployeeDao getEmployeeDao(){
+    public EmployeeDao getEmployeeCtrl(){
         if(employeeDao == null){
             employeeDao = new EmployeeImplement();
         }

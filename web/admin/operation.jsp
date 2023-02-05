@@ -28,16 +28,15 @@
             <input type="submit" formaction="<%=contextPath%>/admin/register.jsp" value="注册管理员">
             <input type="submit" formaction="<%=contextPath%>/admin/departmentRegister.jsp" value="注册部门">
             <input type="submit" formaction="<%=contextPath%>/employee/employeeRegister.jsp" value="注册员工">
+            <input type="submit" formaction="<%=contextPath%>/PowerServer?op=toPowerRegister" value="新增权限">
+            <input type="submit" formaction="<%=contextPath%>/admin/stationRegister.jsp" value="新增状态">
             <hr>
             查询功能
             <hr>
             <input type="submit" formaction="<%=contextPath%>/AdminServer?op=getAllAdmins" value="查询管理员">
             <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=getAllDepartments" value="查询部门">
             <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=getAllEmployees" value="查询员工信息">
-            <hr>
-            权限功能
-            <hr>
-            <input type="submit" formaction="<%=contextPath%>/AdminServer?op=getAllAdminPowers" value="权限管理">
+            <input type="submit" formaction="<%=contextPath%>/AdminServer?op=getAllAdminPowers" value="查询所有权限">
         </c:when>
         <c:otherwise>
             <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">

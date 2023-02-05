@@ -1,23 +1,24 @@
 package ctrl.factory;
 
-import ctrl.implement.EmployeeImplement;
-import ctrl.implement.dao.EmployeeDao;
+import ctrl.implement.StationImplement;
+import ctrl.dao.StationDao;
+
 
 public class StationFactory {
-    private static StationFactory employeeFactory;
-    private EmployeeDao employeeDao;
+    private static StationFactory stationFactory;
+    private StationDao stationDao;
 
     public static StationFactory instance(){
-        if(employeeFactory == null){
-            employeeFactory = new StationFactory();
+        if(stationFactory == null){
+            stationFactory = new StationFactory();
         }
-        return  employeeFactory;
+        return  stationFactory;
     }
 
-    public EmployeeDao getEmployeeDao(){
-        if(employeeDao == null){
-            employeeDao = new EmployeeImplement();
+    public StationDao getStationCtrl(){
+        if(stationDao == null){
+            stationDao = new StationImplement();
         }
-        return employeeDao;
+        return stationDao;
     }
 }

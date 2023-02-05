@@ -1,7 +1,7 @@
 package ctrl.factory;
 
 import ctrl.implement.AdminImplement;
-import ctrl.implement.dao.AdminDao;
+import ctrl.dao.AdminDao;
 
 /**
  *

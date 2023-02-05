@@ -1,10 +1,10 @@
-package ctrl.implement.dao;
+package ctrl.dao;
 
 import model.Station;
 
 import java.util.List;
 
-public interface PowerDao {
+public interface StationDao {
     //  超级管理员特殊功能选项
     public boolean registerStation(Station station);
 

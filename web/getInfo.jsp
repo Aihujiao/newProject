@@ -1,6 +1,6 @@
 <%@ page import="model.Admin" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ctrl.implement.dao.AdminDao" %>
+<%@ page import="ctrl.dao.AdminDao" %>
 <%@ page import="ctrl.factory.AdminFactory" %><%--
   Created by IntelliJ IDEA.
   User: 40771

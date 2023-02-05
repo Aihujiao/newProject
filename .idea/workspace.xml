@@ -9,21 +9,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302042335">
-      <change afterPath="$PROJECT_DIR$/src/ctrl/implement/dao/PowerDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ctrl/implement/dao/StationDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Power.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Station.java" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="20230202051817">
+      <change afterPath="$PROJECT_DIR$/src/ctrl/dao/PowerDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin/powerRegister.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin/stationRegister.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/factory/AdminFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/AdminFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/DepartmentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/DepartmentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/PowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/PowerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/StationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/StationFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/DepartmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/DepartmentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/PowerDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/dao/StationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/StationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/filter/CodeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/filter/CodeFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
@@ -85,7 +97,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ideaW/myProject/NewProject/web/WEB-INF/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ideaW/myProject/NewProject/web/admin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -98,6 +110,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ideaW\myProject\NewProject\web\admin" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\lib" />
       <recent name="D:\ideaW\myProject\NewProject\web" />
       <recent name="D:\ideaW\myProject\NewProject\src" />
@@ -110,10 +123,15 @@
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\admin" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ctrl.implement" />
+      <recent name="ctrl.factory" />
       <recent name="ctrl.implement.dao" />
       <recent name="ctrl.server" />
       <recent name="model" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager" selected="JavaScript 调试.register.jsp">
     <configuration name="register.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/register.jsp">
@@ -247,7 +265,8 @@
       <workItem from="1675392173459" duration="882000" />
       <workItem from="1675404235824" duration="2053000" />
       <workItem from="1675496646316" duration="17528000" />
-      <workItem from="1675583223515" duration="8300000" />
+      <workItem from="1675583223515" duration="16458000" />
+      <workItem from="1675603168551" duration="5155000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -396,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675524933572</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="20230202051817">
+      <created>1675592254207</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1675592254207</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +458,8 @@
     <MESSAGE value="202302022022" />
     <MESSAGE value="202302022301" />
     <MESSAGE value="202302042335" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302042335" />
+    <MESSAGE value="20230202051817" />
+    <option name="LAST_COMMIT_MESSAGE" value="20230202051817" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

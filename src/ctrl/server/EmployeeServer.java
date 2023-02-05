@@ -1,6 +1,6 @@
 package ctrl.server;
 
-import ctrl.implement.dao.EmployeeDao;
+import ctrl.dao.EmployeeDao;
 import ctrl.factory.EmployeeFactory;
 import model.Employee;
 
@@ -44,7 +44,7 @@ public class EmployeeServer extends HttpServlet {
         System.out.println("管理员昵称是"+EmployeeName+"管理员密码是"+EmployeePassword);
         Employee employee = new Employee(0,EmployeeName,EmployeePassword,0,0,null,0,0,null,0);
 
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         employee = employeeCtrl.loginEmployee(employee);
 
         String path = contextPath + "/employee/operation.jsp";
@@ -73,7 +73,7 @@ public class EmployeeServer extends HttpServlet {
 
         newEmployee = new Employee(employeeId,newName,newPassword,newGender,newAge,newProfile,newEmployeeDepartmentId,newEmployeePowerId,newEmployeePosition,newEmployeeStation);
 
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         employeeCtrl.updateEmployee(newEmployee);
 
         String path = contextPath + "/employee/operation.jsp?msg=succeed";
@@ -88,7 +88,7 @@ public class EmployeeServer extends HttpServlet {
 
     //  管理员操作
     private void doGetAllEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         //  创建数组集合用于存储 员工数据
         List<Employee> employees = new ArrayList<>();
         //  将员工集合赋值给 employees
@@ -119,7 +119,7 @@ public class EmployeeServer extends HttpServlet {
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
 
         System.out.println(employeeId);
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         boolean deleted = employeeCtrl.deleteEmployeeById(employeeId);
 
         String path = contextPath + "/employee/operation.jsp?msg=succeed";
@@ -145,7 +145,7 @@ public class EmployeeServer extends HttpServlet {
 
         employee = new Employee(0,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,0,employeePosition,employeeStation);
 
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         boolean registered = employeeCtrl.registerEmployee(employee);
 
         String path = "/admin/operation.jsp?msg=succeed";

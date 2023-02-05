@@ -1,23 +1,23 @@
 package ctrl.factory;
 
-import ctrl.implement.EmployeeImplement;
-import ctrl.implement.dao.EmployeeDao;
+import ctrl.implement.PowerImplement;
+import ctrl.dao.PowerDao;
 
 public class PowerFactory {
-    private static PowerFactory employeeFactory;
-    private EmployeeDao employeeDao;
+    private static PowerFactory powerFactory;
+    private PowerDao powerDao;
 
     public static PowerFactory instance(){
-        if(employeeFactory == null){
-            employeeFactory = new PowerFactory();
+        if(powerFactory == null){
+            powerFactory = new PowerFactory();
         }
-        return  employeeFactory;
+        return  powerFactory;
     }
 
-    public EmployeeDao getEmployeeDao(){
-        if(employeeDao == null){
-            employeeDao = new EmployeeImplement();
+    public PowerDao getPowerCtrl(){
+        if(powerDao == null){
+            powerDao = new PowerImplement();
         }
-        return employeeDao;
+        return powerDao;
     }
 }

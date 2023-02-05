@@ -1,7 +1,7 @@
 package ctrl.implement;
 
 import ctrl.db.ExecuteDB;
-import ctrl.implement.dao.AdminDao;
+import ctrl.dao.AdminDao;
 import model.Admin;
 import model.Power;
 

@@ -1,4 +1,4 @@
-package ctrl.implement.dao;
+package ctrl.dao;
 
 import model.Department;
 

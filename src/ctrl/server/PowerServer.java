@@ -1,8 +1,8 @@
 package ctrl.server;
 
-import ctrl.factory.EmployeeFactory;
-import ctrl.implement.dao.EmployeeDao;
-import model.Employee;
+import ctrl.factory.PowerFactory;
+import ctrl.dao.PowerDao;
+import model.Power;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,83 +25,71 @@ public class PowerServer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         contextPath = request.getContextPath();
         String op = request.getParameter("op");
-        if(op.equals("employeeLogin")){
-            this.doLoginEmployee(request,response);
-        } else if (op.equals("employeeUpdate")) {
-            this.doUpdateEmployee(request,response);
-        } else if (op.equals("getAllEmployees")) {
-            this.doGetAllEmployees(request, response);
-        } else if (op.equals("employeeDeleteById")) {
-            this.doDeleteEmployeeById(request, response);
-        } else if (op.equals("employeeRegister")) {
-            this.doRegisterEmployee(request, response);
+        if(op.equals("powerUpdate")){
+            this.doUpdatePower(request,response);
+        } else if (op.equals("getPowerById")) {
+            this.doGetPowerById(request, response);
+        } else if (op.equals("getAllPowers")) {
+            this.doGetAllPowers(request, response);
+        } else if (op.equals("powerDeleteById")) {
+            this.doDeletePowerById(request, response);
+        } else if (op.equals("powerRegister")) {
+            this.doRegisterPower(request, response);
+        } else if (op.equals("toPowerRegister")) {
+            this.toRegisterPower(request, response);
         }
-    }
-
-    private void doLoginEmployee (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String EmployeeName = request.getParameter("employeeName");
-        String EmployeePassword = request.getParameter("employeePassword");
-        System.out.println("管理员昵称是"+EmployeeName+"管理员密码是"+EmployeePassword);
-        Employee employee = new Employee(0,EmployeeName,EmployeePassword,0,0,null,0,0,null,0);
-
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        employee = employeeCtrl.loginEmployee(employee);
-
-        String path = contextPath + "/employee/operation.jsp";
-
-        if(employee == null){
-            path = contextPath + "/employee/login.jsp?msg=fail";
-        }else {
-            request.getSession().setAttribute("employee",employee);
-        }
-
-        response.sendRedirect(path);
     }
     
-    private void doUpdateEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        Employee newEmployee = null;
-        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+    private void doUpdatePower(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        Power newPower = null;
+        int powerId = Integer.parseInt(request.getParameter("powerId"));
         String newName = request.getParameter("newName");
-        String newPassword = request.getParameter("newPassword");
-        int newGender = Integer.parseInt(request.getParameter("newGender"));
-        int newAge = Integer.parseInt(request.getParameter("newAge"));
-        String newProfile = request.getParameter("newProfile");
-        int newEmployeeDepartmentId = Integer.getInteger(request.getParameter("newEmployeeDepartmentId"));
-        int newEmployeePowerId = Integer.parseInt(request.getParameter("newEmployeePowerId"));
-        String newEmployeePosition = request.getParameter("newEmployeePosition");
-        int newEmployeeStation = Integer.getInteger(request.getParameter("newEmployeeStation"));
+        int newLevel = Integer.parseInt(request.getParameter("newPassword"));
+        String newIntro = request.getParameter("newGender");
 
-        newEmployee = new Employee(employeeId,newName,newPassword,newGender,newAge,newProfile,newEmployeeDepartmentId,newEmployeePowerId,newEmployeePosition,newEmployeeStation);
+        newPower = new Power(powerId,newName,newLevel,newIntro);
 
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        employeeCtrl.updateEmployee(newEmployee);
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        powerCtrl.updatePower(newPower);
 
-        String path = contextPath + "/employee/operation.jsp?msg=succeed";
-        if(newEmployee != null){
-            request.getSession().setAttribute("employee",newEmployee);
+        String path = contextPath + "/power/operation.jsp?msg=succeed";
+        if(newPower != null){
+            request.getSession().setAttribute("power",newPower);
         }else{
-            path = contextPath + "/employee/operation.jsp?msg=err";
+            path = contextPath + "/power/operation.jsp?msg=err";
         }
 
         response.sendRedirect(path);
+    }
+
+    //  该方法可能存在逻辑问题
+    private void doGetPowerById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int powerId = Integer.getInteger(request.getParameter("powerId"));
+
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        Power power = powerCtrl.getPowerById(powerId);
+
+        String path = contextPath+"/getInfo.jsp?type=power";
+
+        request.setAttribute("power",power);
+
+        request.getRequestDispatcher(path).forward(request,response);
     }
 
     //  管理员操作
-    private void doGetAllEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        //  创建数组集合用于存储 员工数据
-        List<Employee> employees = new ArrayList<>();
-        //  将员工集合赋值给 employees
-        employees = employeeCtrl.getAllEmployees();
+    private void doGetAllPowers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        //  创建数组集合用于存储 权限数据
+        List<Power> powers = new ArrayList<>();
+        //  将权限集合赋值给 powers
+        powers = powerCtrl.getAllPowers();
         //  判断集合中元素个数
-        int employeeNum = employees.size();
-
-        System.out.println("所有员工人数为"+employeeNum);
+        int powerNum = powers.size();
 
         String path = null;
-        if (employeeNum != 0){
-            path = "/getInfo.jsp?type=employees";
-            request.setAttribute("employees",employees);
+        if (powerNum != 0){
+            path = "/getInfo.jsp?type=powers";
+            request.setAttribute("powers",powers);
         }else{
             path = "/getInfo.jsp?msg=nothing";
         }
@@ -110,51 +98,55 @@ public class PowerServer extends HttpServlet {
         request.getRequestDispatcher(path).forward(request,response);
     }
 
-    //  员工操作
-    private void doGetSameDepartmentEmployees(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    //  权限操作
+    private void doGetSameDepartmentPowers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
     }
-    private void doDeleteEmployeeById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+    private void doDeletePowerById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        System.out.println(employeeId);
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        boolean deleted = employeeCtrl.deleteEmployeeById(employeeId);
+        int powerId = Integer.parseInt(request.getParameter("powerId"));
 
-        String path = contextPath + "/employee/operation.jsp?msg=succeed";
+        System.out.println(powerId);
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        boolean deleted = powerCtrl.deletePowerById(powerId);
+
+        String path = contextPath + "/power/operation.jsp?msg=succeed";
 
         if(!deleted){
-            path = contextPath + "/employee/operation.jsp?msg=fail";
+            path = contextPath + "/power/operation.jsp?msg=fail";
         }
 
         //  直接使用URL传参到新页面使页面进行判断
         response.sendRedirect(path);
     }
 
-    private void doRegisterEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        Employee employee = new Employee();
-        String employeeName = request.getParameter("employeeName");
-        String employeePassword = request.getParameter("employeePassword");
-        int employeeGender = Integer.parseInt(request.getParameter("employeeGender"));
-        int employeeAge = Integer.parseInt(request.getParameter("employeeAge"));
-        String employeeProfile = request.getParameter("employeeProfile");
-        int employeeDepartmentId =Integer.parseInt(request.getParameter("employeeDepartmentId"));
-        String employeePosition = request.getParameter("employeePosition");
-        int employeeStation = Integer.parseInt(request.getParameter("employeeStation"));
+    private void doRegisterPower(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        Power power = new Power();
+        String powerName = request.getParameter("powerName");
+        int powerLevel = Integer.parseInt(request.getParameter("powerLevel"));
+        String powerIntro = request.getParameter("powerIntro");
 
-        employee = new Employee(0,employeeName,employeePassword,employeeGender,employeeAge,employeeProfile,employeeDepartmentId,0,employeePosition,employeeStation);
+        power = new Power(0,powerName,powerLevel,powerIntro);
 
-        EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
-        boolean registered = employeeCtrl.registerEmployee(employee);
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        boolean registered = powerCtrl.registerPower(power);
 
         String path = "/admin/operation.jsp?msg=succeed";
         if (registered){
-            request.setAttribute("employee",employee);
+            request.setAttribute("power",power);
         }else {
             path = "/admin/operation.jsp?msg=fail";
         }
 
         request.getRequestDispatcher(path).forward(request,response);
+    }
+
+    private void toRegisterPower(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        List<Power> powers = powerCtrl.getAllPowers();
+        request.setAttribute("powers",powers);
+
+        request.getRequestDispatcher("/admin/powerRegister.jsp").forward(request,response);
     }
 }

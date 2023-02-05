@@ -1,6 +1,6 @@
 package ctrl.server;
 
-import ctrl.implement.dao.AdminDao;
+import ctrl.dao.AdminDao;
 import ctrl.factory.AdminFactory;
 import model.Admin;
 import model.Power;

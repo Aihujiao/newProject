@@ -1,7 +1,7 @@
 package ctrl.factory;
 
 import ctrl.implement.DepartmentImplement;
-import ctrl.implement.dao.DepartmentDao;
+import ctrl.dao.DepartmentDao;
 
 public class DepartmentFactory {
     private static DepartmentFactory departmentFactory;
@@ -14,7 +14,7 @@ public class DepartmentFactory {
         return  departmentFactory;
     }
 
-    public DepartmentDao getDepartmentDao(){
+    public DepartmentDao getDepartmentCtrl(){
         if(departmentDao == null){
             departmentDao = new DepartmentImplement();
         }

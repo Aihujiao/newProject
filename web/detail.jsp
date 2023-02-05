@@ -2,9 +2,9 @@
 <%@ page import="ctrl.implement.AdminImplement" %>
 <%@ page import="model.Department" %>
 <%@ page import="ctrl.implement.DepartmentImplement" %>
-<%@ page import="ctrl.implement.dao.DepartmentDao" %>
+<%@ page import="ctrl.dao.DepartmentDao" %>
 <%@ page import="ctrl.factory.DepartmentFactory" %>
-<%@ page import="ctrl.implement.dao.EmployeeDao" %>
+<%@ page import="ctrl.dao.EmployeeDao" %>
 <%@ page import="model.Employee" %>
 <%@ page import="ctrl.factory.EmployeeFactory" %>
 <%@ page import="ctrl.implement.AdminImplement" %>
@@ -60,7 +60,7 @@
                 int departmentId = Integer.parseInt(request.getParameter("departmentId"));
                 System.out.println(departmentId);
                 Department department = null;
-                DepartmentDao departmentImplement = DepartmentFactory.instance().getDepartmentDao();
+                DepartmentDao departmentImplement = DepartmentFactory.instance().getDepartmentCtrl();
                 department = departmentImplement.getDepartmentById(departmentId);
             %>
 
@@ -73,7 +73,7 @@
                 int employeeId = Integer.parseInt(request.getParameter("employeeId"));
                 System.out.println(employeeId);
                 Employee employee = null;
-                EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeDao();
+                EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
                 employee = employeeCtrl.getEmployeeById(employeeId);
             %>
 

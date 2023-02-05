@@ -1,6 +1,6 @@
 package ctrl.implement;
 
-import ctrl.implement.dao.DepartmentDao;
+import ctrl.dao.DepartmentDao;
 import ctrl.db.ExecuteDB;
 import model.Department;
 
