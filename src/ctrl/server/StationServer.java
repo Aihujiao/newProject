@@ -81,7 +81,7 @@ public class StationServer extends HttpServlet {
         //  判断集合中元素个数
         int stationNum = stations.size();
 
-        System.out.println("所有员工人数为"+stationNum);
+        System.out.println("所有状态数为"+stationNum);
 
         String path = null;
 
@@ -100,8 +100,7 @@ public class StationServer extends HttpServlet {
     private void doDeleteStationById(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         int stationId = Integer.parseInt(request.getParameter("stationId"));
-
-        System.out.println(stationId);
+        System.out.println("得到的状态编号是"+stationId);
         StationDao stationCtrl = StationFactory.instance().getStationCtrl();
         boolean deleted = stationCtrl.deleteStationById(stationId);
 

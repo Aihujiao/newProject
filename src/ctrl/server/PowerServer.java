@@ -52,11 +52,11 @@ public class PowerServer extends HttpServlet {
         PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
         powerCtrl.updatePower(newPower);
 
-        String path = contextPath + "/power/operation.jsp?msg=succeed";
+        String path = contextPath + "/admin/operation.jsp?msg=succeed";
         if(newPower != null){
             request.getSession().setAttribute("power",newPower);
         }else{
-            path = contextPath + "/power/operation.jsp?msg=err";
+            path = contextPath + "/admin/operation.jsp?msg=err";
         }
 
         response.sendRedirect(path);
@@ -111,10 +111,10 @@ public class PowerServer extends HttpServlet {
         PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
         boolean deleted = powerCtrl.deletePowerById(powerId);
 
-        String path = contextPath + "/power/operation.jsp?msg=succeed";
+        String path = contextPath + "/admin/operation.jsp?msg=succeed";
 
         if(!deleted){
-            path = contextPath + "/power/operation.jsp?msg=fail";
+            path = contextPath + "/admin/operation.jsp?msg=fail";
         }
 
         //  直接使用URL传参到新页面使页面进行判断

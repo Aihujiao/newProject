@@ -1,7 +1,8 @@
 <%@ page import="model.Admin" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ctrl.dao.AdminDao" %>
-<%@ page import="ctrl.factory.AdminFactory" %><%--
+<%@ page import="ctrl.factory.AdminFactory" %>
+<%@ page import="javax.sound.midi.Soundbank" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -14,6 +15,14 @@
 
 <%
     System.out.println("跳到了获取信息页面");
+    String searched = request.getParameter("searched");
+    System.out.println(searched.length());
+//    if(searched.length()>0){
+//        request.setAttribute("searched",searched);
+//    }else{
+//        request.setAttribute("searched",null);
+//    }
+
 %>
 
 <c:choose>
@@ -57,7 +66,7 @@
                         Admin admin = (Admin)pageContext.findAttribute("admin");
                         int adminDepartmentId = admin.getAdminDepartmentId();
                         int adminStation = admin.getAdminStationId();
-                        String departmentName = adminCtrl.getAdminDepartmentName(adminDepartmentId);
+                        String departmentName = adminCtrl.getAdminDepartmentNameById(adminDepartmentId);
                         String stationName = adminCtrl.getAdminStation(adminStation);
                     %>
                     <tbody>
@@ -79,6 +88,8 @@
         </c:when>
         <c:when test="${param.type == 'departments'}">
             <form action="" method="post">
+                <input type="text" name="departmentLikeName" placeholder="输入部门名称查询信息" value="${requestScope.searched}">
+                <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=getDepartmentsByName">
                 <table border="1">
                     <thead>
                     <tr>
@@ -95,7 +106,6 @@
                             <td>${department.departmentName}</td>
                             <td>${department.departmentIntro}</td>
                             <td>
-                                <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=department&departmentId=${department.departmentId}" value="详情">
                                 <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
                             </td>
@@ -137,7 +147,6 @@
                             <td>${employee.employeePosition}</td>
                             <td>${employee.employeeStation}</td>
                             <td>
-                                <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=employee&employeeId=${employee.employeeId}" value="详情">
                                 <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=employeeDeleteById&employeeId=${employee.employeeId}" value="注销">
                             </td>
@@ -167,9 +176,35 @@
                             <td>${power.powerLevel}</td>
                             <td>${power.powerIntro}</td>
                             <td>
-                                    <%-- <input type="button" formaction="/detail.jsp?adminId=${admin.adminId}" value="详情">--%>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=power&powerId=${power.powerId}" value="详情">
-                                <input type="submit" formaction="<%=contextPath%>/PowerServer?op=powerDeleteById&departmentId=${power.powerId}" value="注销">
+                                <input type="submit" formaction="<%=contextPath%>/PowerServer?op=powerDeleteById&powerId=${power.powerId}" value="注销">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </c:forEach>
+                </table>
+            </form>
+        </c:when>
+        <c:when test="${param.type == 'stations'}">
+            <form action="" method="post">
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>状态编号</th>
+                        <th>状态名称</th>
+                        <th>权限介绍</th>
+                        <th>具体操作</th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${requestScope.stations}" var="station">
+                        <tbody>
+                        <tr>
+                            <td>${station.stationId}</td>
+                            <td>${station.stationName}</td>
+                            <td>${station.stationIntro}</td>
+                            <td>
+                                <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=station&stationId=${station.stationId}" value="详情">
+                                <input type="submit" formaction="<%=contextPath%>/StationServer?op=stationDeleteById&stationId=${station.stationId}" value="注销">
                             </td>
                         </tr>
                         </tbody>

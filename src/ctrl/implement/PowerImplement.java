@@ -32,10 +32,11 @@ public class PowerImplement extends ExecuteDB implements PowerDao {
 
     //  添加部门
     public boolean registerPower(Power power){
-        String sql = "insert into powers value (null,?,?)";
+        String sql = "insert into powers value (null,?,?,?)";
         String powerName = power.getPowerName();
+        int powerLevel = power.getPowerLevel();
         String powerIntro = power.getPowerIntro();
-        Object objects[] = {powerName,powerIntro};
+        Object objects[] = {powerName,powerLevel,powerIntro};
 
         boolean added = executeDBUpdate(sql, objects);
 
@@ -125,33 +126,15 @@ public class PowerImplement extends ExecuteDB implements PowerDao {
         return powerList;
     }
 
-    //  超级管理员
-    //  删除部门信息
+    //  删除权限信息
     public boolean deletePowerById(int powerId){
-        boolean isEmpty;
-        boolean deleted =false;
-        String sql = "select powerName from powers where powerId = ?";
-        Object[] objects = {powerId};
-        ResultSet rs = executeDBQuery(sql, objects);
-        try {
-            if (!rs.next()){
-                System.out.println("此时部门员工为空");
-                isEmpty = true;
-            }else {
-                //  如果部门里还有员工，则不能执行下方删除部门的*关键代码*
-                return false;
-            }
-            //  前端做限制，先读取管理员的部门编号，再传值执行该方法
-            //  删除部门的 *关键代码*
-            sql = "delete from powers where powerId = ?";
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-        //  如果为空就可以删除该部门
-        if(isEmpty){
-            deleted = executeDBUpdate(sql, objects);
-        }
+        boolean deleted =false;
+        String sql = "delete from powers where powerId = ?";
+        Object[] objects = {powerId};
+
+        deleted = executeDBUpdate(sql, objects);
+
         return deleted;
     }
 }

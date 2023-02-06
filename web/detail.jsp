@@ -1,14 +1,16 @@
-<%@ page import="model.Admin" %>
 <%@ page import="ctrl.implement.AdminImplement" %>
-<%@ page import="model.Department" %>
 <%@ page import="ctrl.implement.DepartmentImplement" %>
 <%@ page import="ctrl.dao.DepartmentDao" %>
 <%@ page import="ctrl.factory.DepartmentFactory" %>
 <%@ page import="ctrl.dao.EmployeeDao" %>
-<%@ page import="model.Employee" %>
 <%@ page import="ctrl.factory.EmployeeFactory" %>
 <%@ page import="ctrl.implement.AdminImplement" %>
-<%@ page import="ctrl.implement.DepartmentImplement" %><%--
+<%@ page import="ctrl.implement.DepartmentImplement" %>
+<%@ page import="ctrl.factory.PowerFactory" %>
+<%@ page import="ctrl.dao.PowerDao" %>
+<%@ page import="model.*" %>
+<%@ page import="ctrl.dao.StationDao" %>
+<%@ page import="ctrl.factory.StationFactory" %><%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -58,7 +60,6 @@
         <c:when test="${param.type== 'department'}">
             <%
                 int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-                System.out.println(departmentId);
                 Department department = null;
                 DepartmentDao departmentImplement = DepartmentFactory.instance().getDepartmentCtrl();
                 department = departmentImplement.getDepartmentById(departmentId);
@@ -71,7 +72,6 @@
         <c:when test="${param.type== 'employee'}">
             <%
                 int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-                System.out.println(employeeId);
                 Employee employee = null;
                 EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
                 employee = employeeCtrl.getEmployeeById(employeeId);
@@ -86,6 +86,31 @@
             <p>员工权限:<%=employee.getEmployeePowerId()%></p>
             <p>员工职位:<%=employee.getEmployeePosition()%></p>
             <p>员工状态:<%=employee.getEmployeeStation()%></p>
+        </c:when>
+        <c:when test="${param.type== 'power'}">
+            <%
+                int powerId = Integer.parseInt(request.getParameter("powerId"));
+                Power power = null;
+                PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+                power = powerCtrl.getPowerById(powerId);
+            %>
+
+            <p>权限编号:<%=power.getPowerId()%></p>
+            <p>权限名称:<%=power.getPowerName()%></p>
+            <p>权限等级:<%=power.getPowerLevel()%></p>
+            <p>权限介绍:<%=power.getPowerIntro()%></p>
+        </c:when>
+        <c:when test="${param.type== 'station'}">
+            <%
+                int stationId = Integer.parseInt(request.getParameter("stationId"));
+                Station station = null;
+                StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+                station = stationCtrl.getStationById(stationId);
+            %>
+
+            <p>状态编号:<%=station.getStationId()%></p>
+            <p>状态名称:<%=station.getStationName()%></p>
+            <p>状态介绍:<%=station.getStationIntro()%></p>
         </c:when>
     </c:choose>
 </body>

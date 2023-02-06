@@ -3,7 +3,6 @@ package ctrl.server;
 import ctrl.dao.AdminDao;
 import ctrl.factory.AdminFactory;
 import model.Admin;
-import model.Power;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +16,7 @@ import java.util.List;
 //  为什么改了 jspWeb 就无法访问
 public class AdminServer extends HttpServlet {
     private static String contextPath = null;
+    private static String path = null;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request,response);
@@ -37,9 +37,11 @@ public class AdminServer extends HttpServlet {
             this.doDeleteAdminById(request, response);
         } else if (op.equals("getAllAdmins")) {
             this.doGetAllAdmins(request, response);
-        } else if (op.equals("getAllAdminPowers")) {
-//            this.
+        } else if (op.equals("getAdminsByName")) {
+            this.doGetAdminsByName(request,response);
         }
+
+        request.getRequestDispatcher(path).forward(request,response);
     }
 
     private void doLoginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,14 +55,13 @@ public class AdminServer extends HttpServlet {
         admin = adminCtrl.loginAdmin(admin);
         //  将前端获取的管理员对象值传入数据库检索
 
-        String path = contextPath + "/admin/operation.jsp";
+        path = "/admin/operation.jsp";
         if(admin != null){
             request.getSession().setAttribute("admin",admin);
         }else{
-            path = contextPath + "/adminLogin.jsp?msg=nothing";
+            path = "/adminLogin.jsp?msg=nothing";
         }
 
-        response.sendRedirect(path);
     }
 
     private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,16 +79,13 @@ public class AdminServer extends HttpServlet {
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         adminCtrl.updateAdmin(newAdmin);
 
-
-
-        String path = contextPath + "/admin/operation.jsp?msg=succeed";
+        path = contextPath + "/admin/operation.jsp?msg=succeed";
         if(newAdmin != null){
             request.getSession().setAttribute("admin",newAdmin);
         }else{
             path = contextPath + "/admin/operation.jsp?msg=err";
         }
 
-        response.sendRedirect(path);
     }
 
     private void doRegisterAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -106,7 +104,7 @@ public class AdminServer extends HttpServlet {
 
         boolean Exist = adminCtrl.hadAdmin(AdminNickName);
         boolean Registered = false;
-        String path = null;
+        path = null;
 
         if(Exist){
             Exist = true;
@@ -120,7 +118,6 @@ public class AdminServer extends HttpServlet {
             path = contextPath + "/admin/operation.jsp?msg=registerFalse&exist="+Exist;
         }
 
-        response.sendRedirect(path);
     }
 
     private void doDeleteAdminById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -130,7 +127,7 @@ public class AdminServer extends HttpServlet {
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
 
-        String path = contextPath + "/adminLogin.jsp?msg=succeed";
+        path = contextPath + "/adminLogin.jsp?msg=succeed";
 
         if(adminId == 1){
             path = contextPath + "/adminLogin.jsp?msg=noway";
@@ -140,7 +137,6 @@ public class AdminServer extends HttpServlet {
                 path = contextPath + "/adminLogin.jsp?msg=fail";
             }
         }
-        response.sendRedirect(path);
     }
 
     private void doGetAllAdmins(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -149,7 +145,7 @@ public class AdminServer extends HttpServlet {
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         adminList = adminCtrl.getAllAdmins();
 
-        String path = "/getInfo.jsp?type=admins";
+        path = "/getInfo.jsp?type=admins";
 
         int adminNum = adminList.size();
 
@@ -159,29 +155,22 @@ public class AdminServer extends HttpServlet {
         }
 
         request.setAttribute("admins",adminList);
-
-        //  带着 request 和 response 参数值进行页面跳转
-        //  response.sendRedirect 需要带项目名，而 request.getRequestDispatcher 则不用
-        request.getRequestDispatcher(path).forward(request,response);
     }
 
-    private void doGetAllAdminPower(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Power> powerList = null;
+    private void doGetAdminsByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Admin> adminList = null;
+        String adminLikeName = request.getParameter("adminLikeName");
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
-        powerList = adminCtrl.getAllAdminPowers();
+        adminList = adminCtrl.getAllLikeAdminsName(adminLikeName);
+        int adminsNum = adminList.size();
 
-        String path = contextPath + "/getInfo?type=powers";
+        path = contextPath + "/getInfo?type=admins";
 
-        int adminNum = powerList.size();
-
-        if(adminNum == 0){
-            //  如果查到的管理员数量为0，就执行这内容
-            path = "/getInfo.jsp?type=admins&msg=nothing";
+        if(adminsNum > 0){
+            request.setAttribute("admins",adminList);
+        }else{
+            path = path + "msg=nothing";
         }
-
-        request.setAttribute("admins",powerList);
-
-        request.getRequestDispatcher(path).forward(request,response);
     }
 }

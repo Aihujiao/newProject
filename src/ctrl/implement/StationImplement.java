@@ -82,32 +82,14 @@ public class StationImplement extends ExecuteDB implements StationDao {
     }
 
     //  超级管理员
-    //  删除部门信息
+    //  删除状态信息
     public boolean deleteStationById(int stationId){
-        boolean isEmpty = false;
-        boolean deleted =false;
-        String sql = "select * from employees where employeeStationId = ?";
+        boolean deleted = false;
+        String sql = "delete from stations where stationId = ?";
         Object[] objects = {stationId};
-        ResultSet rs = executeDBQuery(sql, objects);
-        try {
-            if (!rs.next()){
-                System.out.println("此时部门员工为空");
-                isEmpty = true;
-            }else {
-                //  如果部门里还有员工，则不能执行下方删除部门的*关键代码*
-                return false;
-            }
-            //  前端做限制，先读取管理员的部门编号，再传值执行该方法
-            //  删除部门的 *关键代码*
-            sql = "delete from stations where stationId = ?";
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-        //  如果为空就可以删除该部门
-        if(isEmpty){
-            deleted = executeDBUpdate(sql, objects);
-        }
+        deleted = executeDBUpdate(sql, objects);
+
         return deleted;
     }
 }

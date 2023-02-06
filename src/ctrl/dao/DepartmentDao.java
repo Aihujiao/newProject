@@ -16,4 +16,8 @@ public interface DepartmentDao {
 
     public boolean deleteDepartmentById(int departmentId);
 
+    public List<Department> getDepartmentsByLikeName(String departmentLikeName);
+
+    public List<Department> getAllDepartmentOptions();
+
 }

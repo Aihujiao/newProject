@@ -16,7 +16,7 @@
 <body>
 <h2>管理员功能</h2>
 <form action="" method="post">
-    <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>你的编号是${sessionScope.admin.adminId},请选择一下的功能进行操作</p>
+    <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>你的编号是 <b>${sessionScope.admin.adminId}</b> ,请选择一下的功能进行操作</p>
     <hr>
     <input type="submit" formaction="<%=contextPath%>/admin/update.jsp" value="更新个人信息">
 
@@ -36,7 +36,8 @@
             <input type="submit" formaction="<%=contextPath%>/AdminServer?op=getAllAdmins" value="查询管理员">
             <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=getAllDepartments" value="查询部门">
             <input type="submit" formaction="<%=contextPath%>/EmployeeServer?op=getAllEmployees" value="查询员工信息">
-            <input type="submit" formaction="<%=contextPath%>/AdminServer?op=getAllAdminPowers" value="查询所有权限">
+            <input type="submit" formaction="<%=contextPath%>/PowerServer?op=getAllPowers" value="查询所有权限">
+            <input type="submit" formaction="<%=contextPath%>/StationServer?op=getAllStations" value="查询所有状态">
         </c:when>
         <c:otherwise>
             <input type="submit" formaction="/AdminServer?op=adminDeleteById" value="注销账户">

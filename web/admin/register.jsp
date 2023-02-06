@@ -17,7 +17,7 @@
     <form action="<%=contextPath%>/AdminServer">
         <input type="hidden" name="op" value="adminRegister">
         <p><input type="text" name="adminNickName" placeholder="请输入要注册的管理员昵称"></p>
-        <p><input type="text" name="adminPassword" placeholder="请输入用于登录的密码" value="admin"></p>
+        <p><input type="text" name="adminPassword" placeholder="请输入用于登录的密码" value="admin" readonly></p>
         <p><input type="text" name="adminProfile" placeholder="用户头像地址//待完善"></p>
         <p><input type="text" name="adminDepartmentId" placeholder="部门编号"></p>
         <button>注册管理员</button>

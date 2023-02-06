@@ -52,6 +52,21 @@ public class ExecuteDB extends DBUtil{
         return rs;
     }
 
+    public ResultSet executeDBQueryLike(String sql,Object objects[]){
+        ResultSet rs = null;
+        con = getConnection();
+        try {
+            String likeName = objects[0].toString();
+            pstmt = con.prepareStatement(sql);
+            pstmt.setObject(1,"%"+likeName+"%");
+            System.out.println(pstmt.toString());
+            rs = pstmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rs;
+    }
+
     public void close(ResultSet rs){
         close(rs,pstmt,con);
     }

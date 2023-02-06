@@ -14,7 +14,8 @@ import java.util.List;
 
 @WebServlet(value = "/DepartmentServer")
 public class DepartmentServer extends HttpServlet {
-    private static String contantPath = null;
+    private static String contextPath = null;
+    private static String path = null;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
@@ -22,7 +23,7 @@ public class DepartmentServer extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        contantPath = request.getContextPath();
+        contextPath = request.getContextPath();
         String op = request.getParameter("op");
         if(op.equals("departmentRegister")){
             this.doRegisterDepartment(request, response);
@@ -32,7 +33,11 @@ public class DepartmentServer extends HttpServlet {
             this.doGetAllDepartments(request, response);
         } else if (op.equals("departmentDeleteById")) {
             this.doDeleteDepartmentById(request,response);
+        } else if (op.equals("getDepartmentsByName")) {
+            this.doGetDepartmentsByName(request,response);
         }
+
+        request.getRequestDispatcher(path).forward(request,response);
     }
 
     private void doRegisterDepartment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,20 +49,19 @@ public class DepartmentServer extends HttpServlet {
 
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
         boolean registered = departmentCtrl.registDepartment(department);
-        String path = null;
+        path = null;
 
         if(registered){
-            path = contantPath + "/admin/operation.jsp?msg=succeed";
+            path = contextPath + "/admin/operation.jsp?msg=succeed";
         }else{
-            path = contantPath + "/admin/operation.jsp?msg=fail";
+            path = contextPath + "/admin/operation.jsp?msg=fail";
         }
-        response.sendRedirect(path);
     }
 
     private void doGetDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //  可能错
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-        String path = contantPath + "/getInfo?type=Department&departmentId="+departmentId;
+        path = contextPath + "/getInfo?type=Department&departmentId="+departmentId;
 
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
 
@@ -73,7 +77,7 @@ public class DepartmentServer extends HttpServlet {
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
         List<Department> departments = departmentCtrl.getAllDepartment();
 
-        String path = "/getInfo.jsp?type=departments";
+        path = "/getInfo.jsp?type=departments";
 
         int departmentNum = departments.size();
         System.out.println(departmentNum);
@@ -82,29 +86,46 @@ public class DepartmentServer extends HttpServlet {
         }
 
         request.setAttribute("departments",departments);
-        //  不完全跳转，跳转后并不会将URL地址修改
-        request.getRequestDispatcher(path).forward(request,response);
     }
 
     private void doDeleteDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
 
-
         System.out.println("部门删除方法里获取的"+departmentId);
         DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentCtrl();
 
-        String path = contantPath + "/admin/operation.jsp?msg=succeed";
+        path = contextPath + "/admin/operation.jsp?msg=succeed";
 
         if(departmentId == 1){
-            path = contantPath + "/admin/operation.jsp?msg=noway";
+            path = contextPath + "/admin/operation.jsp?msg=noway";
         }else{
             boolean deleted = departmenCtrl.deleteDepartmentById(departmentId);
             if(!deleted){
-                path = contantPath + "/admin/operation.jsp?msg=fail";
+                path = contextPath + "/admin/operation.jsp?msg=fail";
             }
         }
+    }
 
-        //  不需要再进行 Attribute 进行servlet传递时，就可以直接使用 sendRedirect 直接跳转页面
-        response.sendRedirect(path);
+    private void doGetDepartmentsByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Department> departmentList = null;
+
+        String departmentLikeName = request.getParameter("departmentLikeName");
+        String searched = request.getParameter("searched");
+
+        System.out.println("之前搜索的内容是:"+searched);
+
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
+        departmentList = departmentCtrl.getDepartmentsByLikeName(departmentLikeName);
+
+        int departmentsNum = departmentList.size();
+
+        path = "/getInfo.jsp?type=departments";
+
+        if(departmentsNum > 0){
+            request.setAttribute("searched",searched);
+            request.setAttribute("departments",departmentList);
+        }else{
+            path = path + "msg=nothing";
+        }
     }
 }

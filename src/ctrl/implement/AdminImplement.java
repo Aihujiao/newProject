@@ -1,7 +1,7 @@
 package ctrl.implement;
 
-import ctrl.db.ExecuteDB;
 import ctrl.dao.AdminDao;
+import ctrl.db.ExecuteDB;
 import model.Admin;
 import model.Power;
 
@@ -68,6 +68,7 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         boolean Exist = false;
 
         ResultSet rs = executeDBQuery(sql, objects);
+
         try {
             if (rs.next()){
                 Exist = true;
@@ -81,7 +82,7 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
     }
 
     @Override
-    public String getAdminDepartmentName(int adminDepartmentId) {
+    public String getAdminDepartmentNameById(int adminDepartmentId) {
         String departmentName = null;
         String sql = "select departmentName from departments where departmentId = ?";
         Object[] objects = {adminDepartmentId};
@@ -231,6 +232,37 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
         return list;
     }
 
+    @Override
+    public List<Admin> getAllLikeAdminsName(String adminLikeName) {
+        String sql = "select * from admins where adminNickName like '%?%'";
+
+        List<Admin> adminList = null;
+        Admin admin = null;
+
+        Object[] objects = {adminLikeName};
+
+        ResultSet rs = executeDBQuery(sql, objects);
+
+        try {
+            while (rs.next()){
+                int adminId = rs.getInt("adminId");
+                String adminNickName = rs.getString("adminNickName");
+                String adminPassword = rs.getString("adminPassword");
+                String adminProfile = rs.getString("adminProfile");
+                int adminDepartmentId = rs.getInt("adminDepartmentId");
+                int adminStationId = rs.getInt("adminStationId");
+                int adminPowerId = rs.getInt("adminPowerId");
+
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
+                adminList.add(admin);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return adminList;
+    }
+
     public List<Power> getAllAdminPowers(){
         String sql ="select * from powers";
         List<Power> list = new ArrayList<>();
@@ -254,4 +286,5 @@ public class AdminImplement extends ExecuteDB implements AdminDao {
 
         return list;
     }
+
 }

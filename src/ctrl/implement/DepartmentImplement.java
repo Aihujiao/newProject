@@ -110,4 +110,55 @@ public class DepartmentImplement extends ExecuteDB implements DepartmentDao {
         }
         return deleted;
     }
+
+    @Override
+    public List<Department> getDepartmentsByLikeName(String departmentLikeName) {
+        String sql ="select * from departments where departmentName like ?";
+
+        //  必须将集合设置为新实例的数组集合
+        List<Department> departmentList = new ArrayList<>();
+        Department department = null;
+
+        Object[] objects = {departmentLikeName};
+
+        ResultSet rs = executeDBQueryLike(sql, objects);
+
+        try {
+            while (rs.next()){
+                int departmentId = rs.getInt("departmentId");
+                String departmentName = rs.getString("departmentName");
+                String departmentIntro = rs.getString("departmentIntro");
+
+                System.out.println("部门编号:"+departmentId+",部门名:"+departmentName+",部门介绍:"+departmentIntro);
+
+                department = new Department(departmentId,departmentName,departmentIntro);
+                departmentList.add(department);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return departmentList;
+    }
+
+    @Override
+    public List<Department> getAllDepartmentOptions() {
+        String sql ="select departmentId,departmentName from departments";
+        List<Department> departmentList =null;
+        Department department;
+        ResultSet rs = executeDBQuery(sql, null);
+
+        try {
+            while(rs.next()){
+                int departmentId = rs.getInt("departmentId");
+                String departmentName = rs.getString("departmentName");
+                department = new Department(departmentId,departmentName,null);
+                departmentList.add(department);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return departmentList;
+    }
 }

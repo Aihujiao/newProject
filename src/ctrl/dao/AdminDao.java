@@ -1,7 +1,6 @@
 package ctrl.dao;
 
 import model.Admin;
-import model.Power;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface AdminDao {
 
     public boolean hadAdmin(String adminNickName);
 
-    public String getAdminDepartmentName(int adminDepartmentId);
+    public String getAdminDepartmentNameById(int adminDepartmentId);
 
     public String getAdminStation(int adminStationId);
 
@@ -28,5 +27,5 @@ public interface AdminDao {
     //  超级管理员功能选项
     public List<Admin> getAllAdmins();
 
-    public List<Power> getAllAdminPowers();
+    public List<Admin> getAllLikeAdminsName(String adminLikeName);
 }
