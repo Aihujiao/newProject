@@ -9,27 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302020609018">
-      <change afterPath="$PROJECT_DIR$/src/ctrl/dao/PositionDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Position.java" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="20230202070025">
+      <change afterPath="$PROJECT_DIR$/src/ctrl/db/ORMUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/DepartmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/DepartmentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/db/ExecuteDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/db/ExecuteDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/AdminFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/AdminFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/PositionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/PositionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/PowerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/PowerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/StationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/StationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/db/ExecuteDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/employee/employeeRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/employee/employeeRegister.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -263,7 +263,15 @@
       <workItem from="1675583223515" duration="16458000" />
       <workItem from="1675603168551" duration="5558000" />
       <workItem from="1675646648425" duration="747000" />
-      <workItem from="1675663416150" duration="20370000" />
+      <workItem from="1675663416150" duration="20578000" />
+      <workItem from="1675749527375" duration="4665000" />
+      <workItem from="1675925396630" duration="1111000" />
+      <workItem from="1675951257576" duration="1689000" />
+      <workItem from="1676019115514" duration="598000" />
+      <workItem from="1676021873972" duration="424000" />
+      <workItem from="1676022706828" duration="319000" />
+      <workItem from="1676101779494" duration="16159000" />
+      <workItem from="1676125966586" duration="6802000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -433,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675646776016</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="20230202070025">
+      <created>1675700755935</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1675700755935</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +487,8 @@
     <MESSAGE value="20230202051817" />
     <MESSAGE value="20230202060018" />
     <MESSAGE value="202302020609018" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302020609018" />
+    <MESSAGE value="20230202070025" />
+    <option name="LAST_COMMIT_MESSAGE" value="20230202070025" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

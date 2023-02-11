@@ -1,8 +1,15 @@
 package ctrl.server;
 
+import ctrl.dao.DepartmentDao;
 import ctrl.dao.EmployeeDao;
+import ctrl.dao.PositionDao;
+import ctrl.dao.StationDao;
+import ctrl.factory.DepartmentFactory;
 import ctrl.factory.EmployeeFactory;
+import model.Department;
 import model.Employee;
+import model.Position;
+import model.Station;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +40,8 @@ public class EmployeeServer extends HttpServlet {
             this.doGetAllEmployees(request, response);
         } else if (op.equals("employeeDeleteById")) {
             this.doDeleteEmployeeById(request, response);
+        } else if (op.equals("toEmployeeRegister")) {
+            this.toEmployeeRegister(request, response);
         } else if (op.equals("employeeRegister")) {
             this.doRegisterEmployee(request, response);
         }
@@ -130,6 +139,21 @@ public class EmployeeServer extends HttpServlet {
 
         //  直接使用URL传参到新页面使页面进行判断
         response.sendRedirect(path);
+    }
+
+    private void toEmployeeRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        List<Department> departments = new ArrayList<>();
+        List<Station> stations = new ArrayList<>();
+        List<Position> positions = new ArrayList<>();
+
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
+        departments = departmentCtrl.getAllDepartmentOptions();
+
+        StationDao stationCtrl = EmployeeFactory.instance().getStationCtrl();
+        stations = stationCtrl.getAllStationOptions();
+
+        PositionDao positionCtrl = EmployeeFactory.instance().getPositionCtrl();
+        positions = positionCtrl.getAllPositions();
     }
 
     private void doRegisterEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

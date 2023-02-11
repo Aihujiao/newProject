@@ -1,6 +1,6 @@
 package ctrl.implement;
 
-import ctrl.db.ExecuteDB;
+import ctrl.db.CRUDUtil;
 import ctrl.dao.StationDao;
 import model.Station;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StationImplement extends ExecuteDB implements StationDao {
+public class StationImplement extends CRUDUtil implements StationDao {
     //  添加部门
     public boolean registerStation(Station station){
         String sql = "insert into stations value (null,?,?)";
@@ -81,6 +81,29 @@ public class StationImplement extends ExecuteDB implements StationDao {
         return stationList;
     }
 
+    @Override
+    public List<Station> getAllStationOptions() {
+        List<Station> stationList =new ArrayList();
+        Station station = null;
+        String sql = "select stationId,stationName from stations";
+
+        ResultSet rs = executeDBQuery(sql, null);
+
+        try {
+            while (rs.next()){
+                int stationId = rs.getInt("stationId");
+                String stationName = rs.getString("stationName");
+
+                station = new Station(stationId,stationName,null);
+                stationList.add(station);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return stationList;
+    }
+
     //  超级管理员
     //  删除状态信息
     public boolean deleteStationById(int stationId){
@@ -92,4 +115,6 @@ public class StationImplement extends ExecuteDB implements StationDao {
 
         return deleted;
     }
+
+
 }

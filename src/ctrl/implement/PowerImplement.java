@@ -1,6 +1,6 @@
 package ctrl.implement;
 
-import ctrl.db.ExecuteDB;
+import ctrl.db.CRUDUtil;
 import ctrl.dao.PowerDao;
 import model.Power;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PowerImplement extends ExecuteDB implements PowerDao {
+public class PowerImplement extends CRUDUtil implements PowerDao {
     @Override
     public boolean hadPower(String powerName) {
         String sql = "select powerId from powers where powerName =?";
@@ -106,8 +106,8 @@ public class PowerImplement extends ExecuteDB implements PowerDao {
     }
 
     @Override
-    public List<Power> getAllOptions() {
-        List<Power> powerList = null;
+    public List<Power> getAllPowerOptions() {
+        List<Power> powerList = new ArrayList<>();
         Power power = null;
         String sql = "select powerName,powerLevel from powers";
         ResultSet rs = executeDBQuery(sql, null);

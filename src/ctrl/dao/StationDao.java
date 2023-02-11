@@ -16,4 +16,6 @@ public interface StationDao {
 
     //  超级管理员功能选项
     public List<Station> getAllStations();
+
+    public List<Station> getAllStationOptions();
 }

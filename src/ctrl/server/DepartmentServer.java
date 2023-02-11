@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(value = "/DepartmentServer")
@@ -35,6 +36,8 @@ public class DepartmentServer extends HttpServlet {
             this.doDeleteDepartmentById(request,response);
         } else if (op.equals("getDepartmentsByName")) {
             this.doGetDepartmentsByName(request,response);
+        } else if (op.equals("toAdminUpdate")) {
+            this.toAdminUpdate(request,response);
         }
 
         request.getRequestDispatcher(path).forward(request,response);
@@ -107,7 +110,7 @@ public class DepartmentServer extends HttpServlet {
     }
 
     private void doGetDepartmentsByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> departmentList = null;
+        List<Department> departmentList = new ArrayList<>();
 
         String departmentLikeName = request.getParameter("departmentLikeName");
         String searched = request.getParameter("searched");
@@ -127,5 +130,16 @@ public class DepartmentServer extends HttpServlet {
         }else{
             path = path + "msg=nothing";
         }
+    }
+
+    private void toAdminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Department> departments = null;
+
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
+        departments = departmentCtrl.getAllDepartmentOptions();
+
+        request.setAttribute("departments",departments);
+
+        path ="/admin/update.jsp";
     }
 }

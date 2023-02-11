@@ -5,11 +5,11 @@ import model.Position;
 import java.util.List;
 
 public interface PositionDao {
-    public Position registerPositon(Position position);
+    public boolean registerPositon(Position position);
     public Position getPositionById(int positionId);
-    public Position updatePosition(Position position);
-    public String getPositionNameById(int positionId);
+    public boolean updatePosition(Position position);
     public boolean deletePositionById(int positionId);
     public List<Position> getAllPositions();
-    public List<Position> getAllLikePositionsName();
+    public List<Position> getAllPositionOptions();
+    public List<Position> getAllLikePositionsName(String positionLikeName);
 }

@@ -17,5 +17,5 @@ public interface PowerDao {
     
     public List<Power> getAllPowers();
 
-    public List<Power> getAllOptions();
+    public List<Power> getAllPowerOptions();
 }

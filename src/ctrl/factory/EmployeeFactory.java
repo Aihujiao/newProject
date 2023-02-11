@@ -1,11 +1,17 @@
 package ctrl.factory;
 
+import ctrl.dao.PositionDao;
+import ctrl.dao.StationDao;
 import ctrl.implement.EmployeeImplement;
 import ctrl.dao.EmployeeDao;
+import ctrl.implement.PositionImplement;
+import ctrl.implement.StationImplement;
 
 public class EmployeeFactory {
     private static EmployeeFactory employeeFactory;
     private EmployeeDao employeeDao;
+    private PositionDao positionDao;
+    private StationDao stationDao;
 
     public static EmployeeFactory instance(){
         if(employeeFactory == null){
@@ -19,5 +25,19 @@ public class EmployeeFactory {
             employeeDao = new EmployeeImplement();
         }
         return employeeDao;
+    }
+
+    public PositionDao getPositionCtrl(){
+        if(positionDao == null){
+            positionDao = new PositionImplement();
+        }
+        return positionDao;
+    }
+
+    public StationDao getStationCtrl(){
+        if(stationDao == null){
+            stationDao = new StationImplement();
+        }
+        return stationDao;
     }
 }

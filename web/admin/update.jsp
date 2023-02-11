@@ -15,10 +15,6 @@
     <title>更新管理员信息</title>
 </head>
 <body>
-<%
-  AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
-//  adminCtrl.get
-%>
 <h2>信息更新</h2>
   <form action="<%=contextPath%>/AdminServer" method="post">
     <input type="hidden" name="op" value="adminUpdate">
@@ -29,8 +25,8 @@
     <p>部门编号:<input type="text" name="newDepartmentId" value="${sessionScope.admin.adminDepartmentId}"></p>
     部门名称:<select name="newDepartmentId" style="width:130px">
       <option value="0">请选择</option>
-    <c:forEach var="department" items="${requestScope.departments}" varStatus="i">
-      <option value="${i.count}">${department.name}</option>
+    <c:forEach var="department" items="${requestScope.departments}">
+      <option value="${department.departmentId}">${department.departmentName}</option>
     </c:forEach>
   </select>
     <p>账号状态:<input type="text" name="newStationId" value="${sessionScope.admin.adminStationId}"></p>

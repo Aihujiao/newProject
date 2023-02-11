@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ctrl.dao.AdminDao" %>
 <%@ page import="ctrl.factory.AdminFactory" %>
-<%@ page import="javax.sound.midi.Soundbank" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -15,14 +15,8 @@
 
 <%
     System.out.println("跳到了获取信息页面");
-    String searched = request.getParameter("searched");
-    System.out.println(searched.length());
-//    if(searched.length()>0){
-//        request.setAttribute("searched",searched);
-//    }else{
-//        request.setAttribute("searched",null);
-//    }
-
+//    String searched = request.getParameter("searched");
+//    System.out.println(searched.length());
 %>
 
 <c:choose>

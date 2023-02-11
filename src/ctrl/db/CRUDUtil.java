@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ExecuteDB extends DBUtil{
+public class CRUDUtil extends DBUtil{
     private Connection con = null;
     private PreparedStatement pstmt = null;
 

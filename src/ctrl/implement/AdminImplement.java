@@ -1,7 +1,7 @@
 package ctrl.implement;
 
 import ctrl.dao.AdminDao;
-import ctrl.db.ExecuteDB;
+import ctrl.db.CRUDUtil;
 import model.Admin;
 import model.Power;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminImplement extends ExecuteDB implements AdminDao {
+public class AdminImplement extends CRUDUtil implements AdminDao {
     //  登录方法
     public Admin loginAdmin(Admin admin){
         //  读取前端登录页面的信息

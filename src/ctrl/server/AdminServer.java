@@ -1,8 +1,15 @@
 package ctrl.server;
 
 import ctrl.dao.AdminDao;
+import ctrl.dao.DepartmentDao;
+import ctrl.dao.PositionDao;
+import ctrl.dao.StationDao;
 import ctrl.factory.AdminFactory;
+import ctrl.factory.DepartmentFactory;
 import model.Admin;
+import model.Department;
+import model.Position;
+import model.Station;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,6 +46,8 @@ public class AdminServer extends HttpServlet {
             this.doGetAllAdmins(request, response);
         } else if (op.equals("getAdminsByName")) {
             this.doGetAdminsByName(request,response);
+        } else if (op.equals("toEmployeeRegister")) {
+            this.toEmployeeRegister(request,response);
         }
 
         request.getRequestDispatcher(path).forward(request,response);
@@ -62,6 +71,13 @@ public class AdminServer extends HttpServlet {
             path = "/adminLogin.jsp?msg=nothing";
         }
 
+    }
+
+    private void toUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
+        List<Department> departments =departmentCtrl.getAllDepartmentOptions();
+        request.setAttribute("departments",departments);
+        path = "/admin/update.jsp";
     }
 
     private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -172,5 +188,26 @@ public class AdminServer extends HttpServlet {
         }else{
             path = path + "msg=nothing";
         }
+    }
+
+    private void toEmployeeRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Department> departments = null;
+        List<Position> positions = null;
+        List<Station> stations = null;
+
+        AdminFactory ADF = AdminFactory.instance();
+        DepartmentDao departmentCtrl = ADF.getDepartmentCtrl();
+        PositionDao positionCtrl = ADF.getPositionCtrl();
+        StationDao StationCtrl = ADF.getStationCtrl();
+
+        departments = departmentCtrl.getAllDepartmentOptions();
+        positions = positionCtrl.getAllPositionOptions();
+        stations = StationCtrl.getAllStationOptions();
+
+        request.setAttribute("departments",departments);
+        request.setAttribute("positions",positions);
+        request.setAttribute("stations",stations);
+
+        path = "/employee/employeeRegister.jsp";
     }
 }
