@@ -53,16 +53,16 @@ public class DepartmentServer extends HttpServlet {
         path = null;
 
         if(registered){
-            path = contextPath + "/admin/operation.jsp?msg=succeed";
+            path = "/admin/operation.jsp?msg=succeed";
         }else{
-            path = contextPath + "/admin/operation.jsp?msg=fail";
+            path = "/admin/operation.jsp?msg=fail";
         }
     }
 
     private void doGetDepartmentById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //  可能错
         int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-        path = contextPath + "/getInfo?type=Department&departmentId="+departmentId;
+        path = "/getInfo?type=Department&departmentId="+departmentId;
 
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
 
@@ -95,14 +95,14 @@ public class DepartmentServer extends HttpServlet {
         System.out.println("部门删除方法里获取的"+departmentId);
         DepartmentDao departmenCtrl = DepartmentFactory.instance().getDepartmentCtrl();
 
-        path = contextPath + "/admin/operation.jsp?msg=succeed";
+        path = "/admin/operation.jsp?msg=succeed";
 
         if(departmentId == 1){
-            path = contextPath + "/admin/operation.jsp?msg=noway";
+            path = "/admin/operation.jsp?msg=noway";
         }else{
             boolean deleted = departmenCtrl.deleteDepartmentById(departmentId);
             if(!deleted){
-                path = contextPath + "/admin/operation.jsp?msg=fail";
+                path = "/admin/operation.jsp?msg=fail";
             }
         }
     }

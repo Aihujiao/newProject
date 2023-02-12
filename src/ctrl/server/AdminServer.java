@@ -1,5 +1,9 @@
 package ctrl.server;
 
+import com.jspsmart.upload.File;
+import com.jspsmart.upload.Files;
+import com.jspsmart.upload.SmartUpload;
+import com.jspsmart.upload.SmartUploadException;
 import ctrl.dao.*;
 import ctrl.factory.AdminFactory;
 import ctrl.factory.DepartmentFactory;
@@ -91,7 +95,9 @@ public class AdminServer extends HttpServlet {
 
     private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Admin newAdmin = null;
+
         int adminId = Integer.parseInt(request.getParameter("adminId"));
+        System.out.println("adminId = "+ adminId);
         String newNickName = request.getParameter("newNickName");
         String newPassword = request.getParameter("newPassword");
         String newProfile = request.getParameter("newProfile");
@@ -104,6 +110,27 @@ public class AdminServer extends HttpServlet {
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         adminCtrl.updateAdmin(newAdmin);
+
+        //  smartUpload
+        SmartUpload smartUpload = new SmartUpload();
+        smartUpload.initialize(getServletConfig() , request , response);
+
+        String dirPath = "/imgs/";
+        Files files = smartUpload.getFiles();
+
+        //  获取上传文件的数量
+        int count = files.getCount();
+        for (int i = 0;i< count ; i++){
+            File file = files.getFile(i);
+            String fileName = file.getFileName();
+            path = path + fileName;
+
+            try {
+                file.saveAs(dirPath);
+            } catch (SmartUploadException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         path = "/admin/operation.jsp?msg=succeed";
         if(newAdmin != null){

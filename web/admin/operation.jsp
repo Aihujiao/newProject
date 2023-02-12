@@ -30,7 +30,7 @@
             <input type="submit" formaction="<%=contextPath%>/AdminServer?op=toEmployeeRegister" value="注册员工">
             <input type="submit" formaction="<%=contextPath%>/PowerServer?op=toPowerRegister" value="新增权限">
             <input type="submit" formaction="<%=contextPath%>/admin/stationRegister.jsp" value="新增状态">
-            <input type="submit" formaction="<%=contextPath%>/admin/stationRegister.jsp" value="新增职位">
+            <input type="submit" formaction="<%=contextPath%>/admin/powerRegister.jsp" value="新增职位">
             <hr>
             查询功能
             <hr>

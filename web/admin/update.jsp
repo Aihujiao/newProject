@@ -14,29 +14,32 @@
 <html>
 <head>
     <title>更新管理员信息</title>
+  <style>
+    #newProfile{
+      display: none;
+    }
+  </style>
 </head>
 <body>
 <h2>信息更新</h2>
-  <form action="<%=contextPath%>/uploadServer?type=Admin" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="op" value="adminUpdate">
+  <form action="<%=contextPath%>/AdminServer?op=adminUpdate" method="post" enctype="multipart/form-data">
+<%--    <input type="hidden" name="op" value="adminUpdate">--%>
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>
     <p>昵称：<input type="text" name="newNickName" value="${sessionScope.admin.adminNickName}"></p>
     <p>密码：<input type="text" name="newPassword" value="${sessionScope.admin.adminPassword}"></p>
     个人头像:<p>
     <c:choose>
       <c:when test="${empty sessionScope.admin.adminProfile}">
-        <img src="/dir/havenot.jpg" width="150" alt="" id="myProfile">
+        <img src="/dir/havenot.jpg" onclick="pick()" width="150" alt="" id="myProfile">
         <input type="file" name="newProfile" id="newProfile">
       </c:when>
       <c:otherwise>
-        <img src="<%=contextPath%>/${sessionScope.admin.adminProfile}" width="150" alt="" id="myProfile">
+        <img src="<%=contextPath%>/${sessionScope.admin.adminProfile}" onclick="pick()" width="150" alt="" id="myProfile">
         <input type="file" name="newProfile" id="newProfile">
       </c:otherwise>
     </c:choose>
-    <input type="submit" formaction="<%=contextPath%>/uploadServer" onclick="return null" value="确定提交">
   </p>
-<%--    <p>个人头像<input type="text" name="newProfile" value="${sessionScope.admin.adminProfile}"></p>--%>
-    <p>部门编号:<input type="text" name="newDepartmentId" value="${sessionScope.admin.adminDepartmentId}"></p>
+    <p><input type="hidden" name="newDepartmentId" value="${sessionScope.admin.adminDepartmentId}"></p>
 
     部门名称:<select name="newDepartmentId" style="width:130px">
       <option value="0">请选择</option>
@@ -93,6 +96,10 @@
     console.log(newProfile);
     document.getElementById("myProfile").src = newProfile;
   });
+
+  function pick(){
+    document.getElementById("newProfile").click();
+  }
 </script>
 </body>
 </html>

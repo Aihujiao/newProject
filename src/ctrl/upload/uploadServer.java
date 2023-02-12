@@ -51,6 +51,7 @@ public class uploadServer extends HttpServlet {
             }
 
             //  不知能不能携带update.jsp的参数继续跳转
+            //  不能一直传
             request.getRequestDispatcher(toPath).forward(request,response);
         } catch (SmartUploadException e) {
             throw new RuntimeException(e);
