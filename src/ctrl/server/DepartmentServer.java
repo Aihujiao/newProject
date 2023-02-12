@@ -36,8 +36,6 @@ public class DepartmentServer extends HttpServlet {
             this.doDeleteDepartmentById(request,response);
         } else if (op.equals("getDepartmentsByName")) {
             this.doGetDepartmentsByName(request,response);
-        } else if (op.equals("toAdminUpdate")) {
-            this.toAdminUpdate(request,response);
         }
 
         request.getRequestDispatcher(path).forward(request,response);
@@ -132,14 +130,4 @@ public class DepartmentServer extends HttpServlet {
         }
     }
 
-    private void toAdminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> departments = null;
-
-        DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
-        departments = departmentCtrl.getAllDepartmentOptions();
-
-        request.setAttribute("departments",departments);
-
-        path ="/admin/update.jsp";
-    }
 }

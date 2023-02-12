@@ -1,7 +1,7 @@
 package ctrl.server;
 
-import ctrl.factory.PowerFactory;
 import ctrl.dao.PowerDao;
+import ctrl.factory.AdminFactory;
 import model.Power;
 
 import javax.servlet.ServletException;
@@ -49,7 +49,7 @@ public class PowerServer extends HttpServlet {
 
         newPower = new Power(powerId,newName,newLevel,newIntro);
 
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         powerCtrl.updatePower(newPower);
 
         String path = contextPath + "/admin/operation.jsp?msg=succeed";
@@ -66,7 +66,7 @@ public class PowerServer extends HttpServlet {
     private void doGetPowerById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int powerId = Integer.getInteger(request.getParameter("powerId"));
 
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         Power power = powerCtrl.getPowerById(powerId);
 
         String path = contextPath+"/getInfo.jsp?type=power";
@@ -78,7 +78,7 @@ public class PowerServer extends HttpServlet {
 
     //  管理员操作
     private void doGetAllPowers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         //  创建数组集合用于存储 权限数据
         List<Power> powers = new ArrayList<>();
         //  将权限集合赋值给 powers
@@ -108,7 +108,7 @@ public class PowerServer extends HttpServlet {
         int powerId = Integer.parseInt(request.getParameter("powerId"));
 
         System.out.println(powerId);
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         boolean deleted = powerCtrl.deletePowerById(powerId);
 
         String path = contextPath + "/admin/operation.jsp?msg=succeed";
@@ -129,7 +129,7 @@ public class PowerServer extends HttpServlet {
 
         power = new Power(0,powerName,powerLevel,powerIntro);
 
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         boolean registered = powerCtrl.registerPower(power);
 
         String path = "/admin/operation.jsp?msg=succeed";
@@ -143,7 +143,7 @@ public class PowerServer extends HttpServlet {
     }
 
     private void toRegisterPower(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
         List<Power> powers = powerCtrl.getAllPowers();
         request.setAttribute("powers",powers);
 

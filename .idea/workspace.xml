@@ -9,28 +9,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="20230202070025">
-      <change afterPath="$PROJECT_DIR$/src/ctrl/db/ORMUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Test.java" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302120035">
+      <change afterPath="$PROJECT_DIR$/src/ctrl/upload/uploadServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jsmartcom_zh_CN.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin/positionRegister.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/PositionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/PositionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/PowerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/PowerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/StationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/StationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/db/ExecuteDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/factory/EmployeeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/PowerFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/factory/StationFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/DepartmentServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/EmployeeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/PowerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/StationServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/powerRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/powerRegister.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/stationRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/stationRegister.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/employee/employeeRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/employee/employeeRegister.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,34 +82,34 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ideaW/myProject/NewProject/web/admin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facet&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/PersonalFile",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Facet",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "http.proxy"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\ideaW\myProject\NewProject\web\admin" />
+      <recent name="D:\ideaW\myProject\NewProject\web\imgs" />
+      <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\imgs" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\lib" />
+      <recent name="D:\ideaW\myProject\NewProject\web\admin" />
       <recent name="D:\ideaW\myProject\NewProject\web" />
-      <recent name="D:\ideaW\myProject\NewProject\src" />
-      <recent name="D:\ideaW\myProject\NewProject\src\org\soft\base" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\ideaW\myProject\NewProject\web\employee" />
       <recent name="D:\ideaW\myProject\NewProject\web" />
+      <recent name="D:\ideaW\myProject\NewProject\web\employee" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\employee" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\admin" />
     </key>
@@ -128,8 +124,14 @@
   <component name="RunDashboard">
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript 调试.register.jsp">
+  <component name="RunManager" selected="Tomcat 服务器.Tomcat 9.0.70">
+    <configuration name="detail.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/detail.jsp">
+      <method v="2" />
+    </configuration>
     <configuration name="register.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/register.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="update.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/update.jsp">
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -144,6 +146,11 @@
             <option name="CONTEXT_PATH" value="/NewProject" />
           </settings>
         </artifact>
+        <file path="$PROJECT_DIR$/../../../PersonalFile">
+          <settings>
+            <option name="CONTEXT_PATH" value="/dir" />
+          </settings>
+        </file>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="bd011164-b301-489f-bc6d-1c0c479350f0" />
@@ -224,11 +231,15 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JavaScript 调试.detail.jsp" />
+      <item itemvalue="JavaScript 调试.update.jsp" />
       <item itemvalue="JavaScript 调试.register.jsp" />
       <item itemvalue="Tomcat 服务器.Tomcat 9.0.70" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript 调试.detail.jsp" />
+        <item itemvalue="JavaScript 调试.update.jsp" />
         <item itemvalue="JavaScript 调试.register.jsp" />
       </list>
     </recent_temporary>
@@ -271,7 +282,8 @@
       <workItem from="1676021873972" duration="424000" />
       <workItem from="1676022706828" duration="319000" />
       <workItem from="1676101779494" duration="16159000" />
-      <workItem from="1676125966586" duration="6802000" />
+      <workItem from="1676125966586" duration="6867000" />
+      <workItem from="1676166356704" duration="28960000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -448,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675700755935</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="202302120035">
+      <created>1676133360073</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1676133360073</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +507,8 @@
     <MESSAGE value="20230202060018" />
     <MESSAGE value="202302020609018" />
     <MESSAGE value="20230202070025" />
-    <option name="LAST_COMMIT_MESSAGE" value="20230202070025" />
+    <MESSAGE value="202302120035" />
+    <option name="LAST_COMMIT_MESSAGE" value="202302120035" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

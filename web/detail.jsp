@@ -1,16 +1,14 @@
 <%@ page import="ctrl.implement.AdminImplement" %>
 <%@ page import="ctrl.implement.DepartmentImplement" %>
-<%@ page import="ctrl.dao.DepartmentDao" %>
 <%@ page import="ctrl.factory.DepartmentFactory" %>
-<%@ page import="ctrl.dao.EmployeeDao" %>
 <%@ page import="ctrl.factory.EmployeeFactory" %>
 <%@ page import="ctrl.implement.AdminImplement" %>
 <%@ page import="ctrl.implement.DepartmentImplement" %>
-<%@ page import="ctrl.factory.PowerFactory" %>
-<%@ page import="ctrl.dao.PowerDao" %>
 <%@ page import="model.*" %>
-<%@ page import="ctrl.dao.StationDao" %>
-<%@ page import="ctrl.factory.StationFactory" %><%--
+<%@ page import="ctrl.factory.AdminFactory" %>
+<%@ page import="ctrl.dao.*" %>
+
+<%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/1/30
@@ -31,31 +29,28 @@
                 System.out.println("能进入admin分支");
                 int adminId = Integer.parseInt(request.getParameter("adminId"));
                 Admin admin = null;
-                AdminImplement adminImplement = new AdminImplement();
-                admin = adminImplement.getAdminById(adminId);
+                AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
+                admin = adminCtrl.getAdminById(adminId);
+//                AdminImplement adminImplement = new AdminImplement();
+//                admin = adminImplement.getAdminById(adminId);
+
                 int adminDepartmentId = admin.getAdminDepartmentId();
-
                 Department department = null;
-                DepartmentImplement departmentImplement = new DepartmentImplement();
-                department = departmentImplement.getDepartmentById(adminDepartmentId);
+                DepartmentDao departmentCtrl = AdminFactory.instance().getDepartmentCtrl();
+                department = departmentCtrl.getDepartmentById(adminDepartmentId);
+//                DepartmentImplement departmentImplement = new DepartmentImplement();
+//                department = departmentImplement.getDepartmentById(adminDepartmentId);
 
-                //  可以优化
-                int stationNum = admin.getAdminStationId();
-                String station = null;
-                if(stationNum == 0){
-                    station = "在线";
-                }else if (stationNum == 1){
-                    station = "待机";
-                }else {
-                    station = "下线";
-                }
+                int stationId = admin.getAdminStationId();
+                Station station = null;
+                StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
+                station = stationCtrl.getStationById(stationId);
             %>
 
             <p>管理员编号:<%=admin.getAdminId()%></p>
             <p>管理员昵称:<%=admin.getAdminNickName()%></p>
             <p>所管理部门:<%=department.getDepartmentName()%></p>
-            <p>当前状态:<%=station%></p>
-
+            <p>当前状态:<%=station.getStationName()%></p>
         </c:when>
         <c:when test="${param.type== 'department'}">
             <%
@@ -91,7 +86,7 @@
             <%
                 int powerId = Integer.parseInt(request.getParameter("powerId"));
                 Power power = null;
-                PowerDao powerCtrl = PowerFactory.instance().getPowerCtrl();
+                PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
                 power = powerCtrl.getPowerById(powerId);
             %>
 
@@ -104,7 +99,7 @@
             <%
                 int stationId = Integer.parseInt(request.getParameter("stationId"));
                 Station station = null;
-                StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+                StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
                 station = stationCtrl.getStationById(stationId);
             %>
 

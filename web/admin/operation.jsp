@@ -18,7 +18,7 @@
 <form action="" method="post">
     <p>你好管理员<b>${sessionScope.admin.adminNickName}</b>你的编号是 <b>${sessionScope.admin.adminId}</b> ,请选择一下的功能进行操作</p>
     <hr>
-    <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=toAdminUpdate" value="更新个人信息">
+    <input type="submit" formaction="<%=contextPath%>/AdminServer?op=toAdminUpdate" value="更新个人信息">
 
     <c:choose>
         <c:when test="${sessionScope.admin.adminId == 1}">
@@ -30,6 +30,7 @@
             <input type="submit" formaction="<%=contextPath%>/AdminServer?op=toEmployeeRegister" value="注册员工">
             <input type="submit" formaction="<%=contextPath%>/PowerServer?op=toPowerRegister" value="新增权限">
             <input type="submit" formaction="<%=contextPath%>/admin/stationRegister.jsp" value="新增状态">
+            <input type="submit" formaction="<%=contextPath%>/admin/stationRegister.jsp" value="新增职位">
             <hr>
             查询功能
             <hr>

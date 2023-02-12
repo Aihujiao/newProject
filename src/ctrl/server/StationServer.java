@@ -1,7 +1,7 @@
 package ctrl.server;
 
-import ctrl.factory.StationFactory;
 import ctrl.dao.StationDao;
+import ctrl.factory.AdminFactory;
 import model.Station;
 
 import javax.servlet.ServletException;
@@ -46,7 +46,7 @@ public class StationServer extends HttpServlet {
 
         newStation = new Station(stationId,newName,newIntro);
 
-        StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
         stationCtrl.updateStation(newStation);
 
         String path = contextPath + "/admin/operation.jsp?msg=succeed";
@@ -62,7 +62,7 @@ public class StationServer extends HttpServlet {
     //  该方法可能存在逻辑问题
     private void doGetStationById (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int stationId = Integer.getInteger(request.getParameter("stationId"));
-        StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
         String path = contextPath + "/getInfo.jsp?type=stations";
         Station station = stationCtrl.getStationById(stationId);
 
@@ -73,7 +73,7 @@ public class StationServer extends HttpServlet {
 
     //  管理员操作
     private void doGetAllStations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
         //  创建数组集合用于存储 员工数据
         List<Station> stations = new ArrayList<>();
         //  将员工集合赋值给 stations
@@ -101,7 +101,7 @@ public class StationServer extends HttpServlet {
 
         int stationId = Integer.parseInt(request.getParameter("stationId"));
         System.out.println("得到的状态编号是"+stationId);
-        StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
         boolean deleted = stationCtrl.deleteStationById(stationId);
 
         String path = contextPath + "/admin/operation.jsp?msg=succeed";
@@ -122,7 +122,7 @@ public class StationServer extends HttpServlet {
 
         station = new Station(0,stationName,stationIntro);
 
-        StationDao stationCtrl = StationFactory.instance().getStationCtrl();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
         boolean registered = stationCtrl.registerStation(station);
 
         String path = "/admin/operation.jsp?msg=succeed";

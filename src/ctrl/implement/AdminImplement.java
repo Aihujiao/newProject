@@ -51,10 +51,10 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
         String adminPassword = admin.getAdminPassword();
         String adminProfile = admin.getAdminProfile();
         int adminDepartmentId = admin.getAdminDepartmentId();
-        int adminStation = admin.getAdminStationId();
+        int adminStationIdId = admin.getAdminStationId();
 
         String sql = "insert into admins value (null,?,?,?,?,?)";
-        Object[] objects = {adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStation};
+        Object[] objects = {adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationIdId};
 
         boolean registered = executeDBUpdate(sql, objects);
 
@@ -148,11 +148,11 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
         String adminPassword = admin.getAdminPassword();
         String adminProfile = admin.getAdminProfile();
         int adminDepartment = admin.getAdminDepartmentId();
-        int adminStation = admin.getAdminStationId();
+        int adminStationId = admin.getAdminStationId();
         int adminId = admin.getAdminId();
 
-        String sql ="update admins set adminNickName = ?,adminPassword = ?,adminProfile = ?,adminDepartmentId = ?,adminStation = ? where adminId = ?";
-        Object objects[] = {adminNickName,adminPassword,adminProfile,adminDepartment,adminStation,adminId};
+        String sql ="update admins set adminNickName = ?,adminPassword = ?,adminProfile = ?,adminDepartmentId = ?,adminStationId = ? where adminId = ?";
+        Object objects[] = {adminNickName,adminPassword,adminProfile,adminDepartment,adminStationId,adminId};
 
         boolean updated = executeDBUpdate(sql,objects);
 
@@ -182,7 +182,7 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
                 String adminPassword = rs.getString("adminPassword");
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
-                int adminStationId = rs.getInt("adminStation");
+                int adminStationId = rs.getInt("adminStationId");
                 int adminPowerId = rs.getInt("adminPowerId");
 
                 admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);

@@ -1,7 +1,7 @@
 <%@ page import="model.Power" %>
 <%@ page import="ctrl.dao.PowerDao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ctrl.factory.PowerFactory" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: 40771
   Date: 2023/2/5

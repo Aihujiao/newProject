@@ -1,15 +1,9 @@
 package ctrl.server;
 
-import ctrl.dao.AdminDao;
-import ctrl.dao.DepartmentDao;
-import ctrl.dao.PositionDao;
-import ctrl.dao.StationDao;
+import ctrl.dao.*;
 import ctrl.factory.AdminFactory;
 import ctrl.factory.DepartmentFactory;
-import model.Admin;
-import model.Department;
-import model.Position;
-import model.Station;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +32,8 @@ public class AdminServer extends HttpServlet {
             this.doLoginAdmin(request, response);
         }else if(op.equals("adminUpdate")){
             this.doUpdateAdmin(request, response);
+        } else if (op.equals("toAdminUpdate")) {
+            this.toAdminUpdate(request,response);
         } else if (op.equals("adminRegister")) {
             this.doRegisterAdmin(request, response);
         } else if (op.equals("adminDeleteById")) {
@@ -73,11 +69,24 @@ public class AdminServer extends HttpServlet {
 
     }
 
-    private void toUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void toAdminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Department> departments = null;
+        List<Station> stations = null;
+        List<Power> powers = null;
+
         DepartmentDao departmentCtrl = DepartmentFactory.instance().getDepartmentCtrl();
-        List<Department> departments =departmentCtrl.getAllDepartmentOptions();
+        StationDao stationCtrl = AdminFactory.instance().getStationCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
+
+        departments = departmentCtrl.getAllDepartmentOptions();
+        stations = stationCtrl.getAllStationOptions();
+        powers = powerCtrl.getAllPowerOptions();
+
         request.setAttribute("departments",departments);
-        path = "/admin/update.jsp";
+        request.setAttribute("stations",stations);
+        request.setAttribute("powers",powers);
+
+        path ="/admin/update.jsp";
     }
 
     private void doUpdateAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -87,19 +96,20 @@ public class AdminServer extends HttpServlet {
         String newPassword = request.getParameter("newPassword");
         String newProfile = request.getParameter("newProfile");
         int newDepartmentId = Integer.parseInt(request.getParameter("newDepartmentId"));
-        int adminStationId = Integer.parseInt(request.getParameter("adminStation"));
-        int adminPowerId = Integer.parseInt(request.getParameter("adminPowerId"));
+        int newStationId = Integer.parseInt(request.getParameter("newStationId"));
+        int newPowerId = Integer.parseInt(request.getParameter("newPowerId"));
 
-        newAdmin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,adminStationId,adminPowerId);
+        System.out.println("新的各项数据为"+newNickName+" , "+newPassword+" , "+newProfile+" , "+newDepartmentId+" , "+newStationId+" , "+newPowerId);
+        newAdmin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,newStationId,newPowerId);
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         adminCtrl.updateAdmin(newAdmin);
 
-        path = contextPath + "/admin/operation.jsp?msg=succeed";
+        path = "/admin/operation.jsp?msg=succeed";
         if(newAdmin != null){
             request.getSession().setAttribute("admin",newAdmin);
         }else{
-            path = contextPath + "/admin/operation.jsp?msg=err";
+            path = "/admin/operation.jsp?msg=err";
         }
 
     }

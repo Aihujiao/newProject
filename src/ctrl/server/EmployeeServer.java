@@ -131,10 +131,10 @@ public class EmployeeServer extends HttpServlet {
         EmployeeDao employeeCtrl = EmployeeFactory.instance().getEmployeeCtrl();
         boolean deleted = employeeCtrl.deleteEmployeeById(employeeId);
 
-        String path = contextPath + "/employee/operation.jsp?msg=succeed";
+        String path = contextPath + "/admin/operation.jsp?msg=succeed";
 
         if(!deleted){
-            path = contextPath + "/employee/operation.jsp?msg=fail";
+            path = contextPath + "/admin/operation.jsp?msg=fail";
         }
 
         //  直接使用URL传参到新页面使页面进行判断
