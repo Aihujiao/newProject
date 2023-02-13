@@ -1,16 +1,16 @@
 package ctrl.implement;
 
 import ctrl.dao.AdminDao;
-import ctrl.db.CRUDUtil;
+import ctrl.db.ORMUtil;
 import model.Admin;
-import model.Power;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class AdminImplement extends CRUDUtil implements AdminDao {
+public class AdminImplement extends ORMUtil implements AdminDao {
     //  登录方法
     public Admin loginAdmin(Admin admin){
         //  读取前端登录页面的信息
@@ -104,7 +104,7 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
     }
 
     @Override
-    public String getAdminStation(int adminStationId) {
+    public String getAdminStationById(int adminStationId) {
         String adminStationName = null;
         String sql = "select stationName from stations where stationId = ?";
         Object[] objects = {adminStationId};
@@ -203,7 +203,7 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
         //  超级管理员
         List<Admin> list = new ArrayList<>();
         Admin admin = new Admin();
-        String sql = "select * from admins";
+        String sql = "select * from admins limit ?,?";
 
         ResultSet rs = executeDBQuery(sql, null);
 
@@ -263,28 +263,83 @@ public class AdminImplement extends CRUDUtil implements AdminDao {
         return adminList;
     }
 
-    public List<Power> getAllAdminPowers(){
-        String sql ="select * from powers";
-        List<Power> list = new ArrayList<>();
-        Power power = null;
-        ResultSet rs = executeDBQuery(sql, null);
+    @Override
+    public List<Admin> adminList(Map<String, Object> conditionMap) {
+        String sql = "select * from admins limit ?,?";
+        int begin = Integer.parseInt(conditionMap.get("begin").toString());
+        int size= Integer.parseInt(conditionMap.get("size").toString());
+        Object[] objects = {begin,size};
+        List<Admin> adminList = getORMS(sql, objects, Admin.class);
 
-
-        try {
-            while(rs.next()){
-                int powerId = rs.getInt("powerId");
-                String powerName =rs.getString("powerName");
-                int powerLevel = rs.getInt("powerLevel");
-                String powerIntro = rs.getString("powerIntro");
-
-                power = new Power(powerId,powerName,powerLevel,powerIntro);
-                list.add(power);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return list;
+        return adminList;
     }
+
+    @Override
+    public List<Admin> adminQuery(Map<String, Object> conditionMap) {
+        List<Admin> adminList = null;
+
+        if(conditionMap != null){
+            String sql = null;
+            Object[] objects = null;
+            int adminId = Integer.parseInt(conditionMap.get("adminId").toString());
+            String adminNickName = conditionMap.get("adminName").toString();
+            int adminDepartmentId = Integer.parseInt(conditionMap.get("adminDepartmentId").toString());
+            int adminPowerId = Integer.parseInt(conditionMap.get("adminPowerId").toString());
+            int adminPositionId = Integer.parseInt(conditionMap.get("adminPositionId").toString());
+
+            if(adminId != 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0){
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminId = ?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminId,begin,size};
+            } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminDepartmentId = ?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminDepartmentId,begin,size};
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName != null && adminPowerId == 0 && adminPositionId == 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminNickName = ?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminNickName,begin,size};
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId != 0 && adminPositionId == 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPowerId = ?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminPowerId,begin,size};
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId != 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPositionId = ?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminPositionId,begin,size};
+            }
+            adminList = getORMS(sql, objects, Admin.class);
+        }
+        return adminList;
+    }
+
+//    public List<Power> getAllAdminPowers(){
+//        String sql ="select * from powers";
+//        List<Power> list = new ArrayList<>();
+//        Power power = null;
+//        ResultSet rs = executeDBQuery(sql, null);
+//
+//
+//        try {
+//            while(rs.next()){
+//                int powerId = rs.getInt("powerId");
+//                String powerName =rs.getString("powerName");
+//                int powerLevel = rs.getInt("powerLevel");
+//                String powerIntro = rs.getString("powerIntro");
+//
+//                power = new Power(powerId,powerName,powerLevel,powerIntro);
+//                list.add(power);
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        return list;
+//    }
 
 }

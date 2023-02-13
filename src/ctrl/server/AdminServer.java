@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(value = "/AdminServer")
 //  为什么改了 jspWeb 就无法访问
@@ -193,10 +195,33 @@ public class AdminServer extends HttpServlet {
     }
 
     private void doGetAllAdmins(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String objectCurrent = request.getParameter("currentPageNum");
+        String pageSize =  request.getParameter("size");
+        Map<String,Object> conditionMap = new HashMap<>();
+
+        if(objectCurrent == null){
+            objectCurrent = "1";
+        }
+
+        if(pageSize == null){
+            pageSize = "1";
+        }
+
+        int currentPageNum =  Integer.parseInt(objectCurrent);
+        int size = Integer.parseInt(pageSize);
+
         List<Admin> adminList = null;
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
-        adminList = adminCtrl.getAllAdmins();
+        SplitDao splitCtrl = AdminFactory.instance().getSplitCtrl();
+
+        //  得到页面起始数据行数
+        int begin = splitCtrl.getBeginRow(size, currentPageNum);
+
+        conditionMap.put("begin",begin);
+        conditionMap.put("size",size);
+
+        adminList = adminCtrl.adminList(conditionMap);
 
         path = "/getInfo.jsp?type=admins";
 

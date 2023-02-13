@@ -61,7 +61,7 @@
                         int adminDepartmentId = admin.getAdminDepartmentId();
                         int adminStation = admin.getAdminStationId();
                         String departmentName = adminCtrl.getAdminDepartmentNameById(adminDepartmentId);
-                        String stationName = adminCtrl.getAdminStation(adminStation);
+                        String stationName = adminCtrl.getAdminStationById(adminStation);
                     %>
                     <tbody>
                         <tr>
@@ -78,6 +78,9 @@
                     </tbody>
                 </c:forEach>
                 </table>
+                <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
+                    [<a href="${pageContext.request.contextPath}/split?currentPageNum=${i}">${i}</a>]
+                </c:forEach>
             </form>
         </c:when>
         <c:when test="${param.type == 'departments'}">

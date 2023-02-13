@@ -13,8 +13,7 @@ public class AdminFactory {
     private PositionDao positionDao = null;
     private StationDao stationDao = null;
     private PowerDao powerDao = null;
-
-
+    private SplitDao splitDao = null;
 
     public static AdminFactory instance(){
         if(adminFactory == null){
@@ -56,5 +55,12 @@ public class AdminFactory {
             powerDao = new PowerImplement();
         }
         return powerDao;
+    }
+
+    public SplitDao getSplitCtrl(){
+        if(splitDao ==null){
+            splitDao = new SplitImplement();
+        }
+        return splitDao;
     }
 }

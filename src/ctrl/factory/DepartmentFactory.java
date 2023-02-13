@@ -1,11 +1,14 @@
 package ctrl.factory;
 
+import ctrl.dao.SplitDao;
 import ctrl.implement.DepartmentImplement;
 import ctrl.dao.DepartmentDao;
+import ctrl.implement.SplitImplement;
 
 public class DepartmentFactory {
     private static DepartmentFactory departmentFactory;
     private DepartmentDao departmentDao;
+    private SplitDao splitDao;
 
     public static DepartmentFactory instance(){
         if(departmentFactory == null){
@@ -19,5 +22,12 @@ public class DepartmentFactory {
             departmentDao = new DepartmentImplement();
         }
         return departmentDao;
+    }
+
+    public SplitDao getSplitCtrl(){
+        if(splitDao ==null){
+            splitDao = new SplitImplement();
+        }
+        return splitDao;
     }
 }
