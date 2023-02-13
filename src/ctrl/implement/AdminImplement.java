@@ -288,27 +288,27 @@ public class AdminImplement extends ORMUtil implements AdminDao {
             int adminPositionId = Integer.parseInt(conditionMap.get("adminPositionId").toString());
 
             if(adminId != 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0){
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminId = ?";
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminId,begin,size};
             } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminDepartmentId = ?";
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminDepartmentId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminDepartmentId,begin,size};
             } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName != null && adminPowerId == 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminNickName = ?";
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminNickName = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminNickName,begin,size};
             } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId != 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPowerId = ?";
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPowerId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminPowerId,begin,size};
             } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId != 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPositionId = ?";
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPositionId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminPositionId,begin,size};

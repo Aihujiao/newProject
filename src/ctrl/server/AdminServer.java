@@ -204,11 +204,13 @@ public class AdminServer extends HttpServlet {
         }
 
         if(pageSize == null){
-            pageSize = "1";
+            pageSize = "4";
         }
 
         int currentPageNum =  Integer.parseInt(objectCurrent);
         int size = Integer.parseInt(pageSize);
+
+        System.out.println("pageSize = "+ pageSize+",size = "+ size);
 
         List<Admin> adminList = null;
 
@@ -217,6 +219,11 @@ public class AdminServer extends HttpServlet {
 
         //  得到页面起始数据行数
         int begin = splitCtrl.getBeginRow(size, currentPageNum);
+        //  获得数据总行数
+        String sql = "select count(adminId) from admins";
+        int count = splitCtrl.getTableRowCount(sql, null);
+        int pageSum = splitCtrl.getAllPages(size, count);
+        System.out.println("pageSum = "+pageSum+",size为:"+size+",数据总行数:"+count);
 
         conditionMap.put("begin",begin);
         conditionMap.put("size",size);
@@ -231,7 +238,7 @@ public class AdminServer extends HttpServlet {
             //  如果查到的管理员数量为0，就执行这内容
             path = "/getInfo.jsp?type=admins&msg=nothing";
         }
-
+        request.setAttribute("pageSum",pageSum);
         request.setAttribute("admins",adminList);
     }
 

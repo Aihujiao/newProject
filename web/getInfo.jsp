@@ -63,7 +63,7 @@
                         String departmentName = adminCtrl.getAdminDepartmentNameById(adminDepartmentId);
                         String stationName = adminCtrl.getAdminStationById(adminStation);
                     %>
-                    <tbody>
+
                         <tr>
                             <td>${admin.adminId}</td>
                             <td>${admin.adminNickName}</td>
@@ -75,11 +75,11 @@
                                 <input type="submit" formaction="<%=contextPath%>/AdminServer?op=adminDeleteById&adminId=${admin.adminId}" value="注销">
                             </td>
                         </tr>
-                    </tbody>
+
                 </c:forEach>
                 </table>
                 <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
-                    [<a href="${pageContext.request.contextPath}/split?currentPageNum=${i}">${i}</a>]
+                    [<a href="${pageContext.request.contextPath}/AdminServer?op=getAllAdmins&currentPageNum=${i}">${i}</a>]
                 </c:forEach>
             </form>
         </c:when>
@@ -97,7 +97,7 @@
                     </tr>
                     </thead>
                     <c:forEach items="${requestScope.departments}" var="department">
-                        <tbody>
+
                         <tr>
                             <td>${department.departmentId}</td>
                             <td>${department.departmentName}</td>
@@ -107,7 +107,10 @@
                                 <input type="submit" formaction="<%=contextPath%>/DepartmentServer?op=departmentDeleteById&departmentId=${department.departmentId}" value="注销">
                             </td>
                         </tr>
-                        </tbody>
+
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
+                        [<a href="${pageContext.request.contextPath}/DepartmentServer?op=getAllDepartments&currentPageNum=${i}">${i}</a>]
                     </c:forEach>
                 </table>
             </form>
@@ -150,6 +153,9 @@
                         </tr>
                         </tbody>
                     </c:forEach>
+                    <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
+                        [<a href="${pageContext.request.contextPath}/EmployeeServer?op=getAllEmployees&currentPageNum=${i}">${i}</a>]
+                    </c:forEach>
                 </table>
             </form>
         </c:when>
@@ -166,7 +172,7 @@
                     </tr>
                     </thead>
                     <c:forEach items="${requestScope.powers}" var="power">
-                        <tbody>
+
                         <tr>
                             <td>${power.powerId}</td>
                             <td>${power.powerName}</td>
@@ -177,7 +183,10 @@
                                 <input type="submit" formaction="<%=contextPath%>/PowerServer?op=powerDeleteById&powerId=${power.powerId}" value="注销">
                             </td>
                         </tr>
-                        </tbody>
+
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
+                        [<a href="${pageContext.request.contextPath}/PowerServer?op=getAllPowers&currentPageNum=${i}">${i}</a>]
                     </c:forEach>
                 </table>
             </form>
@@ -194,7 +203,7 @@
                     </tr>
                     </thead>
                     <c:forEach items="${requestScope.stations}" var="station">
-                        <tbody>
+
                         <tr>
                             <td>${station.stationId}</td>
                             <td>${station.stationName}</td>
@@ -204,7 +213,10 @@
                                 <input type="submit" formaction="<%=contextPath%>/StationServer?op=stationDeleteById&stationId=${station.stationId}" value="注销">
                             </td>
                         </tr>
-                        </tbody>
+
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${requestScope.pageSum}">
+                        [<a href="${pageContext.request.contextPath}/AdminServer?op=getAllStations&currentPageNum=${i}">${i}</a>]
                     </c:forEach>
                 </table>
             </form>
