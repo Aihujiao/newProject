@@ -46,6 +46,8 @@ public interface AdminDao {
 
     public boolean updateAdmin(Admin admin);
 
+    public boolean updateAdminProfile(Admin admin);
+
     public boolean deleteAdminById(int adminId);
 
     public Admin getAdminById(int adminId);

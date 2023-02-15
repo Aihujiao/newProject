@@ -102,13 +102,12 @@ public class AdminServer extends HttpServlet {
         System.out.println("adminId = "+ adminId);
         String newNickName = request.getParameter("newNickName");
         String newPassword = request.getParameter("newPassword");
-        String newProfile = request.getParameter("newProfile");
+        String adminProfile = request.getParameter("adminProfile");
         int newDepartmentId = Integer.parseInt(request.getParameter("newDepartmentId"));
         int newStationId = Integer.parseInt(request.getParameter("newStationId"));
         int newPowerId = Integer.parseInt(request.getParameter("newPowerId"));
 
-        System.out.println("新的各项数据为"+newNickName+" , "+newPassword+" , "+newProfile+" , "+newDepartmentId+" , "+newStationId+" , "+newPowerId);
-        newAdmin = new Admin(adminId,newNickName,newPassword,newProfile,newDepartmentId,newStationId,newPowerId);
+        newAdmin = new Admin(adminId,newNickName,newPassword,adminProfile,newDepartmentId,newStationId,newPowerId);
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         adminCtrl.updateAdmin(newAdmin);

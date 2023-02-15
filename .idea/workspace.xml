@@ -9,11 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302132103">
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302140003">
+      <change afterPath="$PROJECT_DIR$/src/ctrl/server/ProfileServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/self.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/font/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/js/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/updateProfile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +40,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -75,24 +89,24 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PersonalFile&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ideaW/myProject/NewProject/web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facet&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ideaW\myProject\NewProject\web" />
       <recent name="D:\ideaW\myProject\NewProject\web\imgs" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\imgs" />
       <recent name="D:\ideaW\myProject\NewProject\web\WEB-INF\lib" />
       <recent name="D:\ideaW\myProject\NewProject\web\admin" />
-      <recent name="D:\ideaW\myProject\NewProject\web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\ideaW\myProject\NewProject\web" />
@@ -111,19 +125,10 @@
   <component name="RunDashboard">
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Tomcat 服务器.Tomcat 9.0.70">
-    <configuration name="detail.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/detail.jsp">
-      <method v="2" />
-    </configuration>
-    <configuration name="register.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/register.jsp">
-      <method v="2" />
-    </configuration>
-    <configuration name="update.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/NewProject/admin/update.jsp">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080//NewProject" />
-      <option name="BROWSER_ID" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+      <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
@@ -217,19 +222,6 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JavaScript 调试.detail.jsp" />
-      <item itemvalue="JavaScript 调试.update.jsp" />
-      <item itemvalue="JavaScript 调试.register.jsp" />
-      <item itemvalue="Tomcat 服务器.Tomcat 9.0.70" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript 调试.detail.jsp" />
-        <item itemvalue="JavaScript 调试.update.jsp" />
-        <item itemvalue="JavaScript 调试.register.jsp" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -274,7 +266,14 @@
       <workItem from="1676209807348" duration="4632000" />
       <workItem from="1676216616039" duration="50000" />
       <workItem from="1676258322978" duration="11045000" />
-      <workItem from="1676295412667" duration="5600000" />
+      <workItem from="1676295412667" duration="6068000" />
+      <workItem from="1676334433395" duration="1137000" />
+      <workItem from="1676349800459" duration="2133000" />
+      <workItem from="1676354476732" duration="16881000" />
+      <workItem from="1676383032594" duration="762000" />
+      <workItem from="1676383807299" duration="4714000" />
+      <workItem from="1676421190436" duration="598000" />
+      <workItem from="1676441005176" duration="6567000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -479,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676293395067</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="202302140003">
+      <created>1676304373555</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1676304373555</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="202301300040" />
     <MESSAGE value="202301300920" />
     <MESSAGE value="202301301201" />
     <MESSAGE value="202301301302" />
@@ -522,7 +527,8 @@
     <MESSAGE value="202302122052" />
     <MESSAGE value="202302122340" />
     <MESSAGE value="202302132103" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302132103" />
+    <MESSAGE value="202302140003" />
+    <option name="LAST_COMMIT_MESSAGE" value="202302140003" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

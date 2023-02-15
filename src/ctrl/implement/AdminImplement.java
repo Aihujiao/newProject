@@ -159,6 +159,17 @@ public class AdminImplement extends ORMUtil implements AdminDao {
         return updated;
     }
 
+    @Override
+    public boolean updateAdminProfile(Admin admin) {
+        String sql = "update admins set adminProfile = ? where adminId = ?";
+        String newProfile = admin.getAdminProfile();
+        int adminId = admin.getAdminId();
+        Object[] objects = {newProfile,adminId};
+        boolean updated = executeDBUpdate(sql, objects);
+
+        return updated;
+    }
+
     //  删除管理员
     public boolean deleteAdminById(int adminId){
         String sql = "delete from admins where adminId = ?";

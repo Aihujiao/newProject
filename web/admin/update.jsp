@@ -22,20 +22,19 @@
 </head>
 <body>
 <h2>信息更新</h2>
-  <form action="<%=contextPath%>/AdminServer?op=adminUpdate" method="post" enctype="multipart/form-data">
-<%--    <input type="hidden" name="op" value="adminUpdate">--%>
+  <form action="<%=contextPath%>/AdminServer" method="post">
+    <input type="hidden" name="op" value="adminUpdate">
     <p><input type="hidden" name="adminId" value="${sessionScope.admin.adminId}"></p>
     <p>昵称：<input type="text" name="newNickName" value="${sessionScope.admin.adminNickName}"></p>
     <p>密码：<input type="text" name="newPassword" value="${sessionScope.admin.adminPassword}"></p>
     个人头像:<p>
+    <input type="hidden" name="adminProfile" value="sessionScope.admin.adminProfile">
     <c:choose>
       <c:when test="${empty sessionScope.admin.adminProfile}">
         <img src="/dir/havenot.jpg" onclick="pick()" width="150" alt="" id="myProfile">
-        <input type="file" name="newProfile" id="newProfile">
       </c:when>
       <c:otherwise>
-        <img src="<%=contextPath%>/${sessionScope.admin.adminProfile}" onclick="pick()" width="150" alt="" id="myProfile">
-        <input type="file" name="newProfile" id="newProfile">
+        <img src="/dir/upload/${sessionScope.admin.adminProfile}" onclick="pick()" width="150" alt="" id="myProfile">
       </c:otherwise>
     </c:choose>
   </p>
@@ -85,21 +84,24 @@
     <button>更新信息</button>
   </form>
 <script>
-  var usedProfile = document.getElementById("myProfile").src;
-  var newProfile = null;
-  console.log("原头像地址为"+usedProfile);
-
-  document.getElementById("newProfile").addEventListener("change",function getNew() {
-    console.log("change方法执行");
-    newProfile =document.getElementById("newProfile").value;
-    newProfile = newProfile.replace("C:\\fakepath\\","/dir/");
-    console.log(newProfile);
-    document.getElementById("myProfile").src = newProfile;
-  });
-
   function pick(){
-    document.getElementById("newProfile").click();
+    window.open("<%=contextPath%>/updateProfile.jsp","_blank");
   }
+  // var usedProfile = document.getElementById("myProfile").src;
+  // var newProfile = null;
+  // console.log("原头像地址为"+usedProfile);
+  //
+  // document.getElementById("newProfile").addEventListener("change",function getNew() {
+  //   console.log("change方法执行");
+  //   newProfile =document.getElementById("newProfile").value;
+  //   newProfile = newProfile.replace("C:\\fakepath\\","/dir/");
+  //   console.log(newProfile);
+  //   document.getElementById("myProfile").src = newProfile;
+  // });
+  //
+  // function pick(){
+  //   document.getElementById("newProfile").click();
+  // }
 </script>
 </body>
 </html>
