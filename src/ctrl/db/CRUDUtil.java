@@ -44,6 +44,9 @@ public class CRUDUtil extends DBUtil{
                 }
             }
 
+            String query = pstmt.toString();
+            System.out.println(query);
+
             rs = pstmt.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -55,7 +55,10 @@ public class StationImplement extends CRUDUtil implements StationDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
+
     }
 
     //  查询所有部门信息
@@ -76,6 +79,8 @@ public class StationImplement extends CRUDUtil implements StationDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return stationList;
@@ -99,6 +104,8 @@ public class StationImplement extends CRUDUtil implements StationDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return stationList;

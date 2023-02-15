@@ -95,7 +95,10 @@ public class PositionImplement extends ORMUtil implements PositionDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
+
         return positions;
     }
 

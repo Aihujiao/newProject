@@ -55,6 +55,8 @@ public class DepartmentImplement extends CRUDUtil implements DepartmentDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
     }
 
@@ -76,6 +78,8 @@ public class DepartmentImplement extends CRUDUtil implements DepartmentDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return list;
@@ -136,6 +140,8 @@ public class DepartmentImplement extends CRUDUtil implements DepartmentDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return departmentList;
@@ -157,6 +163,8 @@ public class DepartmentImplement extends CRUDUtil implements DepartmentDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return departmentList;

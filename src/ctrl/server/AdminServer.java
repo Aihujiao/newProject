@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,8 @@ public class AdminServer extends HttpServlet {
             this.doDeleteAdminById(request, response);
         } else if (op.equals("getAllAdmins")) {
             this.doGetAllAdmins(request, response);
-        } else if (op.equals("getAdminsByName")) {
-            this.doGetAdminsByName(request,response);
+        } else if (op.equals("getAdminsByQuery")) {
+            this.doGetAdminsByQuery(request,response);
         } else if (op.equals("toEmployeeRegister")) {
             this.toEmployeeRegister(request,response);
         }
@@ -194,9 +195,19 @@ public class AdminServer extends HttpServlet {
     }
 
     private void doGetAllAdmins(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Department> departments = new ArrayList<>();
+        List<Power> powers = new ArrayList<>();
+
+        DepartmentDao departmentCtrl = AdminFactory.instance().getDepartmentCtrl();
+        PowerDao powerCtrl = AdminFactory.instance().getPowerCtrl();
+
+        departments = departmentCtrl.getAllDepartmentOptions();
+        powers = powerCtrl.getAllPowerOptions();
+
+        Map<String,Object> conditionMap = new HashMap<>();
+
         String objectCurrent = request.getParameter("currentPageNum");
         String pageSize =  request.getParameter("size");
-        Map<String,Object> conditionMap = new HashMap<>();
 
         if(objectCurrent == null){
             objectCurrent = "1";
@@ -237,16 +248,73 @@ public class AdminServer extends HttpServlet {
             //  如果查到的管理员数量为0，就执行这内容
             path = "/getInfo.jsp?type=admins&msg=nothing";
         }
+
+        request.setAttribute("departments",departments);
+        request.setAttribute("powers", powers);
         request.setAttribute("pageSum",pageSum);
         request.setAttribute("admins",adminList);
     }
 
-    private void doGetAdminsByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Admin> adminList = null;
+    private void doGetAdminsByQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String TadminId = request.getParameter("adminId");
         String adminLikeName = request.getParameter("adminLikeName");
+        String TadminDepartmentId = request.getParameter("adminDepartmentId");
+        String TadminPowerLevel = request.getParameter("adminPowerLevel");
+
+        if(TadminId.equals("")&&adminLikeName.equals("")&&TadminDepartmentId.equals("0")&&TadminPowerLevel.equals("0")){
+            this.doGetAllAdmins(request, response);
+            return;
+        }
+
+        List<Admin> adminList = null;
+        Map<String,Object> conditionMap = new HashMap<>();
+
+        String objectCurrent = request.getParameter("currentPageNum");
+        String pageSize =  request.getParameter("size");
+
+        if(objectCurrent == null){
+            objectCurrent = "1";
+        }
+
+        if(pageSize == null){
+            pageSize = "4";
+        }
+
+        //  input 输入的值
+        if(TadminId.equals("")){
+            TadminId = "0";
+        }
+
+        int currentPageNum =  Integer.parseInt(objectCurrent);
+        int size = Integer.parseInt(pageSize);
+
+        int adminId = Integer.parseInt(TadminId);
+        int adminDepartmentId = Integer.parseInt(TadminDepartmentId);
+        int adminPowerLevel = Integer.parseInt(TadminPowerLevel);
+
+        System.out.println("adminId = "+adminId+",adminLikeName = "+ adminLikeName + ", adminDepartmentId = " + adminDepartmentId + ",adminPowerLevel = "+ adminPowerLevel);
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
-        adminList = adminCtrl.getAllLikeAdminsName(adminLikeName);
+        SplitDao splitCtrl = AdminFactory.instance().getSplitCtrl();
+
+        //  得到页面起始数据行数
+        int begin = splitCtrl.getBeginRow(size, currentPageNum);
+        System.out.println("begin = " + begin + "currentPageNum = " + currentPageNum);
+        //  获得数据总行数
+        String sql = "select count(adminId) from admins";
+        int count = splitCtrl.getTableRowCount(sql, null);
+        int pageSum = splitCtrl.getAllPages(size, count);
+        System.out.println("pageSum = "+pageSum+",size为:"+size+",数据总行数:"+count);
+
+        conditionMap.put("begin",begin);
+        conditionMap.put("size",size);
+
+        conditionMap.put("adminId",adminId);
+        conditionMap.put("adminLikeName",adminLikeName);
+        conditionMap.put("adminDepartmentId",adminDepartmentId);
+        conditionMap.put("adminPowerLevel",adminPowerLevel);
+
+        adminList = adminCtrl.adminQuery(conditionMap);
         int adminsNum = adminList.size();
 
         path = contextPath + "/getInfo?type=admins";

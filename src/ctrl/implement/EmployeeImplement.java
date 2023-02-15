@@ -123,6 +123,8 @@ public class EmployeeImplement extends CRUDUtil implements EmployeeDao {
             close(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return employee;
@@ -156,10 +158,10 @@ public class EmployeeImplement extends CRUDUtil implements EmployeeDao {
                 list.add(employee);
             }
 
-            close(rs);
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return list;

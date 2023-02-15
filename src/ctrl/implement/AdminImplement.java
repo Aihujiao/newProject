@@ -30,8 +30,8 @@ public class AdminImplement extends ORMUtil implements AdminDao {
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStationId = rs.getInt("adminStationId");
-                int adminPowerId = rs.getInt("adminPowerId");
-                admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStationId,adminPowerId);
+                int adminPowerLevel = rs.getInt("adminPowerLevel");
+                admin = new Admin(adminId, adminNickName, adminPassword, adminProfile, adminDepartmentId, adminStationId,adminPowerLevel);
             }else{
                 return null;
             }
@@ -117,16 +117,18 @@ public class AdminImplement extends ORMUtil implements AdminDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return adminStationName;
     }
 
     @Override
-    public String getAdminPower(int adminPowerId) {
+    public String getAdminPower(int adminPowerLevel) {
         String adminPowerName = null;
         String sql = "select powerName from powers where powerId = ?";
-        Object[] objects = {adminPowerId};
+        Object[] objects = {adminPowerLevel};
 
         ResultSet rs = executeDBQuery(sql, objects);
 
@@ -136,6 +138,8 @@ public class AdminImplement extends ORMUtil implements AdminDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return adminPowerName;
@@ -194,9 +198,9 @@ public class AdminImplement extends ORMUtil implements AdminDao {
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStationId = rs.getInt("adminStationId");
-                int adminPowerId = rs.getInt("adminPowerId");
+                int adminPowerLevel = rs.getInt("adminPowerLevel");
 
-                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerLevel);
             }else{
                 return null;
             }
@@ -227,9 +231,9 @@ public class AdminImplement extends ORMUtil implements AdminDao {
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStationId = rs.getInt("adminStationId");
-                int adminPowerId = rs.getInt("adminPowerId");
+                int adminPowerLevel = rs.getInt("adminPowerLevel");
 
-                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerLevel);
 
                 list.add(admin);
             }
@@ -262,13 +266,15 @@ public class AdminImplement extends ORMUtil implements AdminDao {
                 String adminProfile = rs.getString("adminProfile");
                 int adminDepartmentId = rs.getInt("adminDepartmentId");
                 int adminStationId = rs.getInt("adminStationId");
-                int adminPowerId = rs.getInt("adminPowerId");
+                int adminPowerLevel = rs.getInt("adminPowerLevel");
 
-                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerId);
+                admin = new Admin(adminId,adminNickName,adminPassword,adminProfile,adminDepartmentId,adminStationId,adminPowerLevel);
                 adminList.add(admin);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return adminList;
@@ -293,64 +299,37 @@ public class AdminImplement extends ORMUtil implements AdminDao {
             String sql = null;
             Object[] objects = null;
             int adminId = Integer.parseInt(conditionMap.get("adminId").toString());
-            String adminNickName = conditionMap.get("adminName").toString();
+            String adminNickName = conditionMap.get("adminLikeName").toString();
             int adminDepartmentId = Integer.parseInt(conditionMap.get("adminDepartmentId").toString());
-            int adminPowerId = Integer.parseInt(conditionMap.get("adminPowerId").toString());
-            int adminPositionId = Integer.parseInt(conditionMap.get("adminPositionId").toString());
+            int adminPowerLevel = Integer.parseInt(conditionMap.get("adminPowerLevel").toString());
 
-            if(adminId != 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0){
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminId = ? limit ?,?";
+            if(adminId != 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerLevel == 0){
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminId,begin,size};
-            } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName == null && adminPowerId == 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminDepartmentId = ? limit ?,?";
+            } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName == null && adminPowerLevel == 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminDepartmentId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminDepartmentId,begin,size};
-            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName != null && adminPowerId == 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminNickName = ? limit ?,?";
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName != null && adminPowerLevel == 0) {
+                adminNickName = "%" + adminNickName + "%";
+                System.out.println("改后的值"+adminNickName);
+                sql = "select adminId,adminNickName,adminDepartmentId,adminPowerLevel from admins where adminNickName like ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminNickName,begin,size};
-            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId != 0 && adminPositionId == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPowerId = ? limit ?,?";
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerLevel != 0) {
+                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminPowerLevel = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
-                objects = new Object[]{adminPowerId,begin,size};
-            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerId == 0 && adminPositionId != 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerId,adminPositionId from admins where adminPositionId = ? limit ?,?";
-                int begin = Integer.parseInt(conditionMap.get("begin").toString());
-                int size = Integer.parseInt(conditionMap.get("size").toString());
-                objects = new Object[]{adminPositionId,begin,size};
+                objects = new Object[]{adminPowerLevel,begin,size};
             }
+
             adminList = getORMS(sql, objects, Admin.class);
         }
+
         return adminList;
     }
-
-//    public List<Power> getAllAdminPowers(){
-//        String sql ="select * from powers";
-//        List<Power> list = new ArrayList<>();
-//        Power power = null;
-//        ResultSet rs = executeDBQuery(sql, null);
-//
-//
-//        try {
-//            while(rs.next()){
-//                int powerId = rs.getInt("powerId");
-//                String powerName =rs.getString("powerName");
-//                int powerLevel = rs.getInt("powerLevel");
-//                String powerIntro = rs.getString("powerIntro");
-//
-//                power = new Power(powerId,powerName,powerLevel,powerIntro);
-//                list.add(power);
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        return list;
-//    }
-
 }

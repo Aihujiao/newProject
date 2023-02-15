@@ -40,10 +40,23 @@
 
     <c:choose>
         <c:when test="${param.type == 'admins'}">
-            <%
-                AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
-            %>
-            <form action="" method="post">
+            <form action="<%=contextPath%>/AdminServer?op=getAdminsByQuery" method="post">
+                管理编号:<input type="text" name="adminId" placeholder="输入管理员编号查询信息">
+                人员昵称:<input type="text" name="adminLikeName" placeholder="输入管理员名称查询信息" >
+                部门名称:<select name="adminDepartmentId" style="width:130px">
+                    <option value="0">请选择</option>
+                    <c:forEach var="department" items="${requestScope.departments}" varStatus="i">
+                        <option value="${department.departmentId}">${department.departmentName}</option>
+                    </c:forEach>
+                </select>
+                权限等级:<select name="adminPowerLevel" style="width:130px">
+                    <option value="0">请选择</option>
+                    <c:forEach var="power" items="${requestScope.powers}" varStatus="i">
+                        <option value="${power.powerLevel}">${power.powerName}</option>
+                    </c:forEach>
+                </select>
+                <input type="submit" value="查询信息">
+                <hr>
                 <table border="1">
                     <thead>
                         <tr>
@@ -51,12 +64,14 @@
                             <th>管理员昵称</th>
                             <th>头像地址</th>
                             <th>部门名称</th>
+                            <th>权限等级</th>
                             <th>当前状态</th>
                             <th>具体操作</th>
                         </tr>
                     </thead>
                 <c:forEach items="${requestScope.admins}" var="admin">
                     <%
+                        AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
                         Admin admin = (Admin)pageContext.findAttribute("admin");
                         int adminDepartmentId = admin.getAdminDepartmentId();
                         int adminStation = admin.getAdminStationId();
@@ -69,6 +84,7 @@
                             <td>${admin.adminNickName}</td>
                             <td>${admin.adminProfile}</td>
                             <td><%=departmentName%></td>
+                            <td>${admin.adminPowerLevel}级</td>
                             <td><%=stationName%></td>
                             <td>
                                 <input type="submit" formaction="<%=contextPath%>/detail.jsp?type=admin&adminId=${admin.adminId}" value="详情">

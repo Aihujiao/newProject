@@ -9,25 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302140003">
-      <change afterPath="$PROJECT_DIR$/src/ctrl/server/ProfileServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/layui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/self.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/font/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/font/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/font/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/font/iconfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/layui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/updateProfile.jsp" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="2023021517570003">
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/operation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/operation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +83,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ideaW/myProject/NewProject/web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/40771/Desktop/oa&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,6 +91,7 @@
     &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
@@ -126,7 +121,7 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" editBeforeRun="true" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080//NewProject" />
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
@@ -147,11 +142,11 @@
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="bd011164-b301-489f-bc6d-1c0c479350f0" />
       </server-settings>
+      <log_file alias="Tomcat Manager 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
+      <log_file alias="Tomcat Host Manager 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
+      <log_file alias="Tomcat Localhost Access 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost_access_log.*" />
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="57112" />
       </RunnerSettings>
@@ -273,7 +268,8 @@
       <workItem from="1676383032594" duration="762000" />
       <workItem from="1676383807299" duration="4714000" />
       <workItem from="1676421190436" duration="598000" />
-      <workItem from="1676441005176" duration="6567000" />
+      <workItem from="1676441005176" duration="16320000" />
+      <workItem from="1676475057811" duration="4037000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -485,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676304373555</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="2023021517570003">
+      <created>1676455050437</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1676455050437</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="202301300920" />
     <MESSAGE value="202301301201" />
     <MESSAGE value="202301301302" />
     <MESSAGE value="202301301408" />
@@ -528,7 +530,8 @@
     <MESSAGE value="202302122340" />
     <MESSAGE value="202302132103" />
     <MESSAGE value="202302140003" />
-    <option name="LAST_COMMIT_MESSAGE" value="202302140003" />
+    <MESSAGE value="2023021517570003" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023021517570003" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

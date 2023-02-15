@@ -78,6 +78,8 @@ public class PowerImplement extends CRUDUtil implements PowerDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
     }
 
@@ -100,6 +102,8 @@ public class PowerImplement extends CRUDUtil implements PowerDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
 
         return list;
@@ -122,7 +126,10 @@ public class PowerImplement extends CRUDUtil implements PowerDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rs);
         }
+
         return powerList;
     }
 
