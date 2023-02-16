@@ -33,6 +33,7 @@ public class CRUDUtil extends DBUtil{
         return b;
     }
 
+    //  可能会存在的问题，执行完结果后忘记关闭连接
     public ResultSet executeDBQuery(String sql,Object objects[]){
         ResultSet rs = null;
         con = getConnection();
@@ -43,9 +44,6 @@ public class CRUDUtil extends DBUtil{
                     pstmt.setObject(i+1,objects[i]);
                 }
             }
-
-            String query = pstmt.toString();
-            System.out.println(query);
 
             rs = pstmt.executeQuery();
         } catch (SQLException e) {
