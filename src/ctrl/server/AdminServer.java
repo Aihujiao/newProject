@@ -53,6 +53,8 @@ public class AdminServer extends HttpServlet {
             this.toEmployeeRegister(request,response);
         }
 
+        System.out.println(path);
+
         request.getRequestDispatcher(path).forward(request,response);
     }
 
@@ -266,11 +268,17 @@ public class AdminServer extends HttpServlet {
             return;
         }
 
+        System.out.println("获得的各个参数为==》adminId = " +TadminId+" ,adminNickName = "+ adminLikeName + " ,adminDepartmentId = " + TadminDepartmentId + " ,adminPowerLevel = " + TadminPowerLevel );
+
         List<Admin> adminList = null;
         Map<String,Object> conditionMap = new HashMap<>();
 
         String objectCurrent = request.getParameter("currentPageNum");
         String pageSize =  request.getParameter("size");
+
+        if(adminLikeName.equals("")){
+            System.out.println("没输入昵称");
+        }
 
         if(objectCurrent == null){
             objectCurrent = "1";
@@ -292,7 +300,7 @@ public class AdminServer extends HttpServlet {
         int adminDepartmentId = Integer.parseInt(TadminDepartmentId);
         int adminPowerLevel = Integer.parseInt(TadminPowerLevel);
 
-        System.out.println("adminId = "+adminId+",adminLikeName = "+ adminLikeName + ", adminDepartmentId = " + adminDepartmentId + ",adminPowerLevel = "+ adminPowerLevel);
+        System.out.println("在server中adminId = "+adminId+",adminLikeName = "+ adminLikeName + ", adminDepartmentId = " + adminDepartmentId + ",adminPowerLevel = "+ adminPowerLevel);
 
         AdminDao adminCtrl = AdminFactory.instance().getAdminCtrl();
         SplitDao splitCtrl = AdminFactory.instance().getSplitCtrl();
@@ -317,7 +325,7 @@ public class AdminServer extends HttpServlet {
         adminList = adminCtrl.adminQuery(conditionMap);
         int adminsNum = adminList.size();
 
-        path = contextPath + "/getInfo?type=admins";
+        path = "/getInfo.jsp?type=admins";
 
         if(adminsNum > 0){
             request.setAttribute("admins",adminList);

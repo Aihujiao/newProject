@@ -303,28 +303,54 @@ public class AdminImplement extends ORMUtil implements AdminDao {
             int adminDepartmentId = Integer.parseInt(conditionMap.get("adminDepartmentId").toString());
             int adminPowerLevel = Integer.parseInt(conditionMap.get("adminPowerLevel").toString());
 
-            if(adminId != 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerLevel == 0){
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminId = ? limit ?,?";
+            System.out.println("在implement中adminId = "+adminId+",adminLikeName = "+ adminNickName + ", adminDepartmentId = " + adminDepartmentId + ",adminPowerLevel = "+ adminPowerLevel);
+
+            if(adminId != 0 && adminDepartmentId ==0 && adminNickName.equals("") && adminPowerLevel == 0){
+                System.out.println("能进这个方法");
+                sql = "select * from admins where adminId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminId,begin,size};
-            } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName == null && adminPowerLevel == 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminDepartmentId = ? limit ?,?";
+
+            } else if (adminId == 0 && adminDepartmentId !=0 && adminNickName.equals("") && adminPowerLevel == 0) {
+                sql = "select * from admins where adminDepartmentId = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminDepartmentId,begin,size};
+
             } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName != null && adminPowerLevel == 0) {
                 adminNickName = "%" + adminNickName + "%";
                 System.out.println("改后的值"+adminNickName);
-                sql = "select adminId,adminNickName,adminDepartmentId,adminPowerLevel from admins where adminNickName like ? limit ?,?";
+                sql = "select * from admins where adminNickName like ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminNickName,begin,size};
-            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName == null && adminPowerLevel != 0) {
-                sql = "select adminId,adminNickName ,adminDepartmentId,adminPowerLevel from admins where adminPowerLevel = ? limit ?,?";
+
+            } else if (adminId == 0 && adminDepartmentId ==0 && adminNickName.equals("") && adminPowerLevel != 0) {
+                sql = "select * from admins where adminPowerLevel = ? limit ?,?";
                 int begin = Integer.parseInt(conditionMap.get("begin").toString());
                 int size = Integer.parseInt(conditionMap.get("size").toString());
                 objects = new Object[]{adminPowerLevel,begin,size};
+
+            } else if (adminId == 0 && adminDepartmentId != 0 && adminNickName != null && adminPowerLevel == 0) {
+                adminNickName = "%" + adminNickName + "%";
+                sql = "select * from admins where adminDepartmentId = ? and adminNickName like ? limit ?,?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminDepartmentId,adminNickName,begin,size};
+
+            } else if (adminId == 0 && adminDepartmentId == 0 && adminNickName != null && adminPowerLevel != 0) {
+                adminNickName = "%" + adminNickName + "%";
+                sql = "select * from admins where adminPowerLevel = ? and adminNickName like ? limit ?,?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminPowerLevel,adminNickName,begin,size};
+
+            } else if (adminId == 0 && adminDepartmentId != 0 && adminNickName.equals("") && adminPowerLevel != 0) {
+                sql = "select * from admins where adminPowerLevel = ? and adminDepartmentId = ? limit ?,?";
+                int begin = Integer.parseInt(conditionMap.get("begin").toString());
+                int size = Integer.parseInt(conditionMap.get("size").toString());
+                objects = new Object[]{adminPowerLevel,adminPowerLevel,begin,size};
             }
 
             adminList = getORMS(sql, objects, Admin.class);

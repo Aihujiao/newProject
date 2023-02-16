@@ -9,19 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="2023021517570003">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="98de85f0-690f-4ebd-9df4-85bd38ef5bf1" name="变更" comment="202302160038">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/db/CRUDUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/AdminImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/DepartmentImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/EmployeeImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PositionImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/PowerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/implement/StationImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ctrl/server/AdminServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/getInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/getInfo.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +112,7 @@
     <option name="openRunningConfigInTab" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" editBeforeRun="true" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.70" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080//NewProject" />
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
@@ -269,7 +260,8 @@
       <workItem from="1676383807299" duration="4714000" />
       <workItem from="1676421190436" duration="598000" />
       <workItem from="1676441005176" duration="16320000" />
-      <workItem from="1676475057811" duration="4037000" />
+      <workItem from="1676475057811" duration="4180000" />
+      <workItem from="1676507745583" duration="4430000" />
     </task>
     <task id="LOCAL-00001" summary="202301292211">
       <created>1675001480453</created>
@@ -488,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676455050437</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="202302160038">
+      <created>1676479117190</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1676479117190</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,7 +505,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="202301301201" />
     <MESSAGE value="202301301302" />
     <MESSAGE value="202301301408" />
     <MESSAGE value="202301301600" />
@@ -531,7 +529,8 @@
     <MESSAGE value="202302132103" />
     <MESSAGE value="202302140003" />
     <MESSAGE value="2023021517570003" />
-    <option name="LAST_COMMIT_MESSAGE" value="2023021517570003" />
+    <MESSAGE value="202302160038" />
+    <option name="LAST_COMMIT_MESSAGE" value="202302160038" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
